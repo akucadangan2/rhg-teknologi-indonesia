@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #F6F7FA;
+  color: #11162B;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .diagram-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw-line 0.8s ease forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .diagram-node {
+    opacity: 0;
+    animation: fade-in-node 0.4s ease forwards;
+    animation-delay: calc(var(--delay, 0s) + 0.6s);
+  }
+
+  .pulse-dot {
+    animation: travel var(--duration, 2.5s) linear infinite;
+    animation-delay: calc(var(--delay, 0s) + 1.2s);
+  }
+
+  .blob {
+    animation: blob-move 12s ease-in-out infinite;
+  }
+
+  .blob-2 {
+    animation: blob-move-2 14s ease-in-out infinite;
+  }
+}
+
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fade-in-node {
+  to { opacity: 1; }
+}
+
+@keyframes travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+@keyframes blob-move {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes blob-move-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, -30px) scale(1.15); }
+}
