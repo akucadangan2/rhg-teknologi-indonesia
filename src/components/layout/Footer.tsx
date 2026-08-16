@@ -23,12 +23,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 sm:grid-cols-3">
         <div>
           <div className="relative h-8 w-36">
-            <Image
-              src="/logo-full.png"
-              alt="RHG Teknologi Indonesia"
-              fill
-              className="object-contain object-left"
-            />
+            <Image src="/logo-full.png" alt="RHG Teknologi Indonesia" fill className="object-contain object-left" />
           </div>
           <p className="mt-4 text-sm text-ink/50">
             Jasa pengembangan website, aplikasi, dan sistem IT dari ide sampai produksi.
@@ -41,11 +36,7 @@ export function Footer() {
           </p>
           <nav className="mt-4 flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-ink/60 hover:text-ink"
-              >
+              <Link key={link.href} href={link.href} className="text-sm text-ink/60 hover:text-ink">
                 {link.label}
               </Link>
             ))}
@@ -57,16 +48,13 @@ export function Footer() {
             Kontak
           </p>
           <div className="mt-4 space-y-3">
-            
-              href={`mailto:${contactInfo.email}`}
-              className="flex items-center gap-2 text-sm text-ink/60 hover:text-ink"
-            >
+            <a href={"mailto:" + contactInfo.email} className="flex items-center gap-2 text-sm text-ink/60 hover:text-ink">
               <Mail size={15} className="text-brand" />
-              {contactInfo.email}
+              <span>{contactInfo.email}</span>
             </a>
             <div className="flex items-start gap-2 text-sm text-ink/60">
               <MapPin size={15} className="mt-0.5 shrink-0 text-brand" />
-              {legalInfo.domicile}
+              <span>{legalInfo.domicile}</span>
             </div>
           </div>
         </div>
