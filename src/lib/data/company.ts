@@ -13,6 +13,10 @@ export const sectorHighlights = {
   ],
 };
 
+export const contactInfo = {
+  email: "info@rhgteknologiindonesia.id",
+};
+
 export const companyStory =
   "PT RHG Teknologi Indonesia hadir sebagai penyedia jasa pengembangan teknologi yang menangani project dari perencanaan hingga produksi. Kami berfokus membangun sistem yang saling terhubung — website, aplikasi mobile, backend, payment gateway, hingga infrastruktur jaringan — supaya klien tidak perlu berurusan dengan banyak vendor terpisah untuk satu kebutuhan bisnis.";
 
