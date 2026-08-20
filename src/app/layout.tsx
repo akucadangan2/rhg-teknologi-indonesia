@@ -20,9 +20,6 @@ export const metadata: Metadata = {
   title: "RHG Teknologi Indonesia",
   description:
     "Jasa pembuatan website, aplikasi mobile, integrasi payment gateway, backend, dan sistem GIS.",
-  icons: {
-    icon: "/logo.png",
-  },
   openGraph: {
     title: "RHG Teknologi Indonesia",
     description:
