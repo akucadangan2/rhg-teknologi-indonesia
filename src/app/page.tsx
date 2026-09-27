@@ -154,7 +154,7 @@ const AI_SECTORS = [
   "Document Processing",
 ];
 
-const PARTNERS = [
+const CLIENTS = [
   {
     name: "Buana",
     category: "Retail, Equipment & Service",
@@ -162,22 +162,25 @@ const PARTNERS = [
     link: "https://www.buana.com.au/",
     description:
       "Platform digital untuk retail supply, commercial equipment, pemesanan, tracking, dan service operation.",
+    map: { x: 78, y: 76 },
   },
   {
     name: "KADAI ZIO / Fast & Go",
     category: "Retail & Delivery Platform",
-    location: "Sumatera Barat",
+    location: "Padang, Sumatera Barat",
     link: "https://www.kadaizio.com/",
     description:
       "Ekosistem retail digital untuk katalog produk, pemesanan, pickup, delivery, dan pengalaman pelanggan.",
+    map: { x: 23, y: 35 },
   },
   {
     name: "Profita Agro Sarana",
     category: "Warehouse & Distribution",
-    location: "Pontianak",
+    location: "Pontianak, Kalimantan Barat",
     link: "https://profitaagrosarana.my.id/",
     description:
       "Sistem operasional gudang dan distribusi untuk stok, picking, permintaan barang, serta koordinasi cabang.",
+    map: { x: 48, y: 34 },
   },
   {
     name: "IONET+",
@@ -186,6 +189,7 @@ const PARTNERS = [
     link: "https://www.ionet.my.id/",
     description:
       "Platform untuk billing, monitoring pelanggan, pembayaran, jaringan, dan aktivitas operasional ISP.",
+    map: { x: 68, y: 30 },
   },
 ];
 
@@ -258,7 +262,6 @@ const LAB_LOCATION = {
 };
 
 const LAB_MAP_EMBED = `https://www.google.com/maps?q=${LAB_LOCATION.latitude},${LAB_LOCATION.longitude}&z=17&t=k&output=embed`;
-
 const LAB_MAP_LINK = `https://www.google.com/maps?q=${LAB_LOCATION.latitude},${LAB_LOCATION.longitude}`;
 
 function Eyebrow({
@@ -279,7 +282,6 @@ function Eyebrow({
           dark ? "bg-[#ff8a34]" : "bg-[#ff6f0f]"
         }`}
       />
-
       {children}
     </div>
   );
@@ -294,7 +296,6 @@ export default function HomePage() {
             opacity: 0;
             transform: translateY(20px);
           }
-
           to {
             opacity: 1;
             transform: translateY(0);
@@ -306,7 +307,6 @@ export default function HomePage() {
             opacity: 0;
             transform: translateX(28px) scale(.985);
           }
-
           to {
             opacity: 1;
             transform: translateX(0) scale(1);
@@ -318,7 +318,6 @@ export default function HomePage() {
           100% {
             transform: translateY(0);
           }
-
           50% {
             transform: translateY(-6px);
           }
@@ -328,7 +327,6 @@ export default function HomePage() {
           from {
             background-position: 0 0;
           }
-
           to {
             background-position: 40px 40px;
           }
@@ -338,7 +336,6 @@ export default function HomePage() {
           from {
             transform: translateX(0);
           }
-
           to {
             transform: translateX(-50%);
           }
@@ -350,7 +347,6 @@ export default function HomePage() {
             transform: translate3d(-7%,0,0);
             opacity: .28;
           }
-
           50% {
             transform: translate3d(12%,-5%,0);
             opacity: .48;
@@ -361,7 +357,6 @@ export default function HomePage() {
           0% {
             transform: translateX(-180%) skewX(-20deg);
           }
-
           50%,
           100% {
             transform: translateX(320%) skewX(-20deg);
@@ -427,9 +422,7 @@ export default function HomePage() {
               rgba(15,23,42,.038) 1px,
               transparent 1px
             );
-
           background-size: 40px 40px;
-
           animation:
             gridMove
             18s
@@ -444,7 +437,6 @@ export default function HomePage() {
               rgba(255,111,15,.17) 1px,
               transparent 1px
             );
-
           background-size: 18px 18px;
         }
 
@@ -452,7 +444,6 @@ export default function HomePage() {
           display: flex;
           width: max-content;
           min-width: 200%;
-
           animation:
             marquee
             34s
@@ -524,14 +515,12 @@ export default function HomePage() {
           bottom: 0;
           width: 0;
           height: 2px;
-
           background:
             linear-gradient(
               90deg,
               #ff6f0f,
               transparent
             );
-
           transition:
             width .45s
             ease;
@@ -553,7 +542,6 @@ export default function HomePage() {
           bottom: -50%;
           left: 0;
           width: 100px;
-
           background:
             linear-gradient(
               90deg,
@@ -561,13 +549,11 @@ export default function HomePage() {
               rgba(255,255,255,.18),
               transparent
             );
-
           animation:
             ctaSweep
             6s
             ease-in-out
             infinite;
-
           pointer-events: none;
         }
 
@@ -577,9 +563,7 @@ export default function HomePage() {
               fadeUp
               linear
               both;
-
             animation-timeline: view();
-
             animation-range:
               entry 0%
               cover 24%;
@@ -646,20 +630,15 @@ export default function HomePage() {
         {/* =====================================================
             HERO
         ====================================================== */}
-
         <section className="relative overflow-hidden border-b border-black/[0.06]">
           <div className="moving-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_95%)]" />
-
           <div className="pointer-events-none absolute -left-32 -top-24 h-[420px] w-[420px] rounded-full bg-[#ff6f0f]/[0.07] blur-[100px]" />
-
           <div className="pointer-events-none absolute -right-40 top-16 h-[420px] w-[420px] rounded-full bg-blue-500/[0.05] blur-[110px]" />
 
           <div className="relative mx-auto grid max-w-7xl gap-11 px-4 pb-14 pt-12 sm:px-6 sm:py-16 md:min-h-[calc(100vh-70px)] md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-14 md:px-8 md:py-20 lg:px-10">
             <div>
               <div className="hero-a">
-                <Eyebrow>
-                  PT RHG Teknologi Indonesia
-                </Eyebrow>
+                <Eyebrow>PT RHG Teknologi Indonesia</Eyebrow>
               </div>
 
               <h1 className="hero-b mt-5 max-w-3xl text-[38px] font-black leading-[1.02] tracking-[-0.05em] text-[#111315] min-[390px]:text-[41px] sm:text-5xl md:text-[60px] lg:text-[68px]">
@@ -683,7 +662,6 @@ export default function HomePage() {
                   className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-6 text-sm font-black text-white transition hover:bg-black"
                 >
                   Diskusikan Project
-
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
 
@@ -692,7 +670,6 @@ export default function HomePage() {
                   className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-6 text-sm font-bold transition hover:border-black/20"
                 >
                   Explore AI
-
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -708,7 +685,6 @@ export default function HomePage() {
                     <p className="text-base font-black tracking-[-0.04em] sm:text-xl">
                       {title}
                     </p>
-
                     <p className="mt-1 text-[8px] leading-4 text-slate-400 sm:text-[10px]">
                       {subtitle}
                     </p>
@@ -726,7 +702,6 @@ export default function HomePage() {
                     <p className="text-sm font-black">
                       RHG Technology Engineering
                     </p>
-
                     <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-white/30">
                       Software · AI · Data · Field Technology
                     </p>
@@ -823,11 +798,9 @@ export default function HomePage() {
         {/* =====================================================
             TECHNOLOGY
         ====================================================== */}
-
         <section className="overflow-hidden border-b border-black/[0.06] bg-white">
           <div className="relative flex h-14 items-center sm:h-16">
             <div className="pointer-events-none absolute left-0 z-10 h-full w-16 bg-gradient-to-r from-white to-transparent" />
-
             <div className="pointer-events-none absolute right-0 z-10 h-full w-16 bg-gradient-to-l from-white to-transparent" />
 
             <div className="tech-track">
@@ -839,7 +812,6 @@ export default function HomePage() {
                   <span className="px-5 text-[11px] font-bold text-slate-400 sm:px-8 sm:text-xs">
                     {item}
                   </span>
-
                   <span className="h-1 w-1 rounded-full bg-[#ff6f0f]/40" />
                 </div>
               ))}
@@ -850,14 +822,11 @@ export default function HomePage() {
         {/* =====================================================
             SERVICES
         ====================================================== */}
-
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[.68fr_1.32fr]">
               <div className="reveal">
-                <Eyebrow>
-                  Capabilities
-                </Eyebrow>
+                <Eyebrow>Capabilities</Eyebrow>
 
                 <h2 className="mt-4 max-w-lg text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Lebih dari sekadar software development.
@@ -874,7 +843,6 @@ export default function HomePage() {
                   className="group mt-7 inline-flex items-center gap-2 text-sm font-black"
                 >
                   Semua layanan
-
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -927,7 +895,6 @@ export default function HomePage() {
 
                       <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-black opacity-50 transition group-hover:opacity-100">
                         Detail layanan
-
                         <ArrowUpRight className="h-3.5 w-3.5" />
                       </span>
                     </Link>
@@ -941,7 +908,6 @@ export default function HomePage() {
         {/* =====================================================
             RHG COFFEE AI LIVING LAB
         ====================================================== */}
-
         <section className="relative overflow-hidden bg-[#f7f7f5]">
           <div className="dot-grid pointer-events-none absolute inset-0 opacity-25" />
 
@@ -966,7 +932,6 @@ export default function HomePage() {
 
                 <div className="mt-4 flex items-center gap-2 text-[12px] font-bold text-slate-500">
                   <MapPin className="h-4 w-4 text-[#ff6f0f]" />
-
                   Kabupaten Rejang Lebong, Provinsi Bengkulu
                 </div>
 
@@ -1040,7 +1005,6 @@ export default function HomePage() {
                     className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-5 text-sm font-black text-white transition hover:bg-black"
                   >
                     Lihat RHG Lab
-
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
 
@@ -1051,7 +1015,6 @@ export default function HomePage() {
                     className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/[0.09] bg-white px-5 text-sm font-bold transition hover:border-black/20"
                   >
                     Buka Satellite Map
-
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 </div>
@@ -1151,7 +1114,6 @@ export default function HomePage() {
                   className="group inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c] transition hover:bg-[#ff8a34] md:w-auto"
                 >
                   Informasi Lengkap RHG Lab
-
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -1162,7 +1124,6 @@ export default function HomePage() {
         {/* =====================================================
             APPLIED AI
         ====================================================== */}
-
         <section
           id="ai"
           className="relative overflow-hidden bg-[#17191c] text-white"
@@ -1171,9 +1132,7 @@ export default function HomePage() {
 
           <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="reveal max-w-4xl">
-              <Eyebrow dark>
-                Applied AI
-              </Eyebrow>
+              <Eyebrow dark>Applied AI</Eyebrow>
 
               <h2 className="mt-5 text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
                 AI untuk berbagai bisnis,
@@ -1252,7 +1211,6 @@ export default function HomePage() {
                 className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c]"
               >
                 Bahas AI Project
-
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
@@ -1262,16 +1220,13 @@ export default function HomePage() {
         {/* =====================================================
             APPROACH
         ====================================================== */}
-
         <section className="relative overflow-hidden bg-[#17191c] text-white">
           <div className="dark-light pointer-events-none absolute -left-32 -top-24 h-[500px] w-[500px] rounded-full bg-[#ff6f0f]/[0.08] blur-[120px]" />
 
           <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="grid gap-10 md:grid-cols-2 md:gap-14">
               <div className="reveal">
-                <Eyebrow dark>
-                  Our Approach
-                </Eyebrow>
+                <Eyebrow dark>Our Approach</Eyebrow>
 
                 <h2 className="mt-5 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Teknologi mengikuti masalah.
@@ -1341,7 +1296,6 @@ export default function HomePage() {
                     className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] px-3 py-2 text-[10px] font-semibold text-white/45 sm:px-4 sm:text-xs"
                   >
                     <Check className="h-3 w-3 text-[#ff8a34]" />
-
                     {item}
                   </span>
                 ))}
@@ -1358,91 +1312,208 @@ export default function HomePage() {
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div className="reveal">
                 <Eyebrow>Clients & Collaborations</Eyebrow>
+
                 <h2 className="mt-4 max-w-3xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
-                  Teknologi yang dibangun melalui
-                  <span className="text-[#ff6f0f]"> kolaborasi nyata.</span>
+                  Kolaborasi teknologi dari Indonesia
+                  <span className="text-[#ff6f0f]">
+                    {" "}
+                    hingga Australia.
+                  </span>
                 </h2>
+
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
-                  RHG bekerja bersama bisnis dan organisasi dari berbagai sektor untuk membangun software, aplikasi, backend, sistem operasional, payment, jaringan, dan integrasi teknologi.
+                  RHG bekerja bersama bisnis dari berbagai wilayah
+                  untuk membangun software, aplikasi, backend,
+                  sistem operasional, payment, dan integrasi
+                  teknologi yang digunakan dalam aktivitas nyata.
                 </p>
               </div>
-              <Link href="/portofolio" className="group inline-flex shrink-0 items-center gap-2 text-sm font-black">
-                Semua Collaborations
+
+              <Link
+                href="/portofolio"
+                className="group inline-flex shrink-0 items-center gap-2 text-sm font-black"
+              >
+                Semua Clients & Collaborations
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <div className="mt-10 grid gap-3 sm:grid-cols-2">
-              {PARTNERS.map((partner, index) => {
-                const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(partner.location)}`;
-                return (
-                  <div key={partner.name} className="partner-card reveal group relative overflow-hidden rounded-[22px] border border-black/[0.07] bg-[#fafaf8] p-5 sm:p-6">
-                    <span className="pointer-events-none absolute right-4 top-3 font-mono text-[56px] font-black leading-none text-black/[0.025] sm:text-[72px]">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+            <div className="reveal mt-10 overflow-hidden rounded-[26px] border border-black/[0.06] bg-[#17191c] text-white shadow-[0_24px_70px_rgba(15,23,42,.12)]">
+              <div className="flex flex-col gap-3 border-b border-white/[0.08] px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                <div>
+                  <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#ff8a34]">
+                    Client Reach
+                  </p>
 
-                    <div className="relative">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="min-w-0">
-                          <a href={mapUrl} target="_blank" rel="noopener noreferrer" aria-label={`Lihat lokasi ${partner.name} di Google Maps`} className="group/map inline-flex items-center gap-2">
-                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#fff0e5]">
-                              <MapPin className="h-3.5 w-3.5 text-[#ff6f0f]" />
-                            </span>
-                            <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#ff6f0f]">
-                              {partner.location}
-                            </span>
-                            <ArrowUpRight className="h-3 w-3 text-[#ff6f0f]/50 transition-transform group-hover/map:translate-x-0.5 group-hover/map:-translate-y-0.5" />
-                          </a>
+                  <h3 className="mt-1 text-lg font-black tracking-[-0.03em]">
+                    Collaboration Network
+                  </h3>
+                </div>
 
-                          <h3 className="mt-4 text-xl font-black tracking-[-0.03em] sm:text-2xl">
-                            {partner.name}
-                          </h3>
-                          <p className="mt-1 text-xs font-semibold text-slate-400">
-                            {partner.category}
-                          </p>
-                        </div>
+                <div className="flex flex-wrap gap-2 text-[9px] font-bold text-white/40">
+                  <span className="rounded-full border border-white/[0.08] px-3 py-1.5">
+                    Padang
+                  </span>
+                  <span className="rounded-full border border-white/[0.08] px-3 py-1.5">
+                    Pontianak
+                  </span>
+                  <span className="rounded-full border border-white/[0.08] px-3 py-1.5">
+                    Sulawesi Utara
+                  </span>
+                  <span className="rounded-full border border-white/[0.08] px-3 py-1.5">
+                    Australia
+                  </span>
+                </div>
+              </div>
 
-                        <span className="shrink-0 rounded-full border border-black/[0.07] bg-white px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.12em] text-slate-400">
-                          Collaboration
-                        </span>
-                      </div>
+              <div className="relative h-[340px] overflow-hidden sm:h-[430px]">
+                <div
+                  className="absolute inset-0 opacity-25"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px)",
+                    backgroundSize: "36px 36px",
+                  }}
+                />
 
-                      <p className="mt-5 text-[13px] leading-6 text-slate-500 sm:text-sm sm:leading-7">
-                        {partner.description}
-                      </p>
+                <div className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-[#ff6f0f]/10 blur-[80px]" />
 
-                      <div className="mt-6 flex flex-wrap gap-2 border-t border-black/[0.07] pt-5">
-                        <a href={partner.link} target="_blank" rel="noopener noreferrer" aria-label={`Kunjungi website ${partner.name}`} className="group/site inline-flex min-h-[40px] items-center gap-2 rounded-full bg-[#17191c] px-4 text-[10px] font-black text-white transition hover:bg-black">
-                          Visit Website
-                          <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover/site:translate-x-0.5 group-hover/site:-translate-y-0.5" />
-                        </a>
+                <svg
+                  viewBox="0 0 100 56"
+                  className="absolute inset-0 h-full w-full"
+                  aria-hidden="true"
+                >
+                  <g
+                    fill="rgba(255,255,255,.035)"
+                    stroke="rgba(255,255,255,.10)"
+                    strokeWidth=".35"
+                  >
+                    <path d="M17 24 L20 19 L23 18 L27 22 L29 28 L27 35 L24 40 L21 37 L19 31 Z" />
+                    <path d="M29 38 L35 37 L42 38 L49 39 L53 41 L47 42 L39 41 L32 40 Z" />
+                    <path d="M39 22 L45 18 L52 19 L57 24 L55 31 L50 35 L43 33 L39 28 Z" />
+                    <path d="M58 22 L61 19 L64 22 L63 26 L67 24 L70 27 L67 31 L65 36 L62 33 L60 29 Z" />
+                    <path d="M73 27 L80 25 L87 28 L91 34 L87 38 L79 37 L74 33 Z" />
+                    <path d="M65 40 L75 38 L85 41 L91 47 L87 53 L77 54 L69 50 L63 45 Z" />
+                  </g>
 
-                        <a href={mapUrl} target="_blank" rel="noopener noreferrer" aria-label={`Buka ${partner.location} di Google Maps`} className="group/maps inline-flex min-h-[40px] items-center gap-2 rounded-full border border-black/[0.08] bg-white px-4 text-[10px] font-black text-slate-500 transition hover:border-[#ff6f0f]/30 hover:text-[#17191c]">
-                          <MapPin className="h-3.5 w-3.5 text-[#ff6f0f]" />
-                          View on Maps
-                          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/maps:translate-x-0.5 group-hover/maps:-translate-y-0.5" />
-                        </a>
+                  <g
+                    stroke="#ff7a1a"
+                    strokeWidth=".55"
+                    fill="none"
+                    strokeLinecap="round"
+                  >
+                    <path d="M42 42 Q33 33 23 35" />
+                    <path d="M42 42 Q45 36 48 34" />
+                    <path d="M42 42 Q56 28 68 30" />
+                    <path d="M42 42 Q58 48 78 46" />
+                  </g>
+
+                  <g fill="#ff7a1a">
+                    <circle cx="42" cy="42" r="1.15" />
+                    <circle cx="23" cy="35" r=".9" />
+                    <circle cx="48" cy="34" r=".9" />
+                    <circle cx="68" cy="30" r=".9" />
+                    <circle cx="78" cy="46" r=".9" />
+                  </g>
+
+                  <g fill="rgba(255,122,26,.18)">
+                    <circle cx="42" cy="42" r="2.3" />
+                    <circle cx="23" cy="35" r="1.8" />
+                    <circle cx="48" cy="34" r="1.8" />
+                    <circle cx="68" cy="30" r="1.8" />
+                    <circle cx="78" cy="46" r="1.8" />
+                  </g>
+                </svg>
+
+                <div className="absolute left-[42%] top-[75%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff6f0f] px-3 py-1.5 text-[9px] font-black text-[#17191c] shadow-lg">
+                  RHG
+                </div>
+
+                {CLIENTS.map((client) => (
+                  <div
+                    key={client.name}
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    style={{
+                      left: `${client.map.x}%`,
+                      top: `${client.map.y}%`,
+                    }}
+                  >
+                    <div className="group relative">
+                      <span className="block h-3 w-3 rounded-full border-2 border-[#17191c] bg-[#ff6f0f] shadow-[0_0_0_5px_rgba(255,111,15,.14)]" />
+
+                      <div className="absolute left-1/2 top-5 z-10 w-max max-w-[150px] -translate-x-1/2 rounded-[12px] border border-white/[0.09] bg-[#202328]/95 px-3 py-2 shadow-xl backdrop-blur">
+                        <p className="text-[9px] font-black text-white">
+                          {client.location}
+                        </p>
+
+                        <p className="mt-0.5 text-[8px] text-white/35">
+                          {client.name}
+                        </p>
                       </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-
-            <div className="reveal mt-5 flex flex-col gap-4 rounded-[20px] border border-black/[0.07] bg-[#f7f7f5] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-              <div>
-                <p className="text-sm font-black">
-                  Selected Clients & Collaborations
-                </p>
-                <p className="mt-1 max-w-2xl text-[11px] leading-5 text-slate-500 sm:text-xs">
-                  Halaman ini hanya menampilkan sebagian kolaborasi. Project lainnya dapat tidak dipublikasikan karena kebutuhan privasi, NDA, atau pertimbangan operasional client.
-                </p>
+                ))}
               </div>
 
-              <Link href="/portofolio" className="group inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 rounded-full border border-black/[0.09] bg-white px-5 text-xs font-black transition hover:border-black/20">
-                Lihat Semua
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-              </Link>
+              <div className="grid grid-cols-2 border-t border-white/[0.08] sm:grid-cols-4">
+                {CLIENTS.map((client) => (
+                  <div
+                    key={client.location}
+                    className="border-b border-r border-white/[0.07] px-4 py-4 last:border-r-0 sm:border-b-0"
+                  >
+                    <p className="text-[8px] font-black uppercase tracking-[0.12em] text-[#ff8a34]">
+                      {client.location}
+                    </p>
+
+                    <p className="mt-1 text-[10px] font-semibold text-white/45">
+                      {client.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {CLIENTS.map((client) => (
+                <div
+                  key={client.name}
+                  className="partner-card reveal rounded-[22px] border border-black/[0.07] bg-[#fafaf8] p-5 sm:p-6"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-3.5 w-3.5 text-[#ff6f0f]" />
+
+                        <p className="text-[9px] font-black uppercase tracking-[0.16em] text-[#ff6f0f]">
+                          {client.location}
+                        </p>
+                      </div>
+
+                      <h3 className="mt-3 text-xl font-black tracking-[-0.03em]">
+                        {client.name}
+                      </h3>
+
+                      <p className="mt-1 text-xs font-semibold text-slate-400">
+                        {client.category}
+                      </p>
+                    </div>
+
+                    <a
+                      href={client.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Kunjungi website ${client.name}`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-slate-500 transition hover:bg-[#17191c] hover:text-white"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
+
+                  <p className="mt-5 text-[13px] leading-6 text-slate-500 sm:text-sm sm:leading-7">
+                    {client.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -1450,14 +1521,11 @@ export default function HomePage() {
         {/* =====================================================
             PROCESS
         ====================================================== */}
-
         <section className="border-t border-black/[0.06] bg-[#f7f7f5]">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
               <div className="reveal">
-                <Eyebrow>
-                  How We Work
-                </Eyebrow>
+                <Eyebrow>How We Work</Eyebrow>
 
                 <h2 className="mt-4 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Dari masalah hingga sistem yang siap digunakan.
@@ -1491,7 +1559,6 @@ export default function HomePage() {
         {/* =====================================================
             CTA
         ====================================================== */}
-
         <section className="cta-section bg-[#ff6f0f]">
           <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20 lg:px-10">
             <div className="grid items-center gap-7 md:grid-cols-[1fr_auto]">
@@ -1517,7 +1584,6 @@ export default function HomePage() {
                 className="group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#17191c] px-6 text-sm font-black text-white transition hover:bg-black"
               >
                 Mulai Diskusi
-
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
