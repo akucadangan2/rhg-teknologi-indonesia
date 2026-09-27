@@ -1,44 +1,750 @@
+import Link from "next/link";
+import {
+  ArrowRight,
+  Bot,
+  BrainCircuit,
+  Check,
+  Code2,
+  Database,
+  MessagesSquare,
+  Network,
+  Sparkles,
+  Workflow,
+  Zap,
+} from "lucide-react";
+
 import { services } from "@/lib/data/services";
 import { ServiceHubCard } from "@/components/layanan/ServiceHubCard";
-import { ServiceOrbit } from "@/components/layanan/ServiceOrbit";
 import { FadeInSection } from "@/components/motion/FadeInSection";
 
 export const metadata = {
   title: "Layanan — RHG Teknologi Indonesia",
+  description:
+    "Website, aplikasi mobile, backend, GIS, payment gateway, AI Agent, automasi AI, dan pengembangan sistem digital oleh RHG Teknologi Indonesia.",
 };
+
+const AI_SERVICES = [
+  {
+    icon: Bot,
+    number: "AI / 01",
+    title: "AI Agent",
+    description:
+      "Agent AI untuk membantu customer service, pencarian informasi, operasional internal, hingga workflow otomatis yang terhubung dengan sistem bisnis.",
+    features: [
+      "Customer support AI",
+      "Internal knowledge agent",
+      "AI assistant untuk tim",
+    ],
+  },
+  {
+    icon: Workflow,
+    number: "AI / 02",
+    title: "AI Automation",
+    description:
+      "Mengotomatisasi pekerjaan berulang dengan AI yang dapat membaca data, menjalankan workflow, membuat ringkasan, dan membantu proses operasional.",
+    features: [
+      "Workflow automation",
+      "Document processing",
+      "Operational assistance",
+    ],
+  },
+  {
+    icon: BrainCircuit,
+    number: "AI / 03",
+    title: "Custom AI Development",
+    description:
+      "Pengembangan fitur AI custom untuk website, aplikasi, dashboard, database, dan sistem internal sesuai kebutuhan perusahaan.",
+    features: [
+      "Custom AI features",
+      "AI integration",
+      "Business-specific solution",
+    ],
+  },
+  {
+    icon: Network,
+    number: "AI / 04",
+    title: "AI & System Integration",
+    description:
+      "Integrasi AI dengan API, database, CRM, dashboard, aplikasi mobile, layanan pihak ketiga, dan sistem perusahaan yang sudah berjalan.",
+    features: [
+      "API integration",
+      "Database connection",
+      "Existing system integration",
+    ],
+  },
+];
+
+const AI_CAPABILITIES = [
+  {
+    icon: MessagesSquare,
+    title: "Conversational AI",
+    text: "Chatbot dan AI assistant untuk customer maupun kebutuhan internal.",
+  },
+  {
+    icon: Database,
+    title: "AI + Business Data",
+    text: "Menghubungkan AI dengan database dan data operasional perusahaan.",
+  },
+  {
+    icon: Zap,
+    title: "Automation",
+    text: "Mengurangi pekerjaan manual dengan workflow berbasis AI.",
+  },
+  {
+    icon: Code2,
+    title: "Custom Integration",
+    text: "Integrasi AI ke aplikasi dan sistem yang sudah dimiliki perusahaan.",
+  },
+];
+
+const DELIVERY_POINTS = [
+  "Analisis kebutuhan bisnis sebelum development",
+  "UI, backend, database, dan integrasi dalam satu workflow",
+  "Source code dan sistem diserahkan kepada client",
+  "Deployment hingga production",
+  "Maintenance dan pengembangan lanjutan",
+  "Integrasi sistem existing tanpa harus membangun ulang semuanya",
+];
 
 export default function LayananPage() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="blob pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
-      <div className="blob-2 pointer-events-none absolute right-0 top-40 h-80 w-80 rounded-full bg-circuit/10 blur-3xl" />
+    <>
+      <style>{`
+        @keyframes serviceHeroUp {
+          from {
+            opacity: 0;
+            transform: translateY(22px);
+          }
 
-      <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <FadeInSection className="text-center">
-          <span className="inline-block rounded-full bg-brand/10 px-3 py-1 font-mono text-xs font-medium uppercase tracking-wide text-brand">
-            7 Kategori Layanan
-          </span>
-          <h1 className="mx-auto mt-4 max-w-2xl font-display text-4xl font-extrabold leading-tight text-ink md:text-5xl">
-            Satu Tim,{" "}
-            <span className="bg-gradient-to-r from-brand to-circuit bg-clip-text text-transparent">
-              Semua Sistem Terhubung
-            </span>
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base text-ink/60 md:text-lg">
-            Dari website, aplikasi, backend, pembayaran, pemetaan, jaringan, hingga perawatan
-            sistem jangka panjang — dikerjakan oleh satu tim yang paham cara semuanya saling terhubung.
-          </p>
-          <ServiceOrbit />
-        </FadeInSection>
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => (
-            <FadeInSection key={service.slug} delay={i * 0.05}>
-              <ServiceHubCard service={service} />
+        @keyframes serviceFloat {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(-7px);
+          }
+        }
+
+        @keyframes serviceGrid {
+          from {
+            background-position: 0 0;
+          }
+
+          to {
+            background-position: 40px 40px;
+          }
+        }
+
+        @keyframes aiGlow {
+          0%,
+          100% {
+            opacity: .25;
+            transform: translate3d(-5%, 0, 0);
+          }
+
+          50% {
+            opacity: .48;
+            transform: translate3d(10%, -5%, 0);
+          }
+        }
+
+        @keyframes aiLine {
+          from {
+            transform: scaleX(0);
+          }
+
+          to {
+            transform: scaleX(1);
+          }
+        }
+
+        @keyframes aiPulse {
+          0%,
+          100% {
+            box-shadow: 0 0 0 rgba(255,111,15,0);
+          }
+
+          50% {
+            box-shadow: 0 18px 50px rgba(255,111,15,.12);
+          }
+        }
+
+        .services-grid-bg {
+          background-image:
+            linear-gradient(
+              rgba(15,23,42,.04) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              90deg,
+              rgba(15,23,42,.04) 1px,
+              transparent 1px
+            );
+
+          background-size: 40px 40px;
+          animation: serviceGrid 18s linear infinite;
+        }
+
+        .service-hero-1,
+        .service-hero-2,
+        .service-hero-3,
+        .service-hero-4 {
+          opacity: 0;
+          animation:
+            serviceHeroUp
+            .7s
+            cubic-bezier(.22,1,.36,1)
+            forwards;
+        }
+
+        .service-hero-1 {
+          animation-delay: .05s;
+        }
+
+        .service-hero-2 {
+          animation-delay: .13s;
+        }
+
+        .service-hero-3 {
+          animation-delay: .21s;
+        }
+
+        .service-hero-4 {
+          animation-delay: .29s;
+        }
+
+        .service-hero-card {
+          animation: serviceFloat 7s ease-in-out infinite;
+        }
+
+        .ai-background-light {
+          animation: aiGlow 10s ease-in-out infinite;
+        }
+
+        .ai-card {
+          position: relative;
+          overflow: hidden;
+
+          transition:
+            transform .35s cubic-bezier(.22,1,.36,1),
+            border-color .35s ease,
+            background-color .35s ease;
+        }
+
+        .ai-card::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 2px;
+          background:
+            linear-gradient(
+              90deg,
+              #ff6f0f,
+              #ffb179
+            );
+
+          transition:
+            width .45s
+            cubic-bezier(.22,1,.36,1);
+        }
+
+        .ai-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(255,138,52,.28);
+          background: #22252a;
+        }
+
+        .ai-card:hover::after {
+          width: 100%;
+        }
+
+        .ai-icon {
+          transition:
+            transform .35s
+            cubic-bezier(.22,1,.36,1);
+        }
+
+        .ai-card:hover .ai-icon {
+          transform:
+            translateY(-3px)
+            rotate(-4deg);
+        }
+
+        .ai-capability {
+          transition:
+            transform .3s ease,
+            border-color .3s ease,
+            box-shadow .3s ease;
+        }
+
+        .ai-capability:hover {
+          transform: translateY(-3px);
+          border-color: rgba(255,111,15,.18);
+          box-shadow:
+            0 15px 40px
+            rgba(15,23,42,.05);
+        }
+
+        .orange-pulse {
+          animation: aiPulse 5s ease-in-out infinite;
+        }
+
+        @media (max-width: 767px) {
+          .services-grid-bg {
+            animation: none;
+            background-size: 28px 28px;
+          }
+
+          .service-hero-card {
+            animation: none;
+          }
+
+          .ai-card:hover,
+          .ai-capability:hover {
+            transform: none;
+          }
+
+          .ai-card:hover .ai-icon {
+            transform: none;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .services-grid-bg,
+          .service-hero-1,
+          .service-hero-2,
+          .service-hero-3,
+          .service-hero-4,
+          .service-hero-card,
+          .ai-background-light,
+          .orange-pulse {
+            animation: none !important;
+          }
+
+          .service-hero-1,
+          .service-hero-2,
+          .service-hero-3,
+          .service-hero-4 {
+            opacity: 1 !important;
+          }
+        }
+      `}</style>
+
+      <main className="overflow-x-hidden bg-[#f7f7f5] text-[#17191c]">
+        {/* =====================================================
+            HERO
+        ====================================================== */}
+
+        <section className="relative overflow-hidden border-b border-black/[0.06] bg-[#f7f7f5]">
+          <div className="services-grid-bg pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_95%)]" />
+
+          <div className="pointer-events-none absolute -left-32 -top-24 h-80 w-80 rounded-full bg-[#ff6f0f]/[0.07] blur-[100px]" />
+
+          <div className="pointer-events-none absolute -right-32 top-14 h-80 w-80 rounded-full bg-blue-500/[0.05] blur-[110px]" />
+
+          <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-16 pt-14 sm:px-6 sm:py-20 md:grid-cols-[1fr_.9fr] md:px-8 md:py-24 lg:px-10">
+            {/* LEFT */}
+
+            <div>
+              <div className="service-hero-1 inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 sm:text-[10px]">
+                <span className="h-px w-7 bg-[#ff6f0f]" />
+                Digital Services
+              </div>
+
+              <h1 className="service-hero-2 mt-5 max-w-3xl text-[38px] font-black leading-[1.01] tracking-[-0.05em] text-[#111315] sm:text-5xl md:text-[58px]">
+                Teknologi yang
+                <span className="text-[#ff6f0f]">
+                  {" "}
+                  mengikuti cara bisnis Anda bekerja.
+                </span>
+              </h1>
+
+              <p className="service-hero-3 mt-5 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8 md:text-lg">
+                Dari website dan aplikasi hingga backend, GIS, payment,
+                jaringan, AI Agent, dan automasi — RHG menghubungkan semuanya
+                menjadi sistem digital yang lebih terstruktur.
+              </p>
+
+              <div className="service-hero-4 mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+                <Link
+                  href="#layanan"
+                  className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-6 text-sm font-bold text-white transition hover:bg-black"
+                >
+                  Jelajahi Layanan
+
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+
+                <Link
+                  href="/kontak"
+                  className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-6 text-sm font-bold transition hover:border-black/20"
+                >
+                  Konsultasi Project
+
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </div>
+
+            {/* RIGHT */}
+
+            <div className="service-hero-card relative mx-auto w-full max-w-[520px]">
+              <div className="absolute -right-4 top-5 hidden h-[90%] w-[91%] rounded-[30px] border border-[#ff6f0f]/15 bg-[#ff6f0f]/[0.04] sm:block" />
+
+              <div className="relative overflow-hidden rounded-[26px] border border-black/[0.07] bg-white p-5 shadow-[0_28px_80px_rgba(15,23,42,.09)] sm:p-6">
+                <div className="flex items-center justify-between border-b border-black/[0.06] pb-5">
+                  <div>
+                    <p className="text-sm font-black">
+                      RHG Technology Stack
+                    </p>
+
+                    <p className="mt-1 text-[9px] uppercase tracking-[0.16em] text-slate-400">
+                      One connected ecosystem
+                    </p>
+                  </div>
+
+                  <span className="rounded-full bg-[#fff0e5] px-3 py-1.5 text-[9px] font-black uppercase tracking-[0.13em] text-[#ff6f0f]">
+                    End-to-End
+                  </span>
+                </div>
+
+                <div className="mt-5 grid grid-cols-2 gap-2.5">
+                  {[
+                    {
+                      icon: Code2,
+                      title: "Application",
+                      value: "Web & Mobile",
+                    },
+                    {
+                      icon: Database,
+                      title: "Data",
+                      value: "Backend & DB",
+                    },
+                    {
+                      icon: Network,
+                      title: "Integration",
+                      value: "API & System",
+                    },
+                    {
+                      icon: BrainCircuit,
+                      title: "Intelligence",
+                      value: "AI & Automation",
+                    },
+                  ].map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <div
+                        key={item.title}
+                        className="rounded-[18px] border border-black/[0.06] bg-[#fafaf8] p-4"
+                      >
+                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#17191c]">
+                          <Icon className="h-4 w-4 text-[#ff8a34]" />
+                        </div>
+
+                        <p className="mt-4 text-xs font-black text-[#17191c] sm:text-sm">
+                          {item.title}
+                        </p>
+
+                        <p className="mt-1 text-[10px] text-slate-400 sm:text-[11px]">
+                          {item.value}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-3 rounded-[18px] bg-[#17191c] p-4 text-white">
+                  <div className="flex items-center gap-3">
+                    <Sparkles className="h-5 w-5 shrink-0 text-[#ff8a34]" />
+
+                    <div>
+                      <p className="text-xs font-black sm:text-sm">
+                        Sekarang termasuk AI Solutions
+                      </p>
+
+                      <p className="mt-1 text-[10px] leading-5 text-white/40 sm:text-[11px]">
+                        AI Agent, automasi, integrasi AI, dan custom AI
+                        development.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            AI NEW SERVICE
+        ====================================================== */}
+
+        <section className="relative overflow-hidden bg-[#17191c] text-white">
+          <div className="ai-background-light pointer-events-none absolute -left-40 -top-44 h-[520px] w-[520px] rounded-full bg-[#ff6f0f]/[0.09] blur-[130px]" />
+
+          <div className="pointer-events-none absolute -bottom-52 -right-40 h-[480px] w-[480px] rounded-full bg-blue-500/[0.05] blur-[130px]" />
+
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+            <FadeInSection>
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-[#ff8a34] sm:text-[10px]">
+                  <span className="h-px w-7 bg-[#ff8a34]" />
+                  New Capability
+                </div>
+
+                <div className="mt-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <h2 className="max-w-3xl text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
+                      AI yang bekerja bersama
+                      <span className="text-[#ff8a34]">
+                        {" "}
+                        sistem bisnis Anda.
+                      </span>
+                    </h2>
+
+                    <p className="mt-5 max-w-2xl text-sm leading-7 text-white/45 sm:text-base sm:leading-8">
+                      Bukan hanya chatbot. RHG mengembangkan AI yang dapat
+                      terhubung dengan aplikasi, database, API, knowledge base,
+                      dan workflow operasional perusahaan.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </FadeInSection>
-          ))}
-        </div>
-      </div>
-    </section>
+
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+              {AI_SERVICES.map((service, index) => {
+                const Icon = service.icon;
+
+                return (
+                  <FadeInSection
+                    key={service.title}
+                    delay={index * 0.06}
+                  >
+                    <div className="ai-card h-full rounded-[22px] border border-white/[0.08] bg-[#1d2024] p-5 sm:p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="ai-icon flex h-11 w-11 items-center justify-center rounded-xl bg-[#ff6f0f]">
+                          <Icon className="h-5 w-5 text-white" />
+                        </div>
+
+                        <span className="font-mono text-[9px] font-bold text-white/20">
+                          {service.number}
+                        </span>
+                      </div>
+
+                      <h3 className="mt-6 text-[18px] font-black tracking-[-0.025em]">
+                        {service.title}
+                      </h3>
+
+                      <p className="mt-3 text-[13px] leading-6 text-white/45 sm:text-sm">
+                        {service.description}
+                      </p>
+
+                      <div className="mt-5 space-y-2.5 border-t border-white/[0.07] pt-4">
+                        {service.features.map((feature) => (
+                          <div
+                            key={feature}
+                            className="flex items-center gap-2.5 text-[11px] text-white/50"
+                          >
+                            <Check className="h-3.5 w-3.5 shrink-0 text-[#ff8a34]" />
+                            {feature}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </FadeInSection>
+                );
+              })}
+            </div>
+
+            {/* AI CAPABILITY */}
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
+              {AI_CAPABILITIES.map((item, index) => {
+                const Icon = item.icon;
+
+                return (
+                  <FadeInSection
+                    key={item.title}
+                    delay={index * 0.04}
+                  >
+                    <div className="rounded-[18px] border border-white/[0.07] bg-white/[0.03] p-4">
+                      <Icon className="h-[18px] w-[18px] text-[#ff8a34]" />
+
+                      <h4 className="mt-3 text-sm font-black">
+                        {item.title}
+                      </h4>
+
+                      <p className="mt-1.5 text-[11px] leading-5 text-white/35">
+                        {item.text}
+                      </p>
+                    </div>
+                  </FadeInSection>
+                );
+              })}
+            </div>
+
+            <FadeInSection delay={0.15}>
+              <div className="mt-10 flex flex-col items-start justify-between gap-5 rounded-[22px] border border-white/[0.08] bg-white/[0.035] p-5 sm:flex-row sm:items-center sm:p-6">
+                <div>
+                  <p className="text-sm font-black">
+                    Punya ide implementasi AI untuk bisnis?
+                  </p>
+
+                  <p className="mt-1.5 text-xs leading-6 text-white/40">
+                    Kita bisa mulai dari kebutuhan sederhana lalu dikembangkan
+                    menjadi sistem AI yang lebih terintegrasi.
+                  </p>
+                </div>
+
+                <Link
+                  href="/kontak"
+                  className="orange-pulse group inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c] transition hover:bg-[#ff7f25] sm:w-auto"
+                >
+                  Diskusikan AI Project
+
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </FadeInSection>
+          </div>
+        </section>
+
+        {/* =====================================================
+            EXISTING SERVICES
+        ====================================================== */}
+
+        <section
+          id="layanan"
+          className="bg-white"
+        >
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+            <FadeInSection>
+              <div className="grid gap-6 md:grid-cols-[.8fr_1.2fr] md:items-end">
+                <div>
+                  <div className="inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 sm:text-[10px]">
+                    <span className="h-px w-7 bg-[#ff6f0f]" />
+                    Core Services
+                  </div>
+
+                  <h2 className="mt-4 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
+                    Layanan teknologi RHG.
+                  </h2>
+                </div>
+
+                <p className="max-w-2xl text-sm leading-7 text-slate-500 sm:text-base sm:leading-8 md:justify-self-end">
+                  Pilih layanan berdasarkan kebutuhan project Anda. Setiap
+                  layanan dapat berdiri sendiri atau dikombinasikan menjadi
+                  satu sistem yang saling terhubung.
+                </p>
+              </div>
+            </FadeInSection>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
+              {services.map((service, index) => (
+                <FadeInSection
+                  key={service.slug}
+                  delay={index * 0.05}
+                >
+                  <div className="h-full">
+                    <ServiceHubCard service={service} />
+                  </div>
+                </FadeInSection>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            DELIVERY
+        ====================================================== */}
+
+        <section className="border-t border-black/[0.06] bg-[#f7f7f5]">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-20 md:grid-cols-[.85fr_1.15fr] md:px-8 md:py-24 lg:px-10">
+            <FadeInSection>
+              <div>
+                <div className="inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 sm:text-[10px]">
+                  <span className="h-px w-7 bg-[#ff6f0f]" />
+                  How We Deliver
+                </div>
+
+                <h2 className="mt-4 max-w-xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
+                  Satu tim untuk membangun sistem secara menyeluruh.
+                </h2>
+
+                <p className="mt-4 max-w-xl text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
+                  Anda tidak perlu mengatur banyak vendor untuk frontend,
+                  backend, database, integrasi, AI, dan deployment.
+                </p>
+              </div>
+            </FadeInSection>
+
+            <FadeInSection delay={0.08}>
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {DELIVERY_POINTS.map((item) => (
+                  <div
+                    key={item}
+                    className="flex min-h-[72px] items-start gap-3 rounded-[18px] border border-black/[0.07] bg-white p-4"
+                  >
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#fff0e5]">
+                      <Check className="h-3.5 w-3.5 text-[#ff6f0f]" />
+                    </span>
+
+                    <p className="text-[12px] leading-6 text-slate-600 sm:text-sm">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeInSection>
+          </div>
+        </section>
+
+        {/* =====================================================
+            CTA
+        ====================================================== */}
+
+        <section className="bg-[#ff6f0f]">
+          <div className="mx-auto grid max-w-7xl items-center gap-7 px-4 py-14 sm:px-6 sm:py-16 md:grid-cols-[1fr_auto] md:px-8 md:py-20 lg:px-10">
+            <FadeInSection>
+              <div>
+                <p className="text-[9px] font-black uppercase tracking-[0.2em] text-black/45">
+                  Start a Project
+                </p>
+
+                <h2 className="mt-3 max-w-3xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] text-[#17191c] sm:text-4xl md:text-5xl">
+                  Tidak yakin layanan mana yang dibutuhkan?
+                </h2>
+
+                <p className="mt-4 max-w-xl text-sm leading-7 text-black/55 sm:text-base">
+                  Ceritakan masalah atau kebutuhan bisnis Anda. Kami bantu
+                  menentukan pendekatan teknologi yang sesuai.
+                </p>
+              </div>
+            </FadeInSection>
+
+            <FadeInSection delay={0.08}>
+              <Link
+                href="/kontak"
+                className="group inline-flex min-h-[52px] w-full items-center justify-center gap-3 rounded-full bg-[#17191c] px-6 text-sm font-black text-white transition hover:bg-black md:w-auto"
+              >
+                Konsultasi dengan RHG
+
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </FadeInSection>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
