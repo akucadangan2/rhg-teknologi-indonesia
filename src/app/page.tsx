@@ -952,7 +952,7 @@ export default function HomePage() {
                 </div>
 
                 <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
-                  Area perkebunan kopi nyata yang digunakan sebagai
+                  RHG Teknologi Memiliki lahan perkebunan dengan Area perkebunan kopi nyata yang digunakan sebagai
                   lingkungan eksperimen dan pilot project untuk
                   agriculture technology, artificial intelligence,
                   computer vision, drone, IoT, environmental monitoring,
