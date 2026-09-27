@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  FlaskConical,
   Menu,
   X,
 } from "lucide-react";
@@ -19,6 +20,11 @@ const NAV_LINKS = [
   {
     href: "/portofolio",
     label: "Portofolio",
+  },
+  {
+    href: "/lab",
+    label: "RHG Lab",
+    featured: true,
   },
   {
     href: "/berita",
@@ -42,7 +48,6 @@ export function Navbar() {
     if (!open) return;
 
     const previousOverflow = document.body.style.overflow;
-
     document.body.style.overflow = "hidden";
 
     return () => {
@@ -72,6 +77,7 @@ export function Navbar() {
       <header className="sticky top-0 z-[60] border-b border-black/[0.06] bg-[#f7f7f5]/95 backdrop-blur-xl">
         <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-4 sm:h-[76px] sm:px-6 md:px-8 lg:h-[80px] lg:px-10">
           {/* LOGO */}
+
           <Link
             href="/"
             aria-label="RHG Teknologi Indonesia"
@@ -90,8 +96,9 @@ export function Navbar() {
           </Link>
 
           {/* DESKTOP */}
+
           <div className="hidden items-center md:flex">
-            <nav className="flex items-center gap-1">
+            <nav className="flex items-center gap-0.5 lg:gap-1">
               {NAV_LINKS.map((link) => {
                 const active = isActive(link.href);
 
@@ -99,13 +106,29 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`group relative flex h-11 items-center rounded-full px-4 text-sm font-semibold transition-colors duration-200 lg:px-5 ${
+                    className={`group relative flex h-11 items-center gap-1.5 rounded-full px-3 text-[13px] font-semibold transition-all duration-200 lg:px-4 lg:text-sm ${
                       active
                         ? "text-[#17191c]"
                         : "text-slate-500 hover:text-[#17191c]"
                     }`}
                   >
-                    {link.label}
+                    {link.featured && (
+                      <FlaskConical
+                        className={`h-3.5 w-3.5 transition-colors ${
+                          active
+                            ? "text-[#ff6f0f]"
+                            : "text-[#ff8a34]"
+                        }`}
+                      />
+                    )}
+
+                    <span>{link.label}</span>
+
+                    {link.featured && (
+                      <span className="absolute -right-0.5 top-1 h-1.5 w-1.5 rounded-full bg-[#ff6f0f] lg:right-0">
+                        <span className="absolute inset-0 animate-ping rounded-full bg-[#ff6f0f]/50" />
+                      </span>
+                    )}
 
                     <span
                       className={`absolute bottom-[6px] left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-[#ff6f0f] transition-all duration-300 ${
@@ -119,11 +142,11 @@ export function Navbar() {
               })}
             </nav>
 
-            <div className="mx-3 h-6 w-px bg-black/[0.08] lg:mx-4" />
+            <div className="mx-2 h-6 w-px bg-black/[0.08] lg:mx-4" />
 
             <Link
               href="/kontak"
-              className={`group inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-bold transition-all duration-300 ${
+              className={`group inline-flex h-11 items-center gap-2 rounded-full px-4 text-[13px] font-bold transition-all duration-300 lg:px-5 lg:text-sm ${
                 contactActive
                   ? "bg-[#ff6f0f] text-[#17191c]"
                   : "bg-[#17191c] text-white hover:-translate-y-0.5 hover:bg-black hover:shadow-[0_12px_28px_rgba(15,23,42,0.15)]"
@@ -142,6 +165,7 @@ export function Navbar() {
           </div>
 
           {/* MOBILE BUTTON */}
+
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
@@ -177,6 +201,7 @@ export function Navbar() {
       </header>
 
       {/* MOBILE OVERLAY */}
+
       <div
         className={`fixed inset-0 z-50 bg-black/20 backdrop-blur-[2px] transition-opacity duration-300 md:hidden ${
           open
@@ -187,6 +212,7 @@ export function Navbar() {
       />
 
       {/* MOBILE MENU */}
+
       <div
         className={`fixed inset-x-0 bottom-0 top-[70px] z-[55] bg-[#f7f7f5] transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)] sm:top-[76px] md:hidden ${
           open
@@ -222,11 +248,25 @@ export function Navbar() {
                           : "text-slate-300"
                       }`}
                     >
-                      0{index + 1}
+                      {String(index + 1).padStart(2, "0")}
                     </span>
 
-                    <span className="text-[20px] font-black tracking-[-0.035em]">
-                      {link.label}
+                    <span className="flex items-center gap-2.5">
+                      {link.featured && (
+                        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#fff0e5]">
+                          <FlaskConical className="h-3.5 w-3.5 text-[#ff6f0f]" />
+                        </span>
+                      )}
+
+                      <span className="text-[20px] font-black tracking-[-0.035em]">
+                        {link.label}
+                      </span>
+
+                      {link.featured && (
+                        <span className="rounded-full bg-[#ff6f0f]/10 px-2 py-1 text-[7px] font-black uppercase tracking-[0.12em] text-[#ff6f0f]">
+                          Lab
+                        </span>
+                      )}
                     </span>
                   </span>
 
@@ -242,6 +282,8 @@ export function Navbar() {
                 </Link>
               );
             })}
+
+            {/* CONTACT */}
 
             <Link
               href="/kontak"
@@ -259,7 +301,7 @@ export function Navbar() {
                       : "text-slate-300"
                   }`}
                 >
-                  05
+                  {String(NAV_LINKS.length + 1).padStart(2, "0")}
                 </span>
 
                 <span className="text-[20px] font-black tracking-[-0.035em]">
@@ -280,28 +322,44 @@ export function Navbar() {
           </nav>
 
           {/* MOBILE CTA */}
+
           <div className="mt-auto pt-8">
-            <div className="rounded-[22px] bg-[#17191c] p-5 text-white">
-              <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#ff8a34]">
-                Start a Project
-              </p>
+            <div className="relative overflow-hidden rounded-[22px] bg-[#17191c] p-5 text-white">
+              <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#ff6f0f]/10 blur-[50px]" />
 
-              <h3 className="mt-2 text-[19px] font-black leading-snug tracking-[-0.03em]">
-                Punya project yang ingin dibangun?
-              </h3>
+              <div className="relative">
+                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#ff8a34]">
+                  Start a Project
+                </p>
 
-              <p className="mt-2 text-[12px] leading-5.5 text-white/45">
-                Website, aplikasi mobile, backend, GIS, payment integration,
-                atau sistem digital lainnya.
-              </p>
+                <h3 className="mt-2 text-[19px] font-black leading-snug tracking-[-0.03em]">
+                  Punya project yang ingin dibangun?
+                </h3>
 
-              <Link
-                href="/kontak"
-                className="mt-5 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c] transition active:scale-[0.98]"
-              >
-                Konsultasi Project
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+                <p className="mt-2 text-[12px] leading-5.5 text-white/45">
+                  Website, aplikasi mobile, backend, AI Agent,
+                  computer vision, GIS, payment integration, IoT,
+                  atau sistem digital custom lainnya.
+                </p>
+
+                <Link
+                  href="/kontak"
+                  className="mt-5 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c] transition active:scale-[0.98]"
+                >
+                  Konsultasi Project
+
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  href="/lab"
+                  className="mt-2.5 flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-white/[0.08] px-5 text-xs font-bold text-white/60 transition active:scale-[0.98]"
+                >
+                  Explore RHG Lab
+
+                  <FlaskConical className="h-3.5 w-3.5 text-[#ff8a34]" />
+                </Link>
+              </div>
             </div>
 
             <div className="mt-5 flex items-center justify-between border-t border-black/[0.07] pt-4 text-[9px] text-slate-400">
