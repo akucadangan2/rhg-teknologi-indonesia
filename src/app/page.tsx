@@ -8,15 +8,12 @@ import {
   Bot,
   BrainCircuit,
   Check,
-  CloudSun,
   Code2,
   CreditCard,
   Database,
-  Droplets,
   ExternalLink,
   Globe2,
   Layers3,
-  Leaf,
   MapPin,
   MapPinned,
   Network,
@@ -106,7 +103,7 @@ const AI_SOLUTIONS = [
     number: "AI / 01",
     title: "AI Agent",
     description:
-      "Agent yang dapat memahami konteks, menggunakan knowledge perusahaan, mengakses API, dan membantu menjalankan workflow.",
+      "Agent yang memahami konteks, menggunakan knowledge perusahaan, mengakses API, dan membantu menjalankan workflow.",
     icon: Bot,
   },
   {
@@ -120,7 +117,7 @@ const AI_SOLUTIONS = [
     number: "AI / 03",
     title: "Workflow Automation",
     description:
-      "Automasi proses seperti classification, extraction, summarization, routing, approval, dan pekerjaan berulang.",
+      "Automasi classification, extraction, summarization, routing, approval, dan pekerjaan berulang.",
     icon: Workflow,
   },
   {
@@ -155,45 +152,6 @@ const AI_SECTORS = [
   "GIS & Field Operations",
   "Network & Infrastructure",
   "Document Processing",
-];
-
-const LAB_CAPABILITIES = [
-  {
-    icon: Sprout,
-    title: "Agriculture Intelligence",
-    description:
-      "Monitoring tanaman, kondisi perkebunan, data produksi, kesehatan tanaman, dan decision support berbasis AI.",
-  },
-  {
-    icon: Activity,
-    title: "Computer Vision",
-    description:
-      "Pengujian deteksi visual untuk daun, buah, tanaman, objek, kondisi lapangan, dan inspeksi otomatis.",
-  },
-  {
-    icon: Droplets,
-    title: "IoT & Microclimate",
-    description:
-      "Eksperimen sensor kelembapan tanah, temperatur, humidity, curah hujan, dan kondisi lingkungan.",
-  },
-  {
-    icon: Satellite,
-    title: "Drone & Remote Sensing",
-    description:
-      "Aerial imagery, orthomosaic, monitoring vegetasi, canopy analysis, dan pengamatan area berkala.",
-  },
-  {
-    icon: MapPinned,
-    title: "GeoAI & Terrain",
-    description:
-      "Analisis elevasi, slope, drainage, zonasi, perubahan lahan, dan intelligence berbasis lokasi.",
-  },
-  {
-    icon: Bot,
-    title: "AI Agent & Automation",
-    description:
-      "Agent yang menggunakan data lapangan, sensor, GIS, database, dan knowledge untuk menghasilkan insight.",
-  },
 ];
 
 const PARTNERS = [
@@ -248,7 +206,7 @@ const PROCESS = [
     number: "03",
     title: "Build",
     description:
-      "Development dan integrasi dilakukan dengan fokus pada fungsi, reliability, maintainability, dan pengalaman pengguna.",
+      "Development dan integrasi dengan fokus pada fungsi, reliability, maintainability, dan pengalaman pengguna.",
   },
   {
     number: "04",
@@ -300,6 +258,7 @@ const LAB_LOCATION = {
 };
 
 const LAB_MAP_EMBED = `https://www.google.com/maps?q=${LAB_LOCATION.latitude},${LAB_LOCATION.longitude}&z=17&t=k&output=embed`;
+
 const LAB_MAP_LINK = `https://www.google.com/maps?q=${LAB_LOCATION.latitude},${LAB_LOCATION.longitude}`;
 
 function Eyebrow({
@@ -320,6 +279,7 @@ function Eyebrow({
           dark ? "bg-[#ff8a34]" : "bg-[#ff6f0f]"
         }`}
       />
+
       {children}
     </div>
   );
@@ -330,35 +290,67 @@ export default function HomePage() {
     <>
       <style>{`
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         @keyframes fadeSide {
-          from { opacity: 0; transform: translateX(28px) scale(.985); }
-          to { opacity: 1; transform: translateX(0) scale(1); }
+          from {
+            opacity: 0;
+            transform: translateX(28px) scale(.985);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+          }
         }
 
         @keyframes softFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(-6px);
+          }
         }
 
         @keyframes gridMove {
-          from { background-position: 0 0; }
-          to { background-position: 40px 40px; }
+          from {
+            background-position: 0 0;
+          }
+
+          to {
+            background-position: 40px 40px;
+          }
         }
 
         @keyframes marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+          from {
+            transform: translateX(0);
+          }
+
+          to {
+            transform: translateX(-50%);
+          }
         }
 
         @keyframes darkLight {
-          0%, 100% {
+          0%,
+          100% {
             transform: translate3d(-7%,0,0);
             opacity: .28;
           }
+
           50% {
             transform: translate3d(12%,-5%,0);
             opacity: .48;
@@ -366,8 +358,14 @@ export default function HomePage() {
         }
 
         @keyframes ctaSweep {
-          0% { transform: translateX(-180%) skewX(-20deg); }
-          50%, 100% { transform: translateX(320%) skewX(-20deg); }
+          0% {
+            transform: translateX(-180%) skewX(-20deg);
+          }
+
+          50%,
+          100% {
+            transform: translateX(320%) skewX(-20deg);
+          }
         }
 
         .hero-a,
@@ -376,33 +374,77 @@ export default function HomePage() {
         .hero-d,
         .hero-e {
           opacity: 0;
-          animation: fadeUp .65s cubic-bezier(.22,1,.36,1) forwards;
+          animation:
+            fadeUp
+            .65s
+            cubic-bezier(.22,1,.36,1)
+            forwards;
         }
 
-        .hero-a { animation-delay: .04s; }
-        .hero-b { animation-delay: .12s; }
-        .hero-c { animation-delay: .2s; }
-        .hero-d { animation-delay: .28s; }
-        .hero-e { animation-delay: .36s; }
+        .hero-a {
+          animation-delay: .04s;
+        }
+
+        .hero-b {
+          animation-delay: .12s;
+        }
+
+        .hero-c {
+          animation-delay: .20s;
+        }
+
+        .hero-d {
+          animation-delay: .28s;
+        }
+
+        .hero-e {
+          animation-delay: .36s;
+        }
 
         .hero-visual {
           opacity: 0;
           animation:
-            fadeSide .8s cubic-bezier(.22,1,.36,1) .2s forwards,
-            softFloat 7s ease-in-out 1.2s infinite;
+            fadeSide
+            .8s
+            cubic-bezier(.22,1,.36,1)
+            .2s
+            forwards,
+            softFloat
+            7s
+            ease-in-out
+            1.2s
+            infinite;
         }
 
         .moving-grid {
           background-image:
-            linear-gradient(rgba(15,23,42,.038) 1px, transparent 1px),
-            linear-gradient(90deg,rgba(15,23,42,.038) 1px,transparent 1px);
+            linear-gradient(
+              rgba(15,23,42,.038) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              90deg,
+              rgba(15,23,42,.038) 1px,
+              transparent 1px
+            );
+
           background-size: 40px 40px;
-          animation: gridMove 18s linear infinite;
+
+          animation:
+            gridMove
+            18s
+            linear
+            infinite;
         }
 
         .dot-grid {
           background-image:
-            radial-gradient(circle,rgba(255,111,15,.17) 1px,transparent 1px);
+            radial-gradient(
+              circle,
+              rgba(255,111,15,.17) 1px,
+              transparent 1px
+            );
+
           background-size: 18px 18px;
         }
 
@@ -410,7 +452,12 @@ export default function HomePage() {
           display: flex;
           width: max-content;
           min-width: 200%;
-          animation: marquee 34s linear infinite;
+
+          animation:
+            marquee
+            34s
+            linear
+            infinite;
         }
 
         .tech-track:hover {
@@ -419,7 +466,6 @@ export default function HomePage() {
 
         .service-card,
         .ai-card,
-        .lab-card,
         .partner-card {
           transition:
             transform .35s cubic-bezier(.22,1,.36,1),
@@ -429,14 +475,15 @@ export default function HomePage() {
         }
 
         .service-card:hover,
-        .lab-card:hover,
         .partner-card:hover {
           transform: translateY(-3px);
           border-color: rgba(255,111,15,.17);
         }
 
         .service-card:hover {
-          box-shadow: 0 18px 45px rgba(15,23,42,.05);
+          box-shadow:
+            0 18px 45px
+            rgba(15,23,42,.05);
         }
 
         .ai-card:hover {
@@ -452,11 +499,17 @@ export default function HomePage() {
         }
 
         .service-card:hover .service-icon {
-          transform: translateY(-3px) rotate(-3deg);
+          transform:
+            translateY(-3px)
+            rotate(-3deg);
         }
 
         .dark-light {
-          animation: darkLight 11s ease-in-out infinite;
+          animation:
+            darkLight
+            11s
+            ease-in-out
+            infinite;
         }
 
         .process-card {
@@ -469,10 +522,19 @@ export default function HomePage() {
           position: absolute;
           left: 0;
           bottom: 0;
-          height: 2px;
           width: 0;
-          background: linear-gradient(90deg,#ff6f0f,transparent);
-          transition: width .45s ease;
+          height: 2px;
+
+          background:
+            linear-gradient(
+              90deg,
+              #ff6f0f,
+              transparent
+            );
+
+          transition:
+            width .45s
+            ease;
         }
 
         .process-card:hover::after {
@@ -491,6 +553,7 @@ export default function HomePage() {
           bottom: -50%;
           left: 0;
           width: 100px;
+
           background:
             linear-gradient(
               90deg,
@@ -498,15 +561,28 @@ export default function HomePage() {
               rgba(255,255,255,.18),
               transparent
             );
-          animation: ctaSweep 6s ease-in-out infinite;
+
+          animation:
+            ctaSweep
+            6s
+            ease-in-out
+            infinite;
+
           pointer-events: none;
         }
 
         @supports (animation-timeline: view()) {
           .reveal {
-            animation: fadeUp linear both;
+            animation:
+              fadeUp
+              linear
+              both;
+
             animation-timeline: view();
-            animation-range: entry 0% cover 24%;
+
+            animation-range:
+              entry 0%
+              cover 24%;
           }
         }
 
@@ -518,7 +594,11 @@ export default function HomePage() {
 
           .hero-visual {
             animation:
-              fadeUp .65s cubic-bezier(.22,1,.36,1) .28s forwards;
+              fadeUp
+              .65s
+              cubic-bezier(.22,1,.36,1)
+              .28s
+              forwards;
           }
 
           .tech-track {
@@ -527,7 +607,6 @@ export default function HomePage() {
 
           .service-card:hover,
           .ai-card:hover,
-          .lab-card:hover,
           .partner-card:hover {
             transform: none;
           }
@@ -564,16 +643,23 @@ export default function HomePage() {
       `}</style>
 
       <main className="overflow-x-hidden bg-[#f7f7f5] text-[#151719]">
-        {/* HERO */}
+        {/* =====================================================
+            HERO
+        ====================================================== */}
+
         <section className="relative overflow-hidden border-b border-black/[0.06]">
           <div className="moving-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_95%)]" />
+
           <div className="pointer-events-none absolute -left-32 -top-24 h-[420px] w-[420px] rounded-full bg-[#ff6f0f]/[0.07] blur-[100px]" />
+
           <div className="pointer-events-none absolute -right-40 top-16 h-[420px] w-[420px] rounded-full bg-blue-500/[0.05] blur-[110px]" />
 
           <div className="relative mx-auto grid max-w-7xl gap-11 px-4 pb-14 pt-12 sm:px-6 sm:py-16 md:min-h-[calc(100vh-70px)] md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-14 md:px-8 md:py-20 lg:px-10">
             <div>
               <div className="hero-a">
-                <Eyebrow>PT RHG Teknologi Indonesia</Eyebrow>
+                <Eyebrow>
+                  PT RHG Teknologi Indonesia
+                </Eyebrow>
               </div>
 
               <h1 className="hero-b mt-5 max-w-3xl text-[38px] font-black leading-[1.02] tracking-[-0.05em] text-[#111315] min-[390px]:text-[41px] sm:text-5xl md:text-[60px] lg:text-[68px]">
@@ -585,10 +671,10 @@ export default function HomePage() {
               </h1>
 
               <p className="hero-c mt-5 max-w-2xl text-[14px] leading-7 text-slate-600 sm:text-base sm:leading-8 md:text-lg">
-                RHG mengembangkan software, mobile application, backend,
-                AI Agent, computer vision, automation, payment, GIS,
-                GeoAI, IoT, dan sistem terintegrasi untuk bisnis maupun
-                kebutuhan lapangan.
+                RHG mengembangkan software, mobile application,
+                backend, AI Agent, computer vision, automation,
+                payment, GIS, GeoAI, IoT, dan sistem terintegrasi
+                untuk bisnis maupun kebutuhan lapangan.
               </p>
 
               <div className="hero-d mt-7 grid gap-2.5 sm:flex sm:flex-wrap">
@@ -597,6 +683,7 @@ export default function HomePage() {
                   className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-6 text-sm font-black text-white transition hover:bg-black"
                 >
                   Diskusikan Project
+
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
 
@@ -605,6 +692,7 @@ export default function HomePage() {
                   className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-6 text-sm font-bold transition hover:border-black/20"
                 >
                   Explore AI
+
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -620,6 +708,7 @@ export default function HomePage() {
                     <p className="text-base font-black tracking-[-0.04em] sm:text-xl">
                       {title}
                     </p>
+
                     <p className="mt-1 text-[8px] leading-4 text-slate-400 sm:text-[10px]">
                       {subtitle}
                     </p>
@@ -637,6 +726,7 @@ export default function HomePage() {
                     <p className="text-sm font-black">
                       RHG Technology Engineering
                     </p>
+
                     <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-white/30">
                       Software · AI · Data · Field Technology
                     </p>
@@ -699,24 +789,30 @@ export default function HomePage() {
                       <p className="text-[8px] font-black uppercase tracking-[0.14em] text-[#ff9852]">
                         Applied Technology R&D
                       </p>
+
                       <p className="mt-1 text-sm font-black">
                         Real-world field experimentation
                       </p>
                     </div>
+
                     <Sprout className="h-5 w-5 text-[#ff9852]" />
                   </div>
 
                   <div className="mt-3 flex flex-wrap gap-1.5">
-                    {["AI", "Agriculture", "Drone", "IoT", "GeoAI"].map(
-                      (item) => (
-                        <span
-                          key={item}
-                          className="rounded-full border border-white/[0.07] px-2.5 py-1 text-[8px] font-semibold text-white/40"
-                        >
-                          {item}
-                        </span>
-                      )
-                    )}
+                    {[
+                      "AI",
+                      "Agriculture",
+                      "Drone",
+                      "IoT",
+                      "GeoAI",
+                    ].map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-white/[0.07] px-2.5 py-1 text-[8px] font-semibold text-white/40"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -724,10 +820,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* TECHNOLOGY */}
+        {/* =====================================================
+            TECHNOLOGY
+        ====================================================== */}
+
         <section className="overflow-hidden border-b border-black/[0.06] bg-white">
           <div className="relative flex h-14 items-center sm:h-16">
             <div className="pointer-events-none absolute left-0 z-10 h-full w-16 bg-gradient-to-r from-white to-transparent" />
+
             <div className="pointer-events-none absolute right-0 z-10 h-full w-16 bg-gradient-to-l from-white to-transparent" />
 
             <div className="tech-track">
@@ -739,6 +839,7 @@ export default function HomePage() {
                   <span className="px-5 text-[11px] font-bold text-slate-400 sm:px-8 sm:text-xs">
                     {item}
                   </span>
+
                   <span className="h-1 w-1 rounded-full bg-[#ff6f0f]/40" />
                 </div>
               ))}
@@ -746,12 +847,17 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* SERVICES */}
+        {/* =====================================================
+            SERVICES
+        ====================================================== */}
+
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[.68fr_1.32fr]">
               <div className="reveal">
-                <Eyebrow>Capabilities</Eyebrow>
+                <Eyebrow>
+                  Capabilities
+                </Eyebrow>
 
                 <h2 className="mt-4 max-w-lg text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Lebih dari sekadar software development.
@@ -759,8 +865,8 @@ export default function HomePage() {
 
                 <p className="mt-4 max-w-md text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
                   RHG menggabungkan software engineering, AI, data,
-                  geospatial, IoT, dan integrasi untuk membangun solusi
-                  yang benar-benar terhubung.
+                  geospatial, IoT, dan integrasi untuk membangun
+                  solusi yang benar-benar terhubung.
                 </p>
 
                 <Link
@@ -768,6 +874,7 @@ export default function HomePage() {
                   className="group mt-7 inline-flex items-center gap-2 text-sm font-black"
                 >
                   Semua layanan
+
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -820,6 +927,7 @@ export default function HomePage() {
 
                       <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-black opacity-50 transition group-hover:opacity-100">
                         Detail layanan
+
                         <ArrowUpRight className="h-3.5 w-3.5" />
                       </span>
                     </Link>
@@ -830,7 +938,231 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* AI */}
+        {/* =====================================================
+            RHG COFFEE AI LIVING LAB
+        ====================================================== */}
+
+        <section className="relative overflow-hidden bg-[#f7f7f5]">
+          <div className="dot-grid pointer-events-none absolute inset-0 opacity-25" />
+
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+            <div className="grid items-center gap-12 lg:grid-cols-[.86fr_1.14fr] lg:gap-16">
+              <div className="reveal">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#ff6f0f]/15 bg-[#fff0e5] px-3 py-1.5">
+                  <span className="h-2 w-2 rounded-full bg-[#ff6f0f]" />
+
+                  <span className="text-[9px] font-black uppercase tracking-[0.16em] text-[#ff6f0f]">
+                    RHG Applied Technology Field Lab
+                  </span>
+                </div>
+
+                <h2 className="mt-5 max-w-2xl text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
+                  RHG Coffee
+                  <span className="text-[#ff6f0f]">
+                    {" "}
+                    AI Living Lab.
+                  </span>
+                </h2>
+
+                <div className="mt-4 flex items-center gap-2 text-[12px] font-bold text-slate-500">
+                  <MapPin className="h-4 w-4 text-[#ff6f0f]" />
+
+                  Kabupaten Rejang Lebong, Provinsi Bengkulu
+                </div>
+
+                <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
+                  RHG Teknologi Indonesia memiliki area perkebunan
+                  kopi nyata yang dikembangkan sebagai lingkungan
+                  eksperimen dan pilot project untuk agriculture
+                  technology, artificial intelligence, computer
+                  vision, drone, IoT, environmental monitoring,
+                  GeoAI, dan sistem berbasis data lapangan.
+                </p>
+
+                <p className="mt-4 max-w-xl text-sm leading-7 text-slate-500">
+                  Medan lereng, variasi elevasi, vegetasi, serta
+                  kondisi lingkungan alami memberi ruang untuk
+                  menguji teknologi langsung di lapangan sebelum
+                  diterapkan pada skala yang lebih besar.
+                </p>
+
+                <div className="mt-7 grid grid-cols-2 gap-2.5">
+                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
+                    <p className="text-2xl font-black tracking-[-0.04em]">
+                      2.02
+                      <span className="ml-1 text-sm text-[#ff6f0f]">
+                        ha
+                      </span>
+                    </p>
+
+                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
+                      Approx. mapped area
+                    </p>
+                  </div>
+
+                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
+                    <p className="text-2xl font-black tracking-[-0.04em]">
+                      843–910
+                      <span className="ml-1 text-sm text-[#ff6f0f]">
+                        m
+                      </span>
+                    </p>
+
+                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
+                      Elevation range
+                    </p>
+                  </div>
+
+                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
+                    <p className="text-lg font-black tracking-[-0.03em]">
+                      Coffee Plantation
+                    </p>
+
+                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
+                      Real agricultural environment
+                    </p>
+                  </div>
+
+                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
+                    <p className="text-lg font-black tracking-[-0.03em]">
+                      Field R&D
+                    </p>
+
+                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
+                      AI · Drone · IoT · GeoAI
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
+                  <Link
+                    href="/lab"
+                    className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-5 text-sm font-black text-white transition hover:bg-black"
+                  >
+                    Lihat RHG Lab
+
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+
+                  <a
+                    href={LAB_MAP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/[0.09] bg-white px-5 text-sm font-bold transition hover:border-black/20"
+                  >
+                    Buka Satellite Map
+
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="reveal relative">
+                <div className="absolute -right-5 top-5 hidden h-[92%] w-[92%] rounded-[30px] border border-[#ff6f0f]/15 bg-[#ff6f0f]/[0.035] sm:block" />
+
+                <div className="relative overflow-hidden rounded-[26px] border border-black/[0.08] bg-[#17191c] shadow-[0_28px_85px_rgba(15,23,42,.17)]">
+                  <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-4 text-white sm:px-6">
+                    <div>
+                      <p className="text-sm font-black">
+                        RHG Coffee AI Living Lab
+                      </p>
+
+                      <p className="mt-1 text-[9px] uppercase tracking-[0.13em] text-white/30">
+                        Satellite Field View
+                      </p>
+                    </div>
+
+                    <span className="rounded-full bg-[#ff6f0f]/15 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.12em] text-[#ff9852]">
+                      Rejang Lebong
+                    </span>
+                  </div>
+
+                  <div className="relative h-[360px] w-full sm:h-[430px]">
+                    <iframe
+                      src={LAB_MAP_EMBED}
+                      title="Lokasi RHG Coffee AI Living Lab di Rejang Lebong, Bengkulu"
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="absolute inset-0 h-full w-full border-0"
+                    />
+
+                    <div className="pointer-events-none absolute left-4 top-4 rounded-[16px] border border-white/15 bg-black/65 px-4 py-3 text-white shadow-lg backdrop-blur-md">
+                      <p className="text-[8px] font-black uppercase tracking-[0.16em] text-[#ff9852]">
+                        Field Test Site
+                      </p>
+
+                      <p className="mt-1 text-xs font-black">
+                        Coffee Plantation
+                      </p>
+
+                      <p className="mt-1 text-[9px] text-white/55">
+                        Rejang Lebong · Bengkulu
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 border-t border-white/[0.08] text-white">
+                    {[
+                      ["Environment", "Agriculture"],
+                      ["Terrain", "Slope"],
+                      ["Purpose", "AI / R&D"],
+                    ].map(([label, value]) => (
+                      <div
+                        key={label}
+                        className="border-r border-white/[0.07] px-3 py-4 last:border-r-0 sm:px-5"
+                      >
+                        <p className="text-[8px] uppercase tracking-[0.13em] text-white/25">
+                          {label}
+                        </p>
+
+                        <p className="mt-1 text-[10px] font-black text-white/70 sm:text-xs">
+                          {value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="reveal mt-5 overflow-hidden rounded-[22px] bg-[#17191c] p-5 text-white sm:p-6">
+              <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#ff8a34]">
+                    Applied Technology & Field Research
+                  </p>
+
+                  <h3 className="mt-2 text-lg font-black tracking-[-0.025em] sm:text-xl">
+                    Lihat environment, research area, dan konsep
+                    eksperimen RHG.
+                  </h3>
+
+                  <p className="mt-2 max-w-2xl text-[12px] leading-6 text-white/40 sm:text-sm">
+                    Detail pengujian AI, agriculture technology,
+                    computer vision, drone, IoT, environmental
+                    monitoring, GIS, dan GeoAI tersedia di halaman
+                    khusus RHG Lab.
+                  </p>
+                </div>
+
+                <Link
+                  href="/lab"
+                  className="group inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c] transition hover:bg-[#ff8a34] md:w-auto"
+                >
+                  Informasi Lengkap RHG Lab
+
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            APPLIED AI
+        ====================================================== */}
+
         <section
           id="ai"
           className="relative overflow-hidden bg-[#17191c] text-white"
@@ -839,7 +1171,9 @@ export default function HomePage() {
 
           <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="reveal max-w-4xl">
-              <Eyebrow dark>Applied AI</Eyebrow>
+              <Eyebrow dark>
+                Applied AI
+              </Eyebrow>
 
               <h2 className="mt-5 text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
                 AI untuk berbagai bisnis,
@@ -907,8 +1241,9 @@ export default function HomePage() {
                 </p>
 
                 <p className="mt-1.5 max-w-2xl text-xs leading-6 text-white/40">
-                  Kami dapat mengevaluasi workflow, data, API, kebutuhan
-                  model, serta feasibility sebelum implementasi.
+                  Kami dapat mengevaluasi workflow, data, API,
+                  kebutuhan model, serta feasibility sebelum
+                  implementasi.
                 </p>
               </div>
 
@@ -917,300 +1252,26 @@ export default function HomePage() {
                 className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c]"
               >
                 Bahas AI Project
+
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* FIELD LAB */}
-        <section className="relative overflow-hidden bg-[#f7f7f5]">
-          <div className="dot-grid pointer-events-none absolute inset-0 opacity-25" />
+        {/* =====================================================
+            APPROACH
+        ====================================================== */}
 
-          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-[.86fr_1.14fr] lg:gap-16">
-              <div className="reveal">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#ff6f0f]/15 bg-[#fff0e5] px-3 py-1.5">
-                  <span className="h-2 w-2 rounded-full bg-[#ff6f0f]" />
-
-                  <span className="text-[9px] font-black uppercase tracking-[0.16em] text-[#ff6f0f]">
-                    Applied Technology Field Lab
-                  </span>
-                </div>
-
-                <h2 className="mt-5 max-w-2xl text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
-                  RHG Coffee
-                  <span className="text-[#ff6f0f]">
-                    {" "}
-                    AI Living Lab.
-                  </span>
-                </h2>
-
-                <div className="mt-4 flex items-center gap-2 text-[12px] font-bold text-slate-500">
-                  <MapPin className="h-4 w-4 text-[#ff6f0f]" />
-                  Kabupaten Rejang Lebong, Provinsi Bengkulu
-                </div>
-
-                <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
-                  RHG Teknologi Memiliki lahan perkebunan dengan Area perkebunan kopi nyata yang digunakan sebagai
-                  lingkungan eksperimen dan pilot project untuk
-                  agriculture technology, artificial intelligence,
-                  computer vision, drone, IoT, environmental monitoring,
-                  GeoAI, dan sistem berbasis data lapangan.
-                </p>
-
-                <p className="mt-4 max-w-xl text-sm leading-7 text-slate-500">
-                  Kondisi lahan berupa perkebunan pada medan lereng
-                  dengan variasi elevasi dan lingkungan alami,
-                  memberikan kondisi uji yang lebih representatif
-                  dibandingkan simulasi laboratorium semata.
-                </p>
-
-                <div className="mt-7 grid grid-cols-2 gap-2.5">
-                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
-                    <p className="text-2xl font-black tracking-[-0.04em]">
-                      2.02
-                      <span className="ml-1 text-sm text-[#ff6f0f]">
-                        ha
-                      </span>
-                    </p>
-                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
-                      Approx. field area
-                    </p>
-                  </div>
-
-                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
-                    <p className="text-2xl font-black tracking-[-0.04em]">
-                      843–910
-                      <span className="ml-1 text-sm text-[#ff6f0f]">
-                        m
-                      </span>
-                    </p>
-                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
-                      Elevation range
-                    </p>
-                  </div>
-
-                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
-                    <p className="text-lg font-black tracking-[-0.03em]">
-                      Coffee Plantation
-                    </p>
-                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
-                      Real agricultural environment
-                    </p>
-                  </div>
-
-                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
-                    <p className="text-lg font-black tracking-[-0.03em]">
-                      Sloped Terrain
-                    </p>
-                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
-                      Field & terrain testing
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
-                  <Link
-                    href="/kontak"
-                    className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-5 text-sm font-black text-white"
-                  >
-                    Ajukan Kolaborasi
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-
-                  <a
-                    href={LAB_MAP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/[0.09] bg-white px-5 text-sm font-bold"
-                  >
-                    Buka Satellite Map
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-
-              {/* SATELLITE MAP */}
-              <div className="reveal relative">
-                <div className="absolute -right-5 top-5 hidden h-[92%] w-[92%] rounded-[30px] border border-[#ff6f0f]/15 bg-[#ff6f0f]/[0.035] sm:block" />
-
-                <div className="relative overflow-hidden rounded-[26px] border border-black/[0.08] bg-[#17191c] shadow-[0_28px_85px_rgba(15,23,42,.17)]">
-                  <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-4 text-white sm:px-6">
-                    <div>
-                      <p className="text-sm font-black">
-                        RHG Coffee AI Living Lab
-                      </p>
-                      <p className="mt-1 text-[9px] uppercase tracking-[0.13em] text-white/30">
-                        Satellite Field View
-                      </p>
-                    </div>
-
-                    <span className="rounded-full bg-[#ff6f0f]/15 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.12em] text-[#ff9852]">
-                      Rejang Lebong
-                    </span>
-                  </div>
-
-                  <div className="relative h-[360px] w-full sm:h-[430px]">
-                    <iframe
-                      src={LAB_MAP_EMBED}
-                      title="Lokasi RHG Coffee AI Living Lab di Rejang Lebong, Bengkulu"
-                      loading="lazy"
-                      allowFullScreen
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="absolute inset-0 h-full w-full border-0"
-                    />
-
-                    <div className="pointer-events-none absolute left-4 top-4 rounded-[16px] border border-white/15 bg-black/65 px-4 py-3 text-white shadow-lg backdrop-blur-md">
-                      <p className="text-[8px] font-black uppercase tracking-[0.16em] text-[#ff9852]">
-                        Field Test Site
-                      </p>
-
-                      <p className="mt-1 text-xs font-black">
-                        Coffee Plantation
-                      </p>
-
-                      <p className="mt-1 text-[9px] text-white/55">
-                        Rejang Lebong · Bengkulu
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-3 border-t border-white/[0.08] text-white">
-                    {[
-                      ["Environment", "Agriculture"],
-                      ["Terrain", "Slope"],
-                      ["Purpose", "AI / R&D"],
-                    ].map(([label, value]) => (
-                      <div
-                        key={label}
-                        className="border-r border-white/[0.07] px-3 py-4 last:border-r-0 sm:px-5"
-                      >
-                        <p className="text-[8px] uppercase tracking-[0.13em] text-white/25">
-                          {label}
-                        </p>
-
-                        <p className="mt-1 text-[10px] font-black text-white/70 sm:text-xs">
-                          {value}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* LAB CAPABILITIES */}
-            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
-              {LAB_CAPABILITIES.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    className="lab-card reveal rounded-[20px] border border-black/[0.07] bg-white p-5"
-                  >
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#fff0e5]">
-                      <Icon className="h-[18px] w-[18px] text-[#ff6f0f]" />
-                    </span>
-
-                    <h3 className="mt-4 text-[15px] font-black">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-2 text-[12px] leading-6 text-slate-500 sm:text-[13px]">
-                      {item.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* ENVIRONMENTAL POSSIBILITIES */}
-            <div className="reveal mt-5 grid gap-3 md:grid-cols-3">
-              <div className="rounded-[20px] border border-black/[0.07] bg-[#eef4ea] p-5">
-                <Sprout className="h-5 w-5 text-[#496c3b]" />
-
-                <p className="mt-4 text-sm font-black">
-                  Precision Agriculture
-                </p>
-
-                <p className="mt-2 text-[12px] leading-6 text-slate-600">
-                  Pengamatan kesehatan tanaman, produktivitas,
-                  vegetasi, penyakit, dan decision support.
-                </p>
-              </div>
-
-              <div className="rounded-[20px] border border-black/[0.07] bg-[#eef5f7] p-5">
-                <CloudSun className="h-5 w-5 text-[#3e6e7c]" />
-
-                <p className="mt-4 text-sm font-black">
-                  Environmental Intelligence
-                </p>
-
-                <p className="mt-2 text-[12px] leading-6 text-slate-600">
-                  Data microclimate, rainfall, temperatur, soil,
-                  drainage, dan perubahan kondisi lingkungan.
-                </p>
-              </div>
-
-              <div className="rounded-[20px] border border-black/[0.07] bg-[#fff1e7] p-5">
-                <BrainCircuit className="h-5 w-5 text-[#ff6f0f]" />
-
-                <p className="mt-4 text-sm font-black">
-                  Applied AI Research
-                </p>
-
-                <p className="mt-2 text-[12px] leading-6 text-slate-600">
-                  Dataset nyata untuk pengembangan model, AI Agent,
-                  computer vision, prediction, dan automation.
-                </p>
-              </div>
-            </div>
-
-            {/* COLLABORATION */}
-            <div className="reveal mt-5 overflow-hidden rounded-[24px] bg-[#17191c] p-5 text-white sm:p-7">
-              <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#ff8a34]">
-                    Open for Technology Collaboration
-                  </p>
-
-                  <h3 className="mt-2 text-xl font-black tracking-[-0.03em]">
-                    Punya teknologi yang membutuhkan pengujian di
-                    lingkungan nyata?
-                  </h3>
-
-                  <p className="mt-2 max-w-3xl text-[12px] leading-6 text-white/40 sm:text-sm">
-                    RHG terbuka untuk pembahasan pilot project dan
-                    kolaborasi terkait artificial intelligence,
-                    agriculture technology, computer vision, drone,
-                    IoT, sensor, environmental monitoring, GIS,
-                    GeoAI, maupun pengembangan teknologi lapangan
-                    lainnya.
-                  </p>
-                </div>
-
-                <Link
-                  href="/kontak"
-                  className="group inline-flex min-h-[50px] w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c] md:w-auto"
-                >
-                  Bahas Kolaborasi
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* APPROACH */}
         <section className="relative overflow-hidden bg-[#17191c] text-white">
           <div className="dark-light pointer-events-none absolute -left-32 -top-24 h-[500px] w-[500px] rounded-full bg-[#ff6f0f]/[0.08] blur-[120px]" />
 
           <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="grid gap-10 md:grid-cols-2 md:gap-14">
               <div className="reveal">
-                <Eyebrow dark>Our Approach</Eyebrow>
+                <Eyebrow dark>
+                  Our Approach
+                </Eyebrow>
 
                 <h2 className="mt-5 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Teknologi mengikuti masalah.
@@ -1280,6 +1341,7 @@ export default function HomePage() {
                     className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] px-3 py-2 text-[10px] font-semibold text-white/45 sm:px-4 sm:text-xs"
                   >
                     <Check className="h-3 w-3 text-[#ff8a34]" />
+
                     {item}
                   </span>
                 ))}
@@ -1288,12 +1350,17 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* SELECTED WORK */}
+        {/* =====================================================
+            SELECTED WORK
+        ====================================================== */}
+
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div className="reveal">
-                <Eyebrow>Selected Work</Eyebrow>
+                <Eyebrow>
+                  Selected Work
+                </Eyebrow>
 
                 <h2 className="mt-4 max-w-3xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Teknologi yang digunakan
@@ -1309,6 +1376,7 @@ export default function HomePage() {
                 className="group inline-flex items-center gap-2 text-sm font-black"
               >
                 Semua portofolio
+
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
@@ -1323,6 +1391,7 @@ export default function HomePage() {
                     <div>
                       <div className="flex items-center gap-2">
                         <MapPin className="h-3.5 w-3.5 text-[#ff6f0f]" />
+
                         <p className="text-[9px] font-black uppercase tracking-[0.16em] text-[#ff6f0f]">
                           {partner.location}
                         </p>
@@ -1341,6 +1410,7 @@ export default function HomePage() {
                       href={partner.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Kunjungi website ${partner.name}`}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-slate-500 transition hover:bg-[#17191c] hover:text-white"
                     >
                       <ExternalLink className="h-4 w-4" />
@@ -1356,12 +1426,17 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* PROCESS */}
+        {/* =====================================================
+            PROCESS
+        ====================================================== */}
+
         <section className="border-t border-black/[0.06] bg-[#f7f7f5]">
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <div className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
               <div className="reveal">
-                <Eyebrow>How We Work</Eyebrow>
+                <Eyebrow>
+                  How We Work
+                </Eyebrow>
 
                 <h2 className="mt-4 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Dari masalah hingga sistem yang siap digunakan.
@@ -1372,7 +1447,7 @@ export default function HomePage() {
                 {PROCESS.map((item) => (
                   <div
                     key={item.number}
-                    className="process-card reveal rounded-[18px] border border-black/[0.07] bg-white p-4 sm:grid sm:grid-cols-[70px_180px_1fr] sm:gap-4 sm:px-0 sm:py-6 sm:border-x-0 sm:border-t-0 sm:bg-transparent"
+                    className="process-card reveal rounded-[18px] border border-black/[0.07] bg-white p-4 sm:grid sm:grid-cols-[70px_180px_1fr] sm:gap-4 sm:border-x-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:py-6"
                   >
                     <span className="font-mono text-[10px] font-bold text-[#ff6f0f]">
                       {item.number}
@@ -1392,7 +1467,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA */}
+        {/* =====================================================
+            CTA
+        ====================================================== */}
+
         <section className="cta-section bg-[#ff6f0f]">
           <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20 lg:px-10">
             <div className="grid items-center gap-7 md:grid-cols-[1fr_auto]">
@@ -1418,6 +1496,7 @@ export default function HomePage() {
                 className="group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#17191c] px-6 text-sm font-black text-white transition hover:bg-black"
               >
                 Mulai Diskusi
+
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
