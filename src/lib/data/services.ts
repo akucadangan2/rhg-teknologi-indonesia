@@ -58,20 +58,25 @@ export const services: ServiceCategory[] = [
     ],
     stats: [
       { value: 100, suffix: "%", label: "Source Code Milik Anda" },
-      { value: 7, suffix: "+", label: "Kategori Layanan Terintegrasi" },
+      { value: 8, suffix: "+", label: "Kategori Layanan Terintegrasi" },
       { value: 30, suffix: " Hari", label: "Garansi Bug Fix" },
       { value: 24, suffix: "/7", label: "Akses Monitoring Sistem" },
     ],
     pricingTiers: [
       {
         name: "Starter",
-        price: "Mulai Rp 3jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 3jt",
         description: "Company profile atau landing page sederhana",
-        features: ["Hingga 5 halaman", "Desain responsif", "Form kontak", "1x revisi desain"],
+        features: [
+          "Hingga 5 halaman",
+          "Desain responsif",
+          "Form kontak",
+          "1x revisi desain",
+        ],
       },
       {
         name: "Business",
-        price: "Mulai Rp 8jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 8jt",
         description: "Website dengan sistem custom (e-commerce, POS, dsb)",
         features: [
           "Halaman tidak terbatas",
@@ -84,7 +89,7 @@ export const services: ServiceCategory[] = [
       },
       {
         name: "Custom",
-        price: "Sesuai Kebutuhan", // TODO: ganti sesuai rate asli
+        price: "Sesuai Kebutuhan",
         description: "Sistem kompleks: multi-role, integrasi banyak layanan",
         features: [
           "Arsitektur sistem custom",
@@ -127,6 +132,7 @@ export const services: ServiceCategory[] = [
       },
     ],
   },
+
   {
     slug: "aplikasi-mobile",
     code: "MOBILE",
@@ -147,7 +153,13 @@ export const services: ServiceCategory[] = [
       "Layanan on-demand seperti ride-hailing atau delivery",
       "Brand yang butuh aplikasi resmi dipublish ke Play Store/App Store",
     ],
-    techStack: ["Kotlin", "Jetpack Compose", "Flutter", "Firebase", "OneSignal"],
+    techStack: [
+      "Kotlin",
+      "Jetpack Compose",
+      "Flutter",
+      "Firebase",
+      "OneSignal",
+    ],
     sellingPoints: [
       {
         title: "Native Performance",
@@ -164,7 +176,7 @@ export const services: ServiceCategory[] = [
         description:
           "Mendukung banyak peran sekaligus — user, mitra, admin — dalam satu ekosistem.",
       },
-{
+      {
         title: "Notifikasi Real-Time",
         description:
           "Push notification & deep-linking terintegrasi sejak awal pengembangan.",
@@ -179,8 +191,9 @@ export const services: ServiceCategory[] = [
     pricingTiers: [
       {
         name: "Starter",
-        price: "Mulai Rp 8jt", // TODO: ganti sesuai rate asli
-        description: "Aplikasi single-platform (Android atau iOS) dengan fitur dasar",
+        price: "Mulai Rp 8jt",
+        description:
+          "Aplikasi single-platform (Android atau iOS) dengan fitur dasar",
         features: [
           "1 platform (Android atau iOS)",
           "Hingga 5 halaman/fitur utama",
@@ -190,7 +203,7 @@ export const services: ServiceCategory[] = [
       },
       {
         name: "Business",
-        price: "Mulai Rp 20jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 20jt",
         description: "Aplikasi cross-platform lengkap dengan backend",
         features: [
           "Android & iOS sekaligus",
@@ -203,8 +216,9 @@ export const services: ServiceCategory[] = [
       },
       {
         name: "Custom",
-        price: "Sesuai Kebutuhan", // TODO: ganti sesuai rate asli
-        description: "Sistem multi-app (user, mitra, admin) untuk marketplace/on-demand",
+        price: "Sesuai Kebutuhan",
+        description:
+          "Sistem multi-app (user, mitra, admin) untuk marketplace/on-demand",
         features: [
           "Multi-role app (user, mitra, admin)",
           "Integrasi payment gateway",
@@ -246,6 +260,7 @@ export const services: ServiceCategory[] = [
       },
     ],
   },
+
   {
     slug: "jasa-it-backend",
     code: "BACKEND",
@@ -266,7 +281,13 @@ export const services: ServiceCategory[] = [
       "Tim yang butuh API custom untuk menghubungkan aplikasi internal",
       "Operasional yang masih manual dan perlu diautomasi",
     ],
-    techStack: ["Next.js API Routes", "PostgreSQL", "Supabase", "REST API", "Cron Jobs"],
+    techStack: [
+      "Next.js API Routes",
+      "PostgreSQL",
+      "Supabase",
+      "REST API",
+      "Cron Jobs",
+    ],
     sellingPoints: [
       {
         title: "Migrasi Tanpa Downtime",
@@ -275,11 +296,13 @@ export const services: ServiceCategory[] = [
       },
       {
         title: "API Terdokumentasi",
-        description: "Setiap endpoint didokumentasikan supaya mudah diintegrasikan tim lain.",
+        description:
+          "Setiap endpoint didokumentasikan supaya mudah diintegrasikan tim lain.",
       },
       {
         title: "Automasi Proses Manual",
-        description: "Proses berulang yang tadinya manual bisa dijadwalkan otomatis.",
+        description:
+          "Proses berulang yang tadinya manual bisa dijadwalkan otomatis.",
       },
     ],
     stats: [
@@ -291,13 +314,17 @@ export const services: ServiceCategory[] = [
     pricingTiers: [
       {
         name: "Starter",
-        price: "Mulai Rp 3jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 3jt",
         description: "Integrasi API sederhana atau satu sistem eksternal",
-        features: ["1-2 endpoint API", "Dokumentasi dasar", "Setup server ringan"],
+        features: [
+          "1-2 endpoint API",
+          "Dokumentasi dasar",
+          "Setup server ringan",
+        ],
       },
       {
         name: "Business",
-        price: "Mulai Rp 10jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 10jt",
         description: "Migrasi data + sinkronisasi antar sistem",
         features: [
           "Migrasi data dari sistem lama",
@@ -310,7 +337,7 @@ export const services: ServiceCategory[] = [
       },
       {
         name: "Custom",
-        price: "Sesuai Kebutuhan", // TODO: ganti sesuai rate asli
+        price: "Sesuai Kebutuhan",
         description: "Infrastruktur backend kompleks, multi-sistem",
         features: [
           "Arsitektur backend custom",
@@ -322,7 +349,8 @@ export const services: ServiceCategory[] = [
     ],
     faqs: [
       {
-        question: "Apakah migrasi data bisa dilakukan tanpa mematikan sistem lama?",
+        question:
+          "Apakah migrasi data bisa dilakukan tanpa mematikan sistem lama?",
         answer:
           "Bisa. Migrasi direncanakan bertahap dengan verifikasi data di tiap tahap, sistem lama tetap jalan sampai sistem baru terbukti stabil.",
       },
@@ -343,6 +371,165 @@ export const services: ServiceCategory[] = [
       },
     ],
   },
+
+  {
+    slug: "ai-agent-development",
+    code: "AI",
+    title: "AI Agent & AI Development",
+    tagline: "AI Agent, automasi, dan pengembangan AI custom",
+    description:
+      "Pengembangan AI Agent, AI assistant, chatbot berbasis knowledge, automasi workflow, document processing, serta integrasi AI ke website, aplikasi, database, API, dan sistem bisnis yang sudah berjalan.",
+    items: [
+      "AI Agent untuk customer service & operasional internal",
+      "Custom AI assistant untuk website dan aplikasi",
+      "Knowledge-based AI / RAG dari data perusahaan",
+      "AI chatbot dengan knowledge base custom",
+      "Automasi workflow berbasis AI",
+      "Document processing & data extraction",
+      "AI summarization & classification",
+      "Integrasi AI dengan database dan API",
+      "Integrasi AI ke sistem existing",
+    ],
+    useCases: [
+      "Perusahaan yang ingin menyediakan customer service berbasis AI",
+      "Tim internal yang membutuhkan AI assistant dari knowledge perusahaan",
+      "Bisnis yang ingin mengurangi pekerjaan manual dan berulang",
+      "Website atau aplikasi yang membutuhkan fitur AI",
+      "Perusahaan yang ingin AI membaca dokumen internal",
+      "Bisnis yang ingin menghubungkan AI dengan database dan sistem operasional",
+    ],
+    techStack: [
+      "OpenAI API",
+      "Gemini API",
+      "LLM API",
+      "RAG",
+      "Vector Search",
+      "PostgreSQL",
+      "Supabase",
+      "REST API",
+      "Webhook",
+      "Knowledge Base",
+    ],
+    sellingPoints: [
+      {
+        title: "AI Sesuai Kebutuhan Bisnis",
+        description:
+          "AI dikembangkan berdasarkan workflow dan kebutuhan bisnis, bukan sekadar chatbot generik.",
+      },
+      {
+        title: "Terhubung ke Data Perusahaan",
+        description:
+          "AI dapat menggunakan dokumen, knowledge base, database, dan API perusahaan sebagai sumber informasi.",
+      },
+      {
+        title: "Bisa Menjalankan Workflow",
+        description:
+          "AI Agent dapat dirancang untuk menjalankan proses seperti mencari data, memanggil API, membuat ringkasan, dan membantu operasional.",
+      },
+      {
+        title: "Bisa Diintegrasikan ke Sistem Existing",
+        description:
+          "Tidak harus membangun sistem baru. AI dapat ditambahkan ke website, aplikasi, dashboard, atau backend yang sudah berjalan.",
+      },
+    ],
+    stats: [
+      { value: 24, suffix: "/7", label: "AI Agent Siap Digunakan" },
+      { value: 100, suffix: "%", label: "Workflow Dapat Dikustomisasi" },
+      { value: 3, suffix: "+", label: "Integrasi API, Data & Knowledge" },
+      { value: 30, suffix: " Hari", label: "Garansi Bug Fix" },
+    ],
+    pricingTiers: [
+      {
+        name: "Starter",
+        price: "Mulai Rp 3jt",
+        description: "AI assistant sederhana untuk satu kebutuhan utama",
+        features: [
+          "1 AI assistant / chatbot",
+          "Prompt & workflow custom",
+          "Integrasi website",
+          "Knowledge base dasar",
+          "Testing & deployment",
+        ],
+      },
+      {
+        name: "Business",
+        price: "Mulai Rp 8jt",
+        description: "AI Agent terintegrasi dengan database dan sistem bisnis",
+        features: [
+          "Custom AI Agent",
+          "Knowledge base / RAG",
+          "Integrasi API",
+          "Integrasi database",
+          "Automasi workflow",
+          "Dashboard / monitoring",
+          "Support 30 hari",
+        ],
+        highlighted: true,
+      },
+      {
+        name: "Custom / Enterprise",
+        price: "Sesuai Kebutuhan",
+        description: "Implementasi AI kompleks untuk kebutuhan perusahaan",
+        features: [
+          "Multi-agent / multi-workflow",
+          "Integrasi multi-system",
+          "Custom business logic",
+          "Role & access control",
+          "Monitoring penggunaan AI",
+          "Document processing",
+          "Maintenance berkelanjutan",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Apa itu AI Agent?",
+        answer:
+          "AI Agent adalah sistem AI yang tidak hanya menjawab pertanyaan, tetapi dapat dirancang untuk membaca data, menggunakan knowledge base, memanggil API, dan membantu menjalankan workflow tertentu.",
+      },
+      {
+        question: "Apa bedanya AI Agent dengan chatbot biasa?",
+        answer:
+          "Chatbot biasanya hanya fokus pada percakapan. AI Agent dapat memiliki akses ke tools, database, API, knowledge base, dan workflow sehingga dapat membantu menjalankan proses yang lebih kompleks.",
+      },
+      {
+        question: "Apakah AI bisa menggunakan data perusahaan kami?",
+        answer:
+          "Bisa. Sistem dapat menggunakan dokumen, database, knowledge base, maupun API perusahaan sebagai sumber informasi sesuai hak akses yang diberikan.",
+      },
+      {
+        question: "Apakah bisa menggunakan dokumen PDF atau file internal?",
+        answer:
+          "Bisa. Dokumen dapat diproses menjadi knowledge base agar AI dapat mencari dan menjawab berdasarkan informasi dari dokumen tersebut.",
+      },
+      {
+        question: "Apakah AI bisa diintegrasikan ke aplikasi yang sudah ada?",
+        answer:
+          "Bisa. AI dapat diintegrasikan ke website, aplikasi mobile, dashboard, maupun backend existing melalui API atau metode integrasi lain yang sesuai.",
+      },
+      {
+        question: "Apakah AI Agent bisa menjalankan proses otomatis?",
+        answer:
+          "Bisa. Contohnya membaca data, membuat ringkasan, mengklasifikasikan informasi, memanggil API, mengisi workflow, atau membantu proses operasional tertentu.",
+      },
+      {
+        question: "Model AI apa yang digunakan?",
+        answer:
+          "Pemilihan model disesuaikan dengan kebutuhan project, termasuk performa, biaya operasional, jenis data, keamanan, dan kebutuhan integrasi.",
+      },
+      {
+        question: "Bagaimana keamanan data yang digunakan AI?",
+        answer:
+          "Sistem dapat dirancang dengan authentication, pembatasan hak akses, logging, pemisahan knowledge base, dan aturan akses data sesuai kebutuhan project.",
+      },
+      {
+        question: "Berapa lama pengembangan sistem AI?",
+        answer:
+          "Durasi tergantung kompleksitas. AI assistant sederhana dapat dikerjakan lebih cepat, sedangkan AI Agent dengan database, knowledge base, API, dan banyak workflow membutuhkan tahap integrasi dan pengujian yang lebih panjang.",
+      },
+    ],
+  },
+
   {
     slug: "payment-gateway",
     code: "PAYMENT",
@@ -363,40 +550,52 @@ export const services: ServiceCategory[] = [
       "Bisnis yang masih rekonsiliasi transaksi secara manual",
     ],
     techStack: ["Midtrans", "DOKU", "Xendit", "QRIS", "Webhook"],
-sellingPoints: [
+    sellingPoints: [
       {
         title: "Rekonsiliasi Otomatis",
-        description: "Transaksi tercatat otomatis lewat webhook, mengurangi risiko selisih pencatatan manual.",
+        description:
+          "Transaksi tercatat otomatis lewat webhook, mengurangi risiko selisih pencatatan manual.",
       },
       {
         title: "Multi Metode Pembayaran",
-        description: "Mendukung kartu, e-wallet, QRIS, hingga virtual account sesuai provider.",
+        description:
+          "Mendukung kartu, e-wallet, QRIS, hingga virtual account sesuai provider.",
       },
       {
         title: "Sesuai Standar Keamanan",
-        description: "Integrasi mengikuti best practice keamanan dari provider payment gateway.",
+        description:
+          "Integrasi mengikuti best practice keamanan dari provider payment gateway.",
       },
       {
         title: "Bantuan Setup Akun Gateway",
-        description: "Bingung pilih atau daftar akun merchant? Kami bantu dari pemilihan provider sampai akun aktif.",
+        description:
+          "Bingung pilih atau daftar akun merchant? Kami bantu dari pemilihan provider sampai akun aktif.",
       },
     ],
     stats: [
       { value: 4, suffix: "+", label: "Provider Gateway Didukung" },
-      { value: 100, suffix: "%", label: "Transaksi Terekonsiliasi Otomatis" },
+      {
+        value: 100,
+        suffix: "%",
+        label: "Transaksi Terekonsiliasi Otomatis",
+      },
       { value: 1, suffix: "-2 Hari", label: "Settlement Dana ke Rekening" },
       { value: 24, suffix: "/7", label: "Sistem Siap Terima Pembayaran" },
     ],
     pricingTiers: [
       {
         name: "Starter",
-        price: "Mulai Rp 1.5jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 1.5jt",
         description: "Integrasi satu metode pembayaran (misal QRIS manual)",
-        features: ["1 metode pembayaran", "Verifikasi manual", "Setup dasar"],
+        features: [
+          "1 metode pembayaran",
+          "Verifikasi manual",
+          "Setup dasar",
+        ],
       },
       {
         name: "Business",
-        price: "Mulai Rp 4jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 4jt",
         description: "Integrasi gateway lengkap dengan webhook otomatis",
         features: [
           "Midtrans/DOKU/Xendit",
@@ -408,8 +607,9 @@ sellingPoints: [
       },
       {
         name: "Custom",
-        price: "Sesuai Kebutuhan", // TODO: ganti sesuai rate asli
-        description: "Billing berlangganan, multi-gateway, atau bantuan setup akun lengkap",
+        price: "Sesuai Kebutuhan",
+        description:
+          "Billing berlangganan, multi-gateway, atau bantuan setup akun lengkap",
         features: [
           "Sistem billing berlangganan",
           "Multi-gateway sekaligus",
@@ -451,6 +651,7 @@ sellingPoints: [
       },
     ],
   },
+
   {
     slug: "maps-gis",
     code: "GIS",
@@ -470,41 +671,59 @@ sellingPoints: [
       "Layanan delivery yang butuh estimasi rute otomatis",
       "Proyek pemetaan wilayah atau kadaster",
     ],
-    techStack: ["PostGIS", "MapLibre GL JS", "OSRM", "GeoJSON/KML"],
-sellingPoints: [
+    techStack: [
+      "PostGIS",
+      "MapLibre GL JS",
+      "OSRM",
+      "GeoJSON/KML",
+    ],
+    sellingPoints: [
       {
         title: "Data Spasial Real-Time",
-        description: "Visualisasi lokasi dan pergerakan langsung dari data lapangan, bukan data statis.",
+        description:
+          "Visualisasi lokasi dan pergerakan langsung dari data lapangan, bukan data statis.",
       },
       {
         title: "Routing Akurat",
-        description: "Estimasi jarak dan rute dihitung otomatis menggunakan OSRM.",
+        description:
+          "Estimasi jarak dan rute dihitung otomatis menggunakan OSRM.",
       },
       {
         title: "Untuk Wilayah Kompleks",
-        description: "Cocok untuk pemetaan aset, irigasi, hingga kadaster dengan banyak layer data.",
+        description:
+          "Cocok untuk pemetaan aset, irigasi, hingga kadaster dengan banyak layer data.",
       },
       {
         title: "Sesuai Standar Tender",
-        description: "Format data, sistem koordinat, dan dokumentasi teknis sesuai kebutuhan tender pemerintah maupun swasta.",
+        description:
+          "Format data, sistem koordinat, dan dokumentasi teknis sesuai kebutuhan tender pemerintah maupun swasta.",
       },
     ],
     stats: [
       { value: 100, suffix: "%", label: "Sesuai Standar BIG & Kartografi" },
-      { value: 4, suffix: "+", label: "Format Data (SHP, KML, GeoJSON, WMS)" },
+      {
+        value: 4,
+        suffix: "+",
+        label: "Format Data (SHP, KML, GeoJSON, WMS)",
+      },
       { value: 2, suffix: "", label: "Sistem Koordinat: WGS84 & TM-3" },
       { value: 24, suffix: "/7", label: "Tracking Real-Time" },
     ],
     pricingTiers: [
       {
         name: "Starter",
-        price: "Mulai Rp 5jt", // TODO: ganti sesuai rate asli
-        description: "Visualisasi data spasial dasar (peta statis interaktif)",
-        features: ["1-2 layer data", "Visualisasi web sederhana", "Export peta gambar"],
+        price: "Mulai Rp 5jt",
+        description:
+          "Visualisasi data spasial dasar (peta statis interaktif)",
+        features: [
+          "1-2 layer data",
+          "Visualisasi web sederhana",
+          "Export peta gambar",
+        ],
       },
       {
         name: "Business",
-        price: "Mulai Rp 15jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 15jt",
         description: "WebGIS interaktif dengan tracking real-time",
         features: [
           "Multi-layer data spasial",
@@ -517,8 +736,9 @@ sellingPoints: [
       },
       {
         name: "Custom / Tender",
-        price: "Sesuai Kebutuhan", // TODO: ganti sesuai rate asli
-        description: "Project skala besar untuk instansi pemerintah/swasta",
+        price: "Sesuai Kebutuhan",
+        description:
+          "Project skala besar untuk instansi pemerintah/swasta",
         features: [
           "Dokumentasi teknis lengkap untuk tender",
           "Sesuai standar BIG & kaidah kartografi",
@@ -529,7 +749,8 @@ sellingPoints: [
     ],
     faqs: [
       {
-        question: "Apakah bisa menyediakan dokumen teknis untuk keperluan tender?",
+        question:
+          "Apakah bisa menyediakan dokumen teknis untuk keperluan tender?",
         answer:
           "Bisa, termasuk laporan metodologi, spesifikasi teknis sistem, dan dokumentasi data sesuai kebutuhan dokumen pengadaan.",
       },
@@ -560,6 +781,7 @@ sellingPoints: [
       },
     ],
   },
+
   {
     slug: "integrasi-sistem",
     code: "SISTEM",
@@ -579,23 +801,31 @@ sellingPoints: [
       "Toko yang butuh integrasi hardware seperti printer barcode",
       "Operasional yang butuh sistem monitoring custom",
     ],
-    techStack: ["Mikrotik/RouterOS", "SNMP", "Cloudflare Tunnel"],
+    techStack: [
+      "Mikrotik/RouterOS",
+      "SNMP",
+      "Cloudflare Tunnel",
+    ],
     sellingPoints: [
       {
         title: "Monitoring Jarak Jauh",
-        description: "Pantau kondisi perangkat jaringan tanpa harus ke lokasi.",
+        description:
+          "Pantau kondisi perangkat jaringan tanpa harus ke lokasi.",
       },
       {
         title: "Billing Otomatis",
-        description: "Voucher dan tagihan pelanggan hotspot/PPPoE terkelola otomatis.",
+        description:
+          "Voucher dan tagihan pelanggan hotspot/PPPoE terkelola otomatis.",
       },
       {
         title: "Fleksibel untuk Hardware Custom",
-        description: "Bisa diintegrasikan dengan printer, scanner, atau perangkat IoT lain.",
+        description:
+          "Bisa diintegrasikan dengan printer, scanner, atau perangkat IoT lain.",
       },
       {
         title: "Notifikasi Real-Time",
-        description: "Dapat notifikasi otomatis begitu ada perangkat down atau gangguan jaringan.",
+        description:
+          "Dapat notifikasi otomatis begitu ada perangkat down atau gangguan jaringan.",
       },
     ],
     stats: [
@@ -607,13 +837,17 @@ sellingPoints: [
     pricingTiers: [
       {
         name: "Starter",
-        price: "Mulai Rp 2jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 2jt",
         description: "Setup jaringan dasar atau integrasi 1 perangkat",
-        features: ["Konfigurasi Mikrotik/RouterOS dasar", "1 perangkat hardware", "Setup on-site"],
+        features: [
+          "Konfigurasi Mikrotik/RouterOS dasar",
+          "1 perangkat hardware",
+          "Setup on-site",
+        ],
       },
       {
         name: "Business",
-        price: "Mulai Rp 6jt", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 6jt",
         description: "Sistem voucher hotspot & monitoring jaringan",
         features: [
           "Sistem voucher & billing PPPoE",
@@ -625,7 +859,7 @@ sellingPoints: [
       },
       {
         name: "Custom",
-        price: "Sesuai Kebutuhan", // TODO: ganti sesuai rate asli
+        price: "Sesuai Kebutuhan",
         description: "Integrasi jaringan skala besar atau IoT custom",
         features: [
           "Multi-lokasi/multi-cabang",
@@ -642,7 +876,8 @@ sellingPoints: [
           "Bisa, dashboard monitoring dapat dirancang untuk memantau banyak perangkat dari berbagai lokasi dalam satu tampilan terpusat.",
       },
       {
-        question: "Apakah sistem voucher hotspot bisa terhubung ke pembayaran online?",
+        question:
+          "Apakah sistem voucher hotspot bisa terhubung ke pembayaran online?",
         answer:
           "Bisa, sistem voucher dapat diintegrasikan dengan payment gateway supaya pelanggan bisa beli akses langsung dan otomatis aktif.",
       },
@@ -658,6 +893,7 @@ sellingPoints: [
       },
     ],
   },
+
   {
     slug: "maintenance-support",
     code: "SUPPORT",
@@ -676,23 +912,31 @@ sellingPoints: [
       "Sistem yang perlu direview arsitekturnya sebelum scale up",
       "Tim internal yang butuh konsultasi teknis berkala",
     ],
-    techStack: ["Monitoring & Logging", "Automated Backup", "Security Patching"],
+    techStack: [
+      "Monitoring & Logging",
+      "Automated Backup",
+      "Security Patching",
+    ],
     sellingPoints: [
       {
         title: "Respon Cepat",
-        description: "Laporan bug atau gangguan ditindaklanjuti tanpa menunggu lama.",
+        description:
+          "Laporan bug atau gangguan ditindaklanjuti tanpa menunggu lama.",
       },
       {
         title: "Bukan Sekadar Perbaikan",
-        description: "Termasuk rekomendasi peningkatan performa dan keamanan jangka panjang.",
+        description:
+          "Termasuk rekomendasi peningkatan performa dan keamanan jangka panjang.",
       },
       {
         title: "Laporan Berkala",
-        description: "Update kondisi sistem disampaikan rutin, bukan cuma waktu ada masalah.",
+        description:
+          "Update kondisi sistem disampaikan rutin, bukan cuma waktu ada masalah.",
       },
       {
         title: "Pemeriksaan Rutin Terjadwal",
-        description: "Sistem dicek berkala layaknya checkup kesehatan — bukan menunggu sampai rusak.",
+        description:
+          "Sistem dicek berkala layaknya checkup kesehatan — bukan menunggu sampai rusak.",
       },
     ],
     stats: [
@@ -704,13 +948,17 @@ sellingPoints: [
     pricingTiers: [
       {
         name: "Basic",
-        price: "Mulai Rp 500rb/bulan", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 500rb/bulan",
         description: "Monitoring dasar & bug fix ringan",
-        features: ["Monitoring uptime", "Bug fix minor", "Laporan bulanan"],
+        features: [
+          "Monitoring uptime",
+          "Bug fix minor",
+          "Laporan bulanan",
+        ],
       },
       {
         name: "Standard",
-        price: "Mulai Rp 1.5jt/bulan", // TODO: ganti sesuai rate asli
+        price: "Mulai Rp 1.5jt/bulan",
         description: "Perawatan rutin lengkap dengan respon prioritas",
         features: [
           "Semua di paket Basic",
@@ -722,7 +970,7 @@ sellingPoints: [
       },
       {
         name: "Enterprise",
-        price: "Sesuai Kebutuhan", // TODO: ganti sesuai rate asli
+        price: "Sesuai Kebutuhan",
         description: "Sistem kritikal dengan SLA khusus",
         features: [
           "SLA respon custom",
@@ -734,7 +982,8 @@ sellingPoints: [
     ],
     faqs: [
       {
-        question: "Apa bedanya paket maintenance dengan sekadar 'panggil kalau rusak'?",
+        question:
+          "Apa bedanya paket maintenance dengan sekadar 'panggil kalau rusak'?",
         answer:
           "Maintenance rutin mencegah masalah sebelum terjadi — backup, patch keamanan, dan monitoring berjalan terus-menerus, bukan cuma reaktif setelah ada laporan.",
       },
