@@ -2,10 +2,320 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #F6F7FA;
-  color: #11162B;
+:root {
+  --rhg-bg: #f6f7fa;
+  --rhg-bg-soft: #f9fafc;
+  --rhg-surface: #ffffff;
+  --rhg-ink: #11162b;
+  --rhg-text: #5f6678;
+  --rhg-muted: #9197a7;
+  --rhg-border: #e2e5ec;
+  --rhg-blue: #315efb;
+  --rhg-blue-soft: #edf2ff;
+  --rhg-orange: #e58a14;
+  --rhg-orange-soft: #fff4e5;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--rhg-bg);
+  color: var(--rhg-ink);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(49, 94, 251, 0.16);
+  color: var(--rhg-ink);
+}
+
+/* =========================================================
+   EXISTING HERO DIAGRAM
+   ========================================================= */
+
+.diagram-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.diagram-node {
+  opacity: 1;
+}
+
+/* =========================================================
+   GLOBAL SECTION HELPERS
+   ========================================================= */
+
+.rhg-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.rhg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(17, 22, 43, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 22, 43, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.rhg-dot-pattern {
+  background-image: radial-gradient(
+    circle,
+    rgba(49, 94, 251, 0.13) 1px,
+    transparent 1.3px
+  );
+  background-size: 22px 22px;
+}
+
+/* =========================================================
+   CLIENT NETWORK MAP
+   ========================================================= */
+
+.network-map {
+  position: relative;
+  isolation: isolate;
+}
+
+.network-map::before {
+  content: "";
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  right: -170px;
+  top: -160px;
+  border-radius: 9999px;
+  background: rgba(49, 94, 251, 0.07);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.network-map::after {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  left: -150px;
+  bottom: -170px;
+  border-radius: 9999px;
+  background: rgba(229, 138, 20, 0.07);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.network-map-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(17, 22, 43, 0.08);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(247, 249, 255, 0.94)
+    );
+  box-shadow:
+    0 24px 70px rgba(17, 22, 43, 0.08),
+    0 2px 8px rgba(17, 22, 43, 0.03);
+}
+
+.network-map-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.38;
+  background-image:
+    linear-gradient(rgba(49, 94, 251, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(49, 94, 251, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 18%,
+    black 82%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 18%,
+    black 82%,
+    transparent
+  );
+}
+
+.network-map-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.network-map-country {
+  fill: rgba(49, 94, 251, 0.055);
+  stroke: rgba(49, 94, 251, 0.2);
+  stroke-width: 1.2;
+  transition:
+    fill 300ms ease,
+    stroke 300ms ease;
+}
+
+.network-route {
+  fill: none;
+  stroke: url("#networkGradient");
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 5 7;
+  opacity: 0.65;
+}
+
+.network-route-soft {
+  fill: none;
+  stroke: rgba(49, 94, 251, 0.14);
+  stroke-width: 5;
+  stroke-linecap: round;
+  filter: blur(3px);
+}
+
+.network-location {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.network-location-dot {
+  fill: var(--rhg-blue);
+  stroke: white;
+  stroke-width: 3;
+  filter: drop-shadow(0 4px 8px rgba(49, 94, 251, 0.25));
+}
+
+.network-location-dot.client {
+  fill: var(--rhg-blue);
+}
+
+.network-location-dot.hq {
+  fill: var(--rhg-orange);
+  filter: drop-shadow(0 4px 10px rgba(229, 138, 20, 0.28));
+}
+
+.network-location-ring {
+  fill: none;
+  stroke: rgba(49, 94, 251, 0.35);
+  stroke-width: 1.5;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.network-location-ring.hq {
+  stroke: rgba(229, 138, 20, 0.42);
+}
+
+.network-location-label {
+  fill: var(--rhg-ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  pointer-events: none;
+}
+
+.network-location-subtitle {
+  fill: var(--rhg-muted);
+  font-size: 9px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.network-location:hover .network-location-dot {
+  transform: scale(1.15);
+}
+
+.network-location:hover .network-location-ring {
+  opacity: 1;
+}
+
+.network-status-dot {
+  position: relative;
+  display: inline-flex;
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  background: var(--rhg-blue);
+}
+
+.network-status-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgba(49, 94, 251, 0.28);
+  border-radius: inherit;
+}
+
+.network-stat-card {
+  border: 1px solid rgba(17, 22, 43, 0.07);
+  background: rgba(255, 255, 255, 0.74);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.network-stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(49, 94, 251, 0.15);
+  box-shadow: 0 14px 35px rgba(17, 22, 43, 0.07);
+}
+
+/* =========================================================
+   SCROLL / REVEAL ANIMATION HELPERS
+   ========================================================= */
+
+.reveal-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hover-lift {
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(17, 22, 43, 0.08);
+}
+
+/* =========================================================
+   DECORATIVE BLOBS
+   ========================================================= */
+
+.blob,
+.blob-2 {
+  will-change: transform;
+}
+
+/* =========================================================
+   MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: no-preference) {
   .diagram-line {
@@ -33,30 +343,206 @@ body {
   .blob-2 {
     animation: blob-move-2 14s ease-in-out infinite;
   }
+
+  .network-route {
+    animation: network-route-flow 8s linear infinite;
+  }
+
+  .network-location-ring {
+    animation: network-pulse 2.8s ease-out infinite;
+  }
+
+  .network-location-ring.hq {
+    animation-duration: 2.2s;
+  }
+
+  .network-location-dot {
+    transition: transform 220ms ease;
+  }
+
+  .network-map-float {
+    animation: network-float 7s ease-in-out infinite;
+  }
+
+  .network-status-dot::after {
+    animation: network-status-pulse 2.2s ease-out infinite;
+  }
 }
 
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
 @keyframes draw-line {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes fade-in-node {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes travel {
-  0% { offset-distance: 0%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { offset-distance: 100%; opacity: 0; }
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
 }
 
 @keyframes blob-move {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
 }
 
 @keyframes blob-move-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-30px, -30px) scale(1.15); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-30px, -30px) scale(1.15);
+  }
+}
+
+@keyframes network-route-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+
+@keyframes network-pulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.65);
+  }
+
+  70% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes network-status-pulse {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.7);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes network-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .network-map::before {
+    width: 280px;
+    height: 280px;
+    right: -120px;
+    top: -80px;
+    filter: blur(60px);
+  }
+
+  .network-map::after {
+    width: 240px;
+    height: 240px;
+    left: -120px;
+    bottom: -100px;
+    filter: blur(60px);
+  }
+
+  .network-map-grid {
+    background-size: 32px 32px;
+  }
+
+  .network-location-label {
+    font-size: 10px;
+  }
+
+  .network-location-subtitle {
+    font-size: 8px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .diagram-line {
+    stroke-dashoffset: 0;
+  }
+
+  .diagram-node {
+    opacity: 1;
+  }
+
+  .network-location-ring {
+    opacity: 0.25;
+  }
 }
