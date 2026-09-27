@@ -1,14 +1,21 @@
 import Link from "next/link";
 import {
+  Activity,
   ArrowRight,
   Bot,
   BrainCircuit,
   Check,
   Code2,
+  Cpu,
   Database,
+  Eye,
+  FlaskConical,
+  MapPin,
   MessagesSquare,
   Network,
+  Satellite,
   Sparkles,
+  Sprout,
   Workflow,
   Zap,
 } from "lucide-react";
@@ -20,7 +27,7 @@ import { FadeInSection } from "@/components/motion/FadeInSection";
 export const metadata = {
   title: "Layanan — RHG Teknologi Indonesia",
   description:
-    "Website, aplikasi mobile, backend, GIS, payment gateway, AI Agent, automasi AI, dan pengembangan sistem digital oleh RHG Teknologi Indonesia.",
+    "Software development, aplikasi mobile, backend, payment integration, AI Agent, computer vision, automation, GIS, IoT, system integration, dan Applied AI Field Lab oleh RHG Teknologi Indonesia.",
 };
 
 const AI_SERVICES = [
@@ -29,7 +36,7 @@ const AI_SERVICES = [
     number: "AI / 01",
     title: "AI Agent",
     description:
-      "Agent AI untuk membantu customer service, pencarian informasi, operasional internal, hingga workflow otomatis yang terhubung dengan sistem bisnis.",
+      "AI Agent yang dapat memahami konteks, menggunakan knowledge perusahaan, mengakses API, database, dan membantu menjalankan workflow bisnis.",
     features: [
       "Customer support AI",
       "Internal knowledge agent",
@@ -41,7 +48,7 @@ const AI_SERVICES = [
     number: "AI / 02",
     title: "AI Automation",
     description:
-      "Mengotomatisasi pekerjaan berulang dengan AI yang dapat membaca data, menjalankan workflow, membuat ringkasan, dan membantu proses operasional.",
+      "Automasi pekerjaan berulang menggunakan AI untuk membaca data, memproses informasi, membuat ringkasan, dan menjalankan workflow tertentu.",
     features: [
       "Workflow automation",
       "Document processing",
@@ -49,23 +56,47 @@ const AI_SERVICES = [
     ],
   },
   {
-    icon: BrainCircuit,
+    icon: Eye,
     number: "AI / 03",
+    title: "Computer Vision",
+    description:
+      "Pengembangan sistem AI untuk detection, classification, visual inspection, image analysis, dan kebutuhan vision lainnya.",
+    features: [
+      "Object detection",
+      "Image classification",
+      "Visual inspection",
+    ],
+  },
+  {
+    icon: BrainCircuit,
+    number: "AI / 04",
     title: "Custom AI Development",
     description:
-      "Pengembangan fitur AI custom untuk website, aplikasi, dashboard, database, dan sistem internal sesuai kebutuhan perusahaan.",
+      "Pengembangan fitur AI custom untuk website, aplikasi, dashboard, database, atau sistem internal perusahaan.",
     features: [
       "Custom AI features",
-      "AI integration",
-      "Business-specific solution",
+      "RAG & knowledge system",
+      "Business-specific AI",
+    ],
+  },
+  {
+    icon: Cpu,
+    number: "AI / 05",
+    title: "Edge & Applied AI",
+    description:
+      "Eksperimen dan implementasi model AI pada mobile, edge device, maupun lingkungan dengan konektivitas terbatas.",
+    features: [
+      "On-device AI",
+      "Edge inference",
+      "Offline AI",
     ],
   },
   {
     icon: Network,
-    number: "AI / 04",
+    number: "AI / 06",
     title: "AI & System Integration",
     description:
-      "Integrasi AI dengan API, database, CRM, dashboard, aplikasi mobile, layanan pihak ketiga, dan sistem perusahaan yang sudah berjalan.",
+      "Menghubungkan AI dengan API, database, CRM, dashboard, mobile application, IoT, dan sistem existing.",
     features: [
       "API integration",
       "Database connection",
@@ -78,12 +109,12 @@ const AI_CAPABILITIES = [
   {
     icon: MessagesSquare,
     title: "Conversational AI",
-    text: "Chatbot dan AI assistant untuk customer maupun kebutuhan internal.",
+    text: "AI assistant dan chatbot untuk customer maupun kebutuhan internal.",
   },
   {
     icon: Database,
     title: "AI + Business Data",
-    text: "Menghubungkan AI dengan database dan data operasional perusahaan.",
+    text: "Menghubungkan AI dengan knowledge, database, dan data operasional.",
   },
   {
     icon: Zap,
@@ -93,13 +124,52 @@ const AI_CAPABILITIES = [
   {
     icon: Code2,
     title: "Custom Integration",
-    text: "Integrasi AI ke aplikasi dan sistem yang sudah dimiliki perusahaan.",
+    text: "AI dapat ditambahkan ke aplikasi maupun sistem existing.",
+  },
+];
+
+const LAB_AREAS = [
+  {
+    icon: Eye,
+    title: "Computer Vision",
+    description:
+      "Pengujian model visual pada kondisi lapangan nyata dengan variasi cahaya, objek, kamera, dan lingkungan.",
+  },
+  {
+    icon: Bot,
+    title: "AI Agent",
+    description:
+      "Eksperimen AI Agent yang menghubungkan observasi, knowledge base, database, dan workflow.",
+  },
+  {
+    icon: Cpu,
+    title: "Edge AI",
+    description:
+      "Pengujian inference pada smartphone maupun perangkat lokal untuk kondisi koneksi yang terbatas.",
+  },
+  {
+    icon: Activity,
+    title: "Prediction & Monitoring",
+    description:
+      "Eksplorasi prediction, anomaly detection, monitoring, dan intelligence dari data lapangan.",
+  },
+  {
+    icon: Sprout,
+    title: "Agriculture AI",
+    description:
+      "Eksperimen AI untuk kondisi tanaman, buah, visual inspection, dan data pertanian.",
+  },
+  {
+    icon: Satellite,
+    title: "Field Data",
+    description:
+      "Data image, observation, sensor, maupun data lokasi dapat digunakan sebagai sumber pengujian AI.",
   },
 ];
 
 const DELIVERY_POINTS = [
   "Analisis kebutuhan bisnis sebelum development",
-  "UI, backend, database, dan integrasi dalam satu workflow",
+  "UI, backend, database, AI, dan integrasi dalam satu workflow",
   "Source code dan sistem diserahkan kepada client",
   "Deployment hingga production",
   "Maintenance dan pengembangan lanjutan",
@@ -156,16 +226,6 @@ export default function LayananPage() {
           }
         }
 
-        @keyframes aiLine {
-          from {
-            transform: scaleX(0);
-          }
-
-          to {
-            transform: scaleX(1);
-          }
-        }
-
         @keyframes aiPulse {
           0%,
           100% {
@@ -190,7 +250,12 @@ export default function LayananPage() {
             );
 
           background-size: 40px 40px;
-          animation: serviceGrid 18s linear infinite;
+
+          animation:
+            serviceGrid
+            18s
+            linear
+            infinite;
         }
 
         .service-hero-1,
@@ -198,6 +263,7 @@ export default function LayananPage() {
         .service-hero-3,
         .service-hero-4 {
           opacity: 0;
+
           animation:
             serviceHeroUp
             .7s
@@ -222,11 +288,19 @@ export default function LayananPage() {
         }
 
         .service-hero-card {
-          animation: serviceFloat 7s ease-in-out infinite;
+          animation:
+            serviceFloat
+            7s
+            ease-in-out
+            infinite;
         }
 
         .ai-background-light {
-          animation: aiGlow 10s ease-in-out infinite;
+          animation:
+            aiGlow
+            10s
+            ease-in-out
+            infinite;
         }
 
         .ai-card {
@@ -246,6 +320,7 @@ export default function LayananPage() {
           bottom: 0;
           width: 0;
           height: 2px;
+
           background:
             linear-gradient(
               90deg,
@@ -280,23 +355,30 @@ export default function LayananPage() {
             rotate(-4deg);
         }
 
-        .ai-capability {
+        .ai-capability,
+        .lab-card {
           transition:
             transform .3s ease,
             border-color .3s ease,
             box-shadow .3s ease;
         }
 
-        .ai-capability:hover {
+        .ai-capability:hover,
+        .lab-card:hover {
           transform: translateY(-3px);
           border-color: rgba(255,111,15,.18);
+
           box-shadow:
             0 15px 40px
             rgba(15,23,42,.05);
         }
 
         .orange-pulse {
-          animation: aiPulse 5s ease-in-out infinite;
+          animation:
+            aiPulse
+            5s
+            ease-in-out
+            infinite;
         }
 
         @media (max-width: 767px) {
@@ -310,7 +392,8 @@ export default function LayananPage() {
           }
 
           .ai-card:hover,
-          .ai-capability:hover {
+          .ai-capability:hover,
+          .lab-card:hover {
             transform: none;
           }
 
@@ -358,7 +441,8 @@ export default function LayananPage() {
             <div>
               <div className="service-hero-1 inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 sm:text-[10px]">
                 <span className="h-px w-7 bg-[#ff6f0f]" />
-                Digital Services
+
+                Technology Services
               </div>
 
               <h1 className="service-hero-2 mt-5 max-w-3xl text-[38px] font-black leading-[1.01] tracking-[-0.05em] text-[#111315] sm:text-5xl md:text-[58px]">
@@ -370,9 +454,10 @@ export default function LayananPage() {
               </h1>
 
               <p className="service-hero-3 mt-5 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8 md:text-lg">
-                Dari website dan aplikasi hingga backend, GIS, payment,
-                jaringan, AI Agent, dan automasi — RHG menghubungkan semuanya
-                menjadi sistem digital yang lebih terstruktur.
+                Dari website, mobile application, backend, payment,
+                AI, automation, GIS, IoT, hingga integrasi sistem —
+                RHG membangun teknologi yang dapat bekerja sebagai
+                satu ekosistem.
               </p>
 
               <div className="service-hero-4 mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
@@ -433,7 +518,7 @@ export default function LayananPage() {
                     {
                       icon: Network,
                       title: "Integration",
-                      value: "API & System",
+                      value: "API · IoT · System",
                     },
                     {
                       icon: BrainCircuit,
@@ -470,12 +555,13 @@ export default function LayananPage() {
 
                     <div>
                       <p className="text-xs font-black sm:text-sm">
-                        Sekarang termasuk AI Solutions
+                        Software + AI + Integration
                       </p>
 
                       <p className="mt-1 text-[10px] leading-5 text-white/40 sm:text-[11px]">
-                        AI Agent, automasi, integrasi AI, dan custom AI
-                        development.
+                        Dari aplikasi production hingga AI Agent,
+                        automation, computer vision, dan Applied AI
+                        Field Lab.
                       </p>
                     </div>
                   </div>
@@ -486,7 +572,54 @@ export default function LayananPage() {
         </section>
 
         {/* =====================================================
-            AI NEW SERVICE
+            CORE SERVICES — SECTION KEDUA
+        ====================================================== */}
+
+        <section
+          id="layanan"
+          className="bg-white"
+        >
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+            <FadeInSection>
+              <div className="grid gap-6 md:grid-cols-[.8fr_1.2fr] md:items-end">
+                <div>
+                  <div className="inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 sm:text-[10px]">
+                    <span className="h-px w-7 bg-[#ff6f0f]" />
+
+                    Core Services
+                  </div>
+
+                  <h2 className="mt-4 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
+                    Layanan teknologi RHG.
+                  </h2>
+                </div>
+
+                <p className="max-w-2xl text-sm leading-7 text-slate-500 sm:text-base sm:leading-8 md:justify-self-end">
+                  Pilih layanan berdasarkan kebutuhan project Anda.
+                  Setiap layanan dapat berdiri sendiri atau
+                  dikombinasikan menjadi satu sistem yang saling
+                  terhubung.
+                </p>
+              </div>
+            </FadeInSection>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
+              {services.map((service, index) => (
+                <FadeInSection
+                  key={service.slug}
+                  delay={index * 0.05}
+                >
+                  <div className="h-full">
+                    <ServiceHubCard service={service} />
+                  </div>
+                </FadeInSection>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW CAPABILITY — AI
         ====================================================== */}
 
         <section className="relative overflow-hidden bg-[#17191c] text-white">
@@ -496,40 +629,39 @@ export default function LayananPage() {
 
           <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <FadeInSection>
-              <div className="max-w-3xl">
+              <div className="max-w-4xl">
                 <div className="inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-[#ff8a34] sm:text-[10px]">
                   <span className="h-px w-7 bg-[#ff8a34]" />
+
                   New Capability
                 </div>
 
-                <div className="mt-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-                  <div>
-                    <h2 className="max-w-3xl text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
-                      AI yang bekerja bersama
-                      <span className="text-[#ff8a34]">
-                        {" "}
-                        sistem bisnis Anda.
-                      </span>
-                    </h2>
+                <h2 className="mt-5 max-w-3xl text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
+                  Applied AI yang bekerja bersama
+                  <span className="text-[#ff8a34]">
+                    {" "}
+                    sistem bisnis Anda.
+                  </span>
+                </h2>
 
-                    <p className="mt-5 max-w-2xl text-sm leading-7 text-white/45 sm:text-base sm:leading-8">
-                      Bukan hanya chatbot. RHG mengembangkan AI yang dapat
-                      terhubung dengan aplikasi, database, API, knowledge base,
-                      dan workflow operasional perusahaan.
-                    </p>
-                  </div>
-                </div>
+                <p className="mt-5 max-w-3xl text-sm leading-7 text-white/45 sm:text-base sm:leading-8">
+                  Bukan hanya chatbot. RHG mengembangkan AI Agent,
+                  computer vision, RAG, automation, edge AI, dan
+                  integrasi AI yang dapat terhubung dengan aplikasi,
+                  database, API, knowledge base, maupun workflow
+                  perusahaan.
+                </p>
               </div>
             </FadeInSection>
 
-            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
               {AI_SERVICES.map((service, index) => {
                 const Icon = service.icon;
 
                 return (
                   <FadeInSection
                     key={service.title}
-                    delay={index * 0.06}
+                    delay={index * 0.05}
                   >
                     <div className="ai-card h-full rounded-[22px] border border-white/[0.08] bg-[#1d2024] p-5 sm:p-6">
                       <div className="flex items-start justify-between gap-4">
@@ -557,6 +689,7 @@ export default function LayananPage() {
                             className="flex items-center gap-2.5 text-[11px] text-white/50"
                           >
                             <Check className="h-3.5 w-3.5 shrink-0 text-[#ff8a34]" />
+
                             {feature}
                           </div>
                         ))}
@@ -567,8 +700,7 @@ export default function LayananPage() {
               })}
             </div>
 
-            {/* AI CAPABILITY */}
-            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {AI_CAPABILITIES.map((item, index) => {
                 const Icon = item.icon;
 
@@ -577,7 +709,7 @@ export default function LayananPage() {
                     key={item.title}
                     delay={index * 0.04}
                   >
-                    <div className="rounded-[18px] border border-white/[0.07] bg-white/[0.03] p-4">
+                    <div className="ai-capability h-full rounded-[18px] border border-white/[0.07] bg-white/[0.03] p-4">
                       <Icon className="h-[18px] w-[18px] text-[#ff8a34]" />
 
                       <h4 className="mt-3 text-sm font-black">
@@ -600,9 +732,10 @@ export default function LayananPage() {
                     Punya ide implementasi AI untuk bisnis?
                   </p>
 
-                  <p className="mt-1.5 text-xs leading-6 text-white/40">
-                    Kita bisa mulai dari kebutuhan sederhana lalu dikembangkan
-                    menjadi sistem AI yang lebih terintegrasi.
+                  <p className="mt-1.5 max-w-2xl text-xs leading-6 text-white/40">
+                    Kita dapat mulai dari use case sederhana,
+                    mengevaluasi data yang tersedia, lalu
+                    mengembangkan sistem AI secara bertahap.
                   </p>
                 </div>
 
@@ -620,47 +753,92 @@ export default function LayananPage() {
         </section>
 
         {/* =====================================================
-            EXISTING SERVICES
+            RHG APPLIED AI FIELD LAB
         ====================================================== */}
 
-        <section
-          id="layanan"
-          className="bg-white"
-        >
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+        <section className="relative overflow-hidden bg-[#f7f7f5]">
+          <div className="services-grid-bg pointer-events-none absolute inset-0 opacity-30 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
             <FadeInSection>
-              <div className="grid gap-6 md:grid-cols-[.8fr_1.2fr] md:items-end">
+              <div className="grid items-center gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
                 <div>
-                  <div className="inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 sm:text-[10px]">
-                    <span className="h-px w-7 bg-[#ff6f0f]" />
-                    Core Services
+                  <div className="inline-flex items-center gap-2 rounded-full border border-[#ff6f0f]/15 bg-[#fff0e5] px-3 py-1.5">
+                    <FlaskConical className="h-3.5 w-3.5 text-[#ff6f0f]" />
+
+                    <span className="text-[9px] font-black uppercase tracking-[0.16em] text-[#ff6f0f]">
+                      RHG Applied AI Field Lab
+                    </span>
                   </div>
 
-                  <h2 className="mt-4 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
-                    Layanan teknologi RHG.
+                  <h2 className="mt-5 max-w-2xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
+                    Dari model AI ke
+                    <span className="text-[#ff6f0f]">
+                      {" "}
+                      pengujian dunia nyata.
+                    </span>
                   </h2>
+
+                  <p className="mt-5 max-w-xl text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
+                    RHG memiliki Coffee AI Living Lab di Kabupaten
+                    Rejang Lebong, Provinsi Bengkulu sebagai
+                    environment untuk eksplorasi dan pilot project
+                    Applied AI dalam kondisi lapangan nyata.
+                  </p>
+
+                  <div className="mt-5 flex items-center gap-2 text-[11px] font-bold text-slate-500">
+                    <MapPin className="h-4 w-4 text-[#ff6f0f]" />
+
+                    Rejang Lebong · Bengkulu
+                  </div>
+
+                  <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
+                    <Link
+                      href="/lab"
+                      className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-5 text-sm font-black text-white transition hover:bg-black"
+                    >
+                      Explore RHG Lab
+
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+
+                    <Link
+                      href="/kontak"
+                      className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/[0.09] bg-white px-5 text-sm font-bold transition hover:border-black/20"
+                    >
+                      Bahas Pilot AI
+
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </div>
                 </div>
 
-                <p className="max-w-2xl text-sm leading-7 text-slate-500 sm:text-base sm:leading-8 md:justify-self-end">
-                  Pilih layanan berdasarkan kebutuhan project Anda. Setiap
-                  layanan dapat berdiri sendiri atau dikombinasikan menjadi
-                  satu sistem yang saling terhubung.
-                </p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {LAB_AREAS.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <div
+                        key={item.title}
+                        className="lab-card rounded-[20px] border border-black/[0.07] bg-white p-5"
+                      >
+                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#17191c]">
+                          <Icon className="h-[18px] w-[18px] text-[#ff8a34]" />
+                        </span>
+
+                        <h3 className="mt-4 text-sm font-black">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-2 text-[11px] leading-5.5 text-slate-500 sm:text-[12px]">
+                          {item.description}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </FadeInSection>
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
-              {services.map((service, index) => (
-                <FadeInSection
-                  key={service.slug}
-                  delay={index * 0.05}
-                >
-                  <div className="h-full">
-                    <ServiceHubCard service={service} />
-                  </div>
-                </FadeInSection>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -668,12 +846,13 @@ export default function LayananPage() {
             DELIVERY
         ====================================================== */}
 
-        <section className="border-t border-black/[0.06] bg-[#f7f7f5]">
+        <section className="border-t border-black/[0.06] bg-white">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-20 md:grid-cols-[.85fr_1.15fr] md:px-8 md:py-24 lg:px-10">
             <FadeInSection>
               <div>
                 <div className="inline-flex items-center gap-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 sm:text-[10px]">
                   <span className="h-px w-7 bg-[#ff6f0f]" />
+
                   How We Deliver
                 </div>
 
@@ -682,8 +861,9 @@ export default function LayananPage() {
                 </h2>
 
                 <p className="mt-4 max-w-xl text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
-                  Anda tidak perlu mengatur banyak vendor untuk frontend,
-                  backend, database, integrasi, AI, dan deployment.
+                  Anda tidak perlu mengatur banyak vendor untuk
+                  frontend, backend, database, integrasi, AI, IoT,
+                  maupun deployment.
                 </p>
               </div>
             </FadeInSection>
@@ -693,7 +873,7 @@ export default function LayananPage() {
                 {DELIVERY_POINTS.map((item) => (
                   <div
                     key={item}
-                    className="flex min-h-[72px] items-start gap-3 rounded-[18px] border border-black/[0.07] bg-white p-4"
+                    className="flex min-h-[72px] items-start gap-3 rounded-[18px] border border-black/[0.07] bg-[#fafaf8] p-4"
                   >
                     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#fff0e5]">
                       <Check className="h-3.5 w-3.5 text-[#ff6f0f]" />
@@ -722,12 +902,15 @@ export default function LayananPage() {
                 </p>
 
                 <h2 className="mt-3 max-w-3xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] text-[#17191c] sm:text-4xl md:text-5xl">
-                  Tidak yakin layanan mana yang dibutuhkan?
+                  Tidak yakin teknologi apa yang dibutuhkan?
                 </h2>
 
-                <p className="mt-4 max-w-xl text-sm leading-7 text-black/55 sm:text-base">
-                  Ceritakan masalah atau kebutuhan bisnis Anda. Kami bantu
-                  menentukan pendekatan teknologi yang sesuai.
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-black/55 sm:text-base">
+                  Ceritakan masalah, workflow, atau target yang ingin
+                  dicapai. Kami bantu menentukan apakah kebutuhan
+                  tersebut lebih cocok diselesaikan dengan software,
+                  AI, automation, integration, atau kombinasi beberapa
+                  teknologi.
                 </p>
               </div>
             </FadeInSection>
