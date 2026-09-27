@@ -38,35 +38,35 @@ const SERVICES = [
     number: "02",
     title: "Mobile Application",
     description:
-      "Aplikasi Android dan iOS untuk kebutuhan pelanggan, operasional internal, retail, layanan, dan bisnis digital.",
+      "Aplikasi Android dan iOS untuk pelanggan, operasional internal, retail, layanan, dan produk digital.",
     icon: Smartphone,
   },
   {
     number: "03",
     title: "Backend & Data",
     description:
-      "API, database, authentication, sinkronisasi data, automasi, serta backend untuk mendukung sistem yang terus berkembang.",
+      "API, database, authentication, automasi, sinkronisasi data, dan backend yang siap berkembang bersama bisnis.",
     icon: Database,
   },
   {
     number: "04",
     title: "Payment Integration",
     description:
-      "Integrasi payment gateway, QRIS, virtual account, e-wallet, kartu, webhook, dan kebutuhan pembayaran digital lainnya.",
+      "Integrasi QRIS, virtual account, e-wallet, kartu, webhook, serta payment gateway untuk transaksi digital.",
     icon: CreditCard,
   },
   {
     number: "05",
     title: "GIS & Location System",
     description:
-      "WebGIS, peta interaktif, tracking, monitoring lokasi, analisis spasial, dan sistem berbasis data geospasial.",
+      "WebGIS, peta interaktif, tracking, monitoring lokasi, analisis spasial, dan visualisasi data geospasial.",
     icon: MapPinned,
   },
   {
     number: "06",
     title: "System Integration",
     description:
-      "Menghubungkan aplikasi, database, API pihak ketiga, perangkat jaringan, dan berbagai sistem operasional perusahaan.",
+      "Menghubungkan aplikasi, database, API pihak ketiga, perangkat jaringan, dan sistem operasional perusahaan.",
     icon: Workflow,
   },
 ];
@@ -128,25 +128,25 @@ const PROCESS = [
     number: "01",
     title: "Understand",
     description:
-      "Kami mulai dari kebutuhan bisnis, workflow, pengguna, masalah yang ingin diselesaikan, dan target akhir sistem.",
+      "Memahami kebutuhan bisnis, workflow, pengguna, permasalahan, dan hasil akhir yang ingin dicapai.",
   },
   {
     number: "02",
     title: "Design",
     description:
-      "Struktur produk, pengalaman pengguna, database, integrasi, serta pendekatan teknis dirancang sebelum development.",
+      "Menyusun struktur produk, user flow, database, integrasi, dan pendekatan teknis sebelum development.",
   },
   {
     number: "03",
     title: "Build",
     description:
-      "Development dilakukan secara terstruktur dengan fokus pada fungsi, maintainability, keamanan, dan pengalaman pengguna.",
+      "Development dilakukan dengan fokus pada fungsi, pengalaman pengguna, maintainability, dan keamanan.",
   },
   {
     number: "04",
     title: "Launch",
     description:
-      "Sistem diuji, diterapkan ke production, dipantau pada tahap awal, lalu dilanjutkan dengan dukungan setelah peluncuran.",
+      "Testing, deployment ke production, monitoring awal, dan support setelah sistem mulai digunakan.",
   },
 ];
 
@@ -165,15 +165,11 @@ const TECHNOLOGIES = [
 
 const TECH_LOOP = [...TECHNOLOGIES, ...TECHNOLOGIES];
 
-const HQ = {
-  x: 353,
-  y: 267,
-};
+const HQ = { x: 353, y: 267 };
 
 function routeTo(x: number, y: number) {
   const middleX = (HQ.x + x) / 2;
   const middleY = Math.min(HQ.y, y) - 48;
-
   return `M ${HQ.x} ${HQ.y} Q ${middleX} ${middleY} ${x} ${y}`;
 }
 
@@ -186,15 +182,11 @@ function Eyebrow({
 }) {
   return (
     <div
-      className={`inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.22em] ${
+      className={`inline-flex items-center gap-2.5 text-[9px] font-bold uppercase tracking-[0.19em] sm:text-[10px] sm:tracking-[0.22em] ${
         dark ? "text-white/45" : "text-slate-400"
       }`}
     >
-      <span
-        className={`eyebrow-line h-px w-8 ${
-          dark ? "bg-[#ff8a34]" : "bg-[#ff6f0f]"
-        }`}
-      />
+      <span className={`h-px w-6 sm:w-8 ${dark ? "bg-[#ff8a34]" : "bg-[#ff6f0f]"}`} />
       {children}
     </div>
   );
@@ -204,252 +196,95 @@ export default function HomePage() {
   return (
     <>
       <style>{`
-        @keyframes pageFade {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes heroUp {
-          from {
-            opacity: 0;
-            transform: translateY(26px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes heroRight {
-          from {
-            opacity: 0;
-            transform: translate3d(34px, 12px, 0) scale(.98);
-          }
-          to {
-            opacity: 1;
-            transform: translate3d(0, 0, 0) scale(1);
-          }
+        @keyframes fadeSide {
+          from { opacity: 0; transform: translateX(28px) scale(.985); }
+          to { opacity: 1; transform: translateX(0) scale(1); }
         }
 
         @keyframes softFloat {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-7px);
-          }
-        }
-
-        @keyframes floatSmall {
-          0%,
-          100% {
-            transform: translateY(0) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-5px) rotate(.5deg);
-          }
-        }
-
-        @keyframes softRotate {
-          0%,
-          100% {
-            transform: rotate(-1.8deg);
-          }
-          50% {
-            transform: rotate(1.2deg);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
         }
 
         @keyframes gridMove {
-          from {
-            background-position: 0 0;
-          }
-          to {
-            background-position: 40px 40px;
-          }
-        }
-
-        @keyframes dotMove {
-          from {
-            background-position: 0 0;
-          }
-          to {
-            background-position: 18px 18px;
-          }
+          from { background-position: 0 0; }
+          to { background-position: 40px 40px; }
         }
 
         @keyframes routeMove {
-          from {
-            stroke-dashoffset: 0;
-          }
-          to {
-            stroke-dashoffset: -105;
-          }
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -100; }
         }
 
-        @keyframes mapPulse {
-          0% {
-            transform: scale(.75);
-            opacity: .5;
-          }
-          72%,
-          100% {
-            transform: scale(1.85);
-            opacity: 0;
-          }
+        @keyframes nodePulse {
+          0% { transform: scale(.78); opacity: .45; }
+          75%, 100% { transform: scale(1.85); opacity: 0; }
         }
 
         @keyframes marquee {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
-        @keyframes subtleSweep {
-          0% {
-            transform: translateX(-120%);
-          }
-          100% {
-            transform: translateX(220%);
-          }
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
         }
 
         @keyframes darkLight {
-          0%,
-          100% {
-            transform: translate3d(-5%, 0, 0);
-            opacity: .32;
-          }
-          50% {
-            transform: translate3d(14%, -6%, 0);
-            opacity: .5;
-          }
+          0%, 100% { transform: translate3d(-7%,0,0); opacity: .3; }
+          50% { transform: translate3d(12%,-5%,0); opacity: .48; }
         }
 
-        @keyframes orangeGlow {
-          0%,
-          100% {
-            box-shadow: 0 12px 35px rgba(255, 111, 15, 0);
-          }
-          50% {
-            box-shadow: 0 15px 50px rgba(255, 111, 15, .14);
-          }
+        @keyframes ctaSweep {
+          0% { transform: translateX(-180%) skewX(-20deg); }
+          50%, 100% { transform: translateX(320%) skewX(-20deg); }
         }
 
-        @keyframes buttonShine {
-          0% {
-            transform: translateX(-160%) skewX(-20deg);
-          }
-          45%,
-          100% {
-            transform: translateX(260%) skewX(-20deg);
-          }
-        }
-
-        @keyframes lineGrow {
-          from {
-            transform: scaleX(0);
-          }
-          to {
-            transform: scaleX(1);
-          }
-        }
-
-        @keyframes sectionUp {
-          from {
-            opacity: 0;
-            transform: translateY(24px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .page-root {
-          animation: pageFade .5s ease both;
-        }
-
-        .hero-1,
-        .hero-2,
-        .hero-3,
-        .hero-4,
-        .hero-5 {
+        .hero-a,
+        .hero-b,
+        .hero-c,
+        .hero-d,
+        .hero-e {
           opacity: 0;
-          animation: heroUp .72s cubic-bezier(.22,1,.36,1) forwards;
+          animation: fadeUp .65s cubic-bezier(.22,1,.36,1) forwards;
         }
 
-        .hero-1 {
-          animation-delay: .06s;
-        }
+        .hero-a { animation-delay: .04s; }
+        .hero-b { animation-delay: .12s; }
+        .hero-c { animation-delay: .2s; }
+        .hero-d { animation-delay: .28s; }
+        .hero-e { animation-delay: .36s; }
 
-        .hero-2 {
-          animation-delay: .14s;
-        }
-
-        .hero-3 {
-          animation-delay: .23s;
-        }
-
-        .hero-4 {
-          animation-delay: .31s;
-        }
-
-        .hero-5 {
-          animation-delay: .4s;
-        }
-
-        .hero-panel {
+        .hero-visual {
           opacity: 0;
           animation:
-            heroRight .9s cubic-bezier(.22,1,.36,1) .18s forwards,
+            fadeSide .8s cubic-bezier(.22,1,.36,1) .2s forwards,
             softFloat 7s ease-in-out 1.2s infinite;
         }
 
-        .hero-panel-back {
-          animation: softRotate 11s ease-in-out infinite;
-        }
-
-        .hero-mini-float {
-          animation: floatSmall 6s ease-in-out infinite;
-        }
-
-        .home-grid {
+        .moving-grid {
           background-image:
-            linear-gradient(rgba(15, 23, 42, .043) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(15, 23, 42, .043) 1px, transparent 1px);
+            linear-gradient(rgba(15,23,42,.038) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(15,23,42,.038) 1px, transparent 1px);
           background-size: 40px 40px;
-          animation: gridMove 16s linear infinite;
+          animation: gridMove 18s linear infinite;
         }
 
-        .home-dot-grid {
+        .dot-grid {
           background-image:
-            radial-gradient(circle, rgba(255, 122, 26, .19) 1px, transparent 1px);
+            radial-gradient(circle, rgba(255,111,15,.17) 1px, transparent 1px);
           background-size: 18px 18px;
-          animation: dotMove 16s linear infinite;
         }
 
-        .eyebrow-line {
-          transform-origin: left center;
-          animation: lineGrow .8s cubic-bezier(.22,1,.36,1) both;
-        }
-
-        .tech-marquee {
+        .tech-track {
           display: flex;
           width: max-content;
           min-width: 200%;
           animation: marquee 30s linear infinite;
         }
 
-        .tech-marquee:hover {
+        .tech-track:hover {
           animation-play-state: paused;
         }
 
@@ -458,40 +293,29 @@ export default function HomePage() {
           overflow: hidden;
         }
 
-        .service-card::before {
+        .service-card::after {
           content: "";
           position: absolute;
           left: 0;
           bottom: 0;
-          width: 0;
           height: 2px;
+          width: 0;
           background: #ff6f0f;
-          transition: width .45s cubic-bezier(.22,1,.36,1);
+          transition: width .4s cubic-bezier(.22,1,.36,1);
         }
 
-        .service-card:hover::before {
+        .service-card:hover::after {
           width: 100%;
         }
 
-        .service-card .service-icon {
+        .service-icon {
           transition:
             transform .35s cubic-bezier(.22,1,.36,1),
-            background-color .35s ease;
+            background-color .3s ease;
         }
 
         .service-card:hover .service-icon {
-          transform: translateY(-4px) rotate(-3deg);
-        }
-
-        .service-card .service-number {
-          transition:
-            color .3s ease,
-            transform .3s ease;
-        }
-
-        .service-card:hover .service-number {
-          color: #ff6f0f;
-          transform: translateY(-2px);
+          transform: translateY(-3px) rotate(-3deg);
         }
 
         .dark-light {
@@ -499,211 +323,165 @@ export default function HomePage() {
         }
 
         .approach-card {
-          position: relative;
-          overflow: hidden;
           transition:
             transform .35s cubic-bezier(.22,1,.36,1),
             background-color .35s ease;
         }
 
-        .approach-card::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background:
-            linear-gradient(
-              105deg,
-              transparent 35%,
-              rgba(255,255,255,.04) 48%,
-              transparent 62%
-            );
-          transform: translateX(-120%);
-        }
-
         .approach-card:hover {
           transform: translateY(-3px);
-          background: #22252a;
+          background: #23262b;
         }
 
-        .approach-card:hover::after {
-          animation: subtleSweep .8s ease;
-        }
-
-        .home-route {
+        .map-route {
           stroke-dasharray: 7 8;
           animation: routeMove 7s linear infinite;
         }
 
-        .home-pulse {
-          animation: mapPulse 2.9s ease-out infinite;
+        .map-pulse {
+          animation: nodePulse 2.8s ease-out infinite;
           transform-box: fill-box;
           transform-origin: center;
         }
 
         .partner-card {
           transition:
-            transform .35s cubic-bezier(.22,1,.36,1),
-            border-color .35s ease,
-            box-shadow .35s ease;
+            transform .3s cubic-bezier(.22,1,.36,1),
+            border-color .3s ease,
+            box-shadow .3s ease;
         }
 
         .partner-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(15, 23, 42, .16);
-          box-shadow: 0 18px 40px rgba(15,23,42,.06);
+          transform: translateY(-3px);
+          border-color: rgba(15,23,42,.15);
+          box-shadow: 0 16px 38px rgba(15,23,42,.06);
         }
 
-        .partner-arrow {
-          transition:
-            transform .35s cubic-bezier(.22,1,.36,1),
-            background-color .35s ease,
-            color .35s ease;
-        }
-
-        .partner-card:hover .partner-arrow {
-          transform: translate(2px, -2px);
-          background: #17191c;
-          color: white;
-        }
-
-        .process-row {
-          position: relative;
-        }
-
-        .process-row::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -1px;
-          height: 2px;
-          width: 0;
-          background:
-            linear-gradient(
-              90deg,
-              #ff6f0f,
-              rgba(255,111,15,0)
-            );
-          transition: width .55s cubic-bezier(.22,1,.36,1);
-        }
-
-        .process-row:hover::after {
-          width: 100%;
-        }
-
-        .process-number {
-          transition:
-            transform .35s ease,
-            color .35s ease;
-        }
-
-        .process-row:hover .process-number {
-          color: #ff6f0f;
-          transform: translateX(4px);
-        }
-
-        .orange-cta {
+        .process-card {
           position: relative;
           overflow: hidden;
         }
 
-        .orange-cta::before {
+        .process-card::after {
           content: "";
           position: absolute;
-          top: -40%;
-          bottom: -40%;
-          width: 110px;
           left: 0;
+          bottom: 0;
+          height: 2px;
+          width: 0;
+          background: linear-gradient(90deg,#ff6f0f,transparent);
+          transition: width .45s ease;
+        }
+
+        .process-card:hover::after {
+          width: 100%;
+        }
+
+        .cta-section {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .cta-section::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          bottom: -50%;
+          left: 0;
+          width: 100px;
           background:
             linear-gradient(
               90deg,
               transparent,
-              rgba(255,255,255,.22),
+              rgba(255,255,255,.18),
               transparent
             );
-          animation: buttonShine 6s ease-in-out infinite;
+          animation: ctaSweep 6s ease-in-out infinite;
           pointer-events: none;
         }
 
-        .cta-button {
-          animation: orangeGlow 5s ease-in-out infinite;
-        }
-
         @supports (animation-timeline: view()) {
-          .home-reveal {
-            animation: sectionUp linear both;
+          .reveal {
+            animation: fadeUp linear both;
             animation-timeline: view();
             animation-range: entry 0% cover 24%;
           }
-
-          .home-reveal-late {
-            animation: sectionUp linear both;
-            animation-timeline: view();
-            animation-range: entry 5% cover 28%;
-          }
         }
 
-        @media (max-width: 640px) {
-          .tech-marquee {
-            animation-duration: 22s;
+        @media (max-width: 767px) {
+          .moving-grid {
+            animation: none;
+            background-size: 28px 28px;
           }
 
-          .home-grid {
-            animation: none;
+          .hero-visual {
+            animation: fadeUp .65s cubic-bezier(.22,1,.36,1) .28s forwards;
+          }
+
+          .tech-track {
+            animation-duration: 23s;
+          }
+
+          .service-card:hover::after,
+          .process-card:hover::after {
+            width: 0;
+          }
+
+          .service-card:hover .service-icon,
+          .approach-card:hover,
+          .partner-card:hover {
+            transform: none;
+          }
+
+          .dark-light {
+            animation-duration: 15s;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .page-root,
-          .hero-1,
-          .hero-2,
-          .hero-3,
-          .hero-4,
-          .hero-5,
-          .hero-panel,
-          .hero-panel-back,
-          .hero-mini-float,
-          .home-grid,
-          .home-dot-grid,
-          .eyebrow-line,
-          .tech-marquee,
+          .hero-a,
+          .hero-b,
+          .hero-c,
+          .hero-d,
+          .hero-e,
+          .hero-visual,
+          .moving-grid,
+          .tech-track,
           .dark-light,
-          .home-route,
-          .home-pulse,
-          .orange-cta::before,
-          .cta-button,
-          .home-reveal,
-          .home-reveal-late {
+          .map-route,
+          .map-pulse,
+          .cta-section::after,
+          .reveal {
             animation: none !important;
           }
 
-          .hero-1,
-          .hero-2,
-          .hero-3,
-          .hero-4,
-          .hero-5,
-          .hero-panel {
+          .hero-a,
+          .hero-b,
+          .hero-c,
+          .hero-d,
+          .hero-e,
+          .hero-visual {
             opacity: 1 !important;
           }
         }
       `}</style>
 
-      <main className="page-root overflow-hidden bg-[#f7f7f5] text-[#151719]">
+      <main className="overflow-x-hidden bg-[#f7f7f5] text-[#151719]">
         {/* HERO */}
-
         <section className="relative overflow-hidden border-b border-black/[0.06] bg-[#f7f7f5]">
-          <div className="home-grid pointer-events-none absolute inset-0 opacity-55 [mask-image:linear-gradient(to_bottom,black,transparent_92%)]" />
+          <div className="moving-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_95%)]" />
 
-          <div className="pointer-events-none absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full bg-[#ff7a1a]/[0.065] blur-[100px]" />
+          <div className="pointer-events-none absolute -left-32 -top-24 h-72 w-72 rounded-full bg-[#ff7a1a]/[0.07] blur-[90px] sm:h-[420px] sm:w-[420px]" />
+          <div className="pointer-events-none absolute -right-40 top-16 h-72 w-72 rounded-full bg-blue-500/[0.05] blur-[100px] sm:h-[420px] sm:w-[420px]" />
 
-          <div className="pointer-events-none absolute right-[-180px] top-10 h-[420px] w-[420px] rounded-full bg-blue-500/[0.055] blur-[110px]" />
-
-          <div className="relative mx-auto grid min-h-[calc(100vh-70px)] max-w-7xl items-center gap-16 px-5 py-16 sm:px-6 md:grid-cols-[1.04fr_.96fr] md:px-8 md:py-20 lg:px-10">
-            <div>
-              <div className="hero-1">
+          <div className="relative mx-auto grid max-w-7xl gap-11 px-4 pb-14 pt-12 sm:px-6 sm:py-16 md:min-h-[calc(100vh-70px)] md:grid-cols-[1.05fr_0.95fr] md:items-center md:gap-14 md:px-8 md:py-20 lg:px-10">
+            {/* HERO TEXT */}
+            <div className="min-w-0">
+              <div className="hero-a">
                 <Eyebrow>PT RHG Teknologi Indonesia</Eyebrow>
               </div>
 
-              <h1 className="hero-2 mt-7 max-w-3xl text-[44px] font-black leading-[0.97] tracking-[-0.055em] text-[#111315] sm:text-5xl md:text-[62px] lg:text-[72px]">
+              <h1 className="hero-b mt-5 max-w-3xl text-[38px] font-black leading-[1.02] tracking-[-0.05em] text-[#111315] min-[390px]:text-[41px] sm:mt-7 sm:text-5xl md:text-[60px] lg:text-[70px]">
                 Teknologi untuk bisnis yang
                 <span className="text-[#ff6f0f]">
                   {" "}
@@ -711,131 +489,129 @@ export default function HomePage() {
                 </span>
               </h1>
 
-              <p className="hero-3 mt-7 max-w-xl text-[15px] leading-8 text-slate-600 sm:text-base md:text-lg">
-                Kami membangun website, aplikasi mobile, backend, payment
-                integration, GIS, dan sistem digital yang dirancang mengikuti
-                kebutuhan nyata bisnis Anda.
+              <p className="hero-c mt-5 max-w-xl text-[14px] leading-7 text-slate-600 sm:mt-6 sm:text-base sm:leading-8 md:text-lg">
+                Website, aplikasi mobile, backend, payment integration, GIS,
+                dan sistem digital yang dibangun mengikuti kebutuhan nyata
+                bisnis Anda.
               </p>
 
-              <div className="hero-4 mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="hero-d mt-7 grid gap-2.5 sm:flex sm:flex-wrap sm:gap-3">
                 <Link
                   href="/kontak"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#16191d] px-6 py-3.5 text-sm font-bold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-black hover:shadow-[0_16px_35px_rgba(15,23,42,.16)]"
+                  className="group inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-[#16191d] px-5 text-sm font-bold text-white transition hover:bg-black sm:w-auto sm:px-6"
                 >
                   Diskusikan Project
-
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
 
                 <Link
                   href="/portofolio"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3.5 text-sm font-bold text-[#17191c] transition duration-300 hover:-translate-y-0.5 hover:border-black/20 hover:shadow-[0_12px_30px_rgba(15,23,42,.05)]"
+                  className="group inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-5 text-sm font-bold text-[#17191c] transition hover:border-black/20 sm:w-auto sm:px-6"
                 >
                   Lihat Portofolio
-
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </div>
 
-              <div className="hero-5 mt-10 flex flex-wrap gap-x-7 gap-y-4 border-t border-black/[0.07] pt-6">
-                <div className="group">
-                  <p className="text-2xl font-black tracking-[-0.04em] text-[#17191c] transition group-hover:text-[#ff6f0f]">
+              <div className="hero-e mt-8 grid grid-cols-3 gap-2 border-t border-black/[0.07] pt-5 sm:mt-10 sm:flex sm:gap-8 sm:pt-6">
+                <div className="min-w-0">
+                  <p className="text-lg font-black tracking-[-0.04em] sm:text-2xl">
                     Web
                   </p>
-
-                  <p className="mt-1 text-xs text-slate-400">
-                    Platform & dashboard
+                  <p className="mt-1 text-[9px] leading-4 text-slate-400 sm:text-xs">
+                    Platform
                   </p>
                 </div>
 
-                <div className="group">
-                  <p className="text-2xl font-black tracking-[-0.04em] text-[#17191c] transition group-hover:text-[#ff6f0f]">
+                <div className="min-w-0">
+                  <p className="text-lg font-black tracking-[-0.04em] sm:text-2xl">
                     Mobile
                   </p>
-
-                  <p className="mt-1 text-xs text-slate-400">
+                  <p className="mt-1 text-[9px] leading-4 text-slate-400 sm:text-xs">
                     Android & iOS
                   </p>
                 </div>
 
-                <div className="group">
-                  <p className="text-2xl font-black tracking-[-0.04em] text-[#17191c] transition group-hover:text-[#ff6f0f]">
+                <div className="min-w-0">
+                  <p className="text-lg font-black tracking-[-0.04em] sm:text-2xl">
                     System
                   </p>
-
-                  <p className="mt-1 text-xs text-slate-400">
-                    Backend & integration
+                  <p className="mt-1 text-[9px] leading-4 text-slate-400 sm:text-xs">
+                    Integration
                   </p>
                 </div>
               </div>
             </div>
 
             {/* HERO VISUAL */}
+            <div className="hero-visual relative mx-auto w-full max-w-[570px]">
+              <div className="absolute -right-4 top-4 hidden h-[88%] w-[90%] rounded-[30px] border border-[#ff7a1a]/15 bg-[#ff7a1a]/[0.04] sm:block" />
 
-            <div className="relative mx-auto w-full max-w-[570px]">
-              <div className="hero-panel-back absolute -right-10 top-4 h-[88%] w-[90%] rounded-[32px] border border-[#ff7a1a]/20 bg-[#ff7a1a]/[0.05]" />
+              <div className="relative overflow-hidden rounded-[24px] border border-black/[0.07] bg-[#15181c] p-4 text-white shadow-[0_24px_70px_rgba(15,23,42,.15)] sm:rounded-[30px] sm:p-6">
+                <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[#ff7a1a]/10 blur-[55px]" />
 
-              <div className="hero-panel relative overflow-hidden rounded-[30px] border border-black/[0.07] bg-[#15181c] p-5 text-white shadow-[0_35px_100px_rgba(15,23,42,0.18)] sm:p-6">
-                <div className="pointer-events-none absolute -right-14 -top-14 h-44 w-44 rounded-full bg-[#ff7a1a]/10 blur-[65px]" />
-
-                <div className="relative flex items-center justify-between border-b border-white/[0.08] pb-5">
-                  <div>
-                    <p className="text-sm font-bold">
+                <div className="relative flex items-start justify-between gap-4 border-b border-white/[0.08] pb-4 sm:pb-5">
+                  <div className="min-w-0">
+                    <p className="truncate text-xs font-bold sm:text-sm">
                       RHG / Technology Partner
                     </p>
-
-                    <p className="mt-1 text-[10px] uppercase tracking-[0.17em] text-white/30">
+                    <p className="mt-1 text-[8px] uppercase tracking-[0.14em] text-white/30 sm:text-[10px]">
                       Digital system development
                     </p>
                   </div>
 
-                  <span className="rounded-full bg-white/[0.07] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.15em] text-white/50">
+                  <span className="shrink-0 rounded-full bg-white/[0.07] px-2.5 py-1.5 text-[8px] font-bold uppercase tracking-[0.12em] text-white/50 sm:px-3 sm:text-[9px]">
                     Indonesia
                   </span>
                 </div>
 
-                <div className="relative mt-6 grid gap-3 sm:grid-cols-2">
+                <div className="relative mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:gap-3">
                   {[
                     {
                       icon: Code2,
-                      title: "Product Engineering",
-                      desc: "Web & digital product",
+                      title: "Product",
+                      desktopTitle: "Product Engineering",
+                      desc: "Web & platform",
                     },
                     {
                       icon: Smartphone,
-                      title: "Mobile Development",
+                      title: "Mobile",
+                      desktopTitle: "Mobile Development",
                       desc: "Android & iOS",
                     },
                     {
                       icon: ServerCog,
-                      title: "Backend System",
-                      desc: "API, database & cloud",
+                      title: "Backend",
+                      desktopTitle: "Backend System",
+                      desc: "API & database",
                     },
                     {
                       icon: MapPinned,
-                      title: "GIS & Integration",
-                      desc: "Maps, tracking & API",
+                      title: "GIS",
+                      desktopTitle: "GIS & Integration",
+                      desc: "Maps & tracking",
                     },
-                  ].map((item, index) => {
+                  ].map((item) => {
                     const Icon = item.icon;
 
                     return (
                       <div
-                        key={item.title}
-                        className="hero-mini-float group rounded-[20px] border border-white/[0.08] bg-white/[0.035] p-4 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.06]"
-                        style={{
-                          animationDelay: `${index * 0.4}s`,
-                        }}
+                        key={item.desktopTitle}
+                        className="rounded-[16px] border border-white/[0.07] bg-white/[0.035] p-3 sm:rounded-[20px] sm:p-4"
                       >
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff7a1a] transition duration-300 group-hover:rotate-[-5deg] group-hover:scale-105">
-                          <Icon className="h-[18px] w-[18px] text-white" />
+                        <div className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-[#ff7a1a] sm:h-10 sm:w-10 sm:rounded-xl">
+                          <Icon className="h-4 w-4 text-white sm:h-[18px] sm:w-[18px]" />
                         </div>
 
-                        <p className="mt-4 text-sm font-bold">
+                        <p className="mt-3 text-xs font-bold sm:hidden">
                           {item.title}
                         </p>
 
-                        <p className="mt-1 text-[11px] text-white/35">
+                        <p className="mt-4 hidden text-sm font-bold sm:block">
+                          {item.desktopTitle}
+                        </p>
+
+                        <p className="mt-1 truncate text-[9px] text-white/35 sm:text-[11px]">
                           {item.desc}
                         </p>
                       </div>
@@ -843,22 +619,21 @@ export default function HomePage() {
                   })}
                 </div>
 
-                <div className="relative mt-5 flex items-center justify-between rounded-[20px] bg-[#202328] px-5 py-4">
+                <div className="relative mt-3 flex items-center justify-between rounded-[16px] bg-[#202328] px-4 py-3.5 sm:mt-5 sm:rounded-[20px] sm:px-5 sm:py-4">
                   <div>
-                    <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#ff9852]">
+                    <p className="text-[8px] font-bold uppercase tracking-[0.14em] text-[#ff9852] sm:text-[9px]">
                       Project Coverage
                     </p>
-
-                    <p className="mt-1.5 text-sm font-bold">
+                    <p className="mt-1 text-xs font-bold sm:text-sm">
                       Indonesia & Australia
                     </p>
                   </div>
 
-                  <Network className="h-5 w-5 text-white/30" />
+                  <Network className="h-4 w-4 text-white/30 sm:h-5 sm:w-5" />
                 </div>
               </div>
 
-              <div className="hero-mini-float absolute -bottom-5 -left-4 hidden rounded-[18px] border border-black/[0.07] bg-white px-4 py-3 shadow-xl sm:block">
+              <div className="absolute -bottom-5 -left-4 hidden rounded-[18px] border border-black/[0.07] bg-white px-4 py-3 shadow-xl md:block">
                 <div className="flex items-center gap-3">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#fff0e5]">
                     <Blocks className="h-4 w-4 text-[#ff6f0f]" />
@@ -868,7 +643,6 @@ export default function HomePage() {
                     <p className="text-[9px] uppercase tracking-[0.15em] text-slate-400">
                       Approach
                     </p>
-
                     <p className="mt-0.5 text-xs font-bold">
                       Built around your business
                     </p>
@@ -879,24 +653,18 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* TECHNOLOGY MARQUEE */}
-
+        {/* TECH MARQUEE */}
         <section className="overflow-hidden border-b border-black/[0.06] bg-white">
-          <div className="relative flex items-center py-5">
-            <div className="pointer-events-none absolute left-0 z-10 h-full w-20 bg-gradient-to-r from-white to-transparent md:w-32" />
+          <div className="relative flex h-14 items-center sm:h-16">
+            <div className="pointer-events-none absolute left-0 z-10 h-full w-10 bg-gradient-to-r from-white to-transparent sm:w-24" />
+            <div className="pointer-events-none absolute right-0 z-10 h-full w-10 bg-gradient-to-l from-white to-transparent sm:w-24" />
 
-            <div className="pointer-events-none absolute right-0 z-10 h-full w-20 bg-gradient-to-l from-white to-transparent md:w-32" />
-
-            <div className="tech-marquee">
+            <div className="tech-track">
               {TECH_LOOP.map((item, index) => (
-                <div
-                  key={`${item}-${index}`}
-                  className="flex shrink-0 items-center"
-                >
-                  <span className="px-6 text-xs font-bold text-slate-400 transition hover:text-[#ff6f0f] sm:px-8">
+                <div key={`${item}-${index}`} className="flex shrink-0 items-center">
+                  <span className="px-4 text-[11px] font-bold text-slate-400 sm:px-8 sm:text-xs">
                     {item}
                   </span>
-
                   <span className="h-1 w-1 rounded-full bg-[#ff6f0f]/40" />
                 </div>
               ))}
@@ -905,56 +673,54 @@ export default function HomePage() {
         </section>
 
         {/* SERVICES */}
-
         <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:px-8 md:py-28 lg:px-10">
-            <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
-              <div className="home-reveal">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+            <div className="grid gap-9 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10">
+              <div className="reveal">
                 <Eyebrow>Capabilities</Eyebrow>
 
-                <h2 className="mt-5 max-w-lg text-3xl font-black leading-tight tracking-[-0.045em] sm:text-4xl md:text-5xl">
+                <h2 className="mt-4 max-w-lg text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:mt-5 sm:text-4xl md:text-5xl">
                   Teknologi tidak harus rumit untuk bisnis Anda.
                 </h2>
 
-                <p className="mt-5 max-w-md text-sm leading-8 text-slate-500 sm:text-base">
-                  RHG menangani bagian teknis sehingga Anda dapat fokus pada
+                <p className="mt-4 max-w-md text-sm leading-7 text-slate-500 sm:mt-5 sm:text-base sm:leading-8">
+                  RHG menangani sisi teknis sehingga Anda dapat fokus pada
                   operasional, produk, dan pertumbuhan bisnis.
                 </p>
 
                 <Link
                   href="/layanan"
-                  className="group mt-7 inline-flex items-center gap-2 text-sm font-black text-[#17191c]"
+                  className="group mt-6 inline-flex items-center gap-2 text-sm font-black text-[#17191c] sm:mt-7"
                 >
                   Semua layanan
-
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
 
-              <div className="grid border-l border-t border-black/[0.07] sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-2 sm:gap-0 sm:border-l sm:border-t sm:border-black/[0.07]">
                 {SERVICES.map((service) => {
                   const Icon = service.icon;
 
                   return (
                     <div
                       key={service.title}
-                      className="service-card home-reveal group border-b border-r border-black/[0.07] p-6 transition duration-300 hover:bg-[#faf9f7] sm:p-7"
+                      className="service-card reveal group rounded-[20px] border border-black/[0.07] bg-[#fafafa] p-5 sm:rounded-none sm:border-b sm:border-r sm:border-l-0 sm:border-t-0 sm:bg-white sm:p-7"
                     >
                       <div className="flex items-start justify-between">
-                        <span className="service-icon flex h-11 w-11 items-center justify-center rounded-xl bg-[#f3f3f1] group-hover:bg-[#fff0e5]">
-                          <Icon className="h-5 w-5 text-[#25282b] transition group-hover:text-[#ff6f0f]" />
+                        <span className="service-icon flex h-10 w-10 items-center justify-center rounded-xl bg-[#f0f0ed] group-hover:bg-[#fff0e5] sm:h-11 sm:w-11">
+                          <Icon className="h-[18px] w-[18px] text-[#25282b] transition group-hover:text-[#ff6f0f] sm:h-5 sm:w-5" />
                         </span>
 
-                        <span className="service-number font-mono text-[10px] font-bold text-slate-300">
+                        <span className="font-mono text-[9px] font-bold text-slate-300 sm:text-[10px]">
                           {service.number}
                         </span>
                       </div>
 
-                      <h3 className="mt-6 text-lg font-black tracking-[-0.025em]">
+                      <h3 className="mt-5 text-[17px] font-black tracking-[-0.025em] sm:mt-6 sm:text-lg">
                         {service.title}
                       </h3>
 
-                      <p className="mt-3 text-sm leading-7 text-slate-500">
+                      <p className="mt-2.5 text-[13px] leading-6 text-slate-500 sm:mt-3 sm:text-sm sm:leading-7">
                         {service.description}
                       </p>
                     </div>
@@ -966,83 +732,82 @@ export default function HomePage() {
         </section>
 
         {/* APPROACH */}
-
         <section className="relative overflow-hidden bg-[#17191c] text-white">
-          <div className="dark-light pointer-events-none absolute -left-28 -top-36 h-[500px] w-[500px] rounded-full bg-[#ff6f0f]/[0.075] blur-[120px]" />
+          <div className="dark-light pointer-events-none absolute -left-32 -top-24 h-80 w-80 rounded-full bg-[#ff6f0f]/[0.08] blur-[100px] sm:h-[500px] sm:w-[500px]" />
 
-          <div className="pointer-events-none absolute bottom-[-220px] right-[-140px] h-[480px] w-[480px] rounded-full bg-blue-500/[0.04] blur-[120px]" />
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+            <div className="grid gap-10 md:grid-cols-2 md:gap-14">
+              <div className="reveal">
+                <Eyebrow dark>Our Approach</Eyebrow>
 
-          <div className="relative mx-auto grid max-w-7xl gap-14 px-5 py-20 sm:px-6 md:grid-cols-[1fr_1fr] md:px-8 md:py-28 lg:px-10">
-            <div className="home-reveal">
-              <Eyebrow dark>Our Approach</Eyebrow>
+                <h2 className="mt-5 max-w-2xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:mt-6 sm:text-4xl md:text-5xl">
+                  Dibangun sebagai sistem.
+                  <span className="text-[#ff8a34]">
+                    {" "}
+                    Bukan sekadar tampilan.
+                  </span>
+                </h2>
 
-              <h2 className="mt-6 max-w-2xl text-3xl font-black leading-tight tracking-[-0.045em] sm:text-4xl md:text-5xl">
-                Dibangun sebagai sistem.
-                <span className="text-[#ff8a34]">
-                  {" "}
-                  Bukan sekadar tampilan.
-                </span>
-              </h2>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-white/45 sm:mt-6 sm:text-base sm:leading-8">
+                  Produk digital harus nyaman digunakan, mudah dirawat, dapat
+                  diintegrasikan, dan tetap relevan ketika kebutuhan bisnis
+                  berkembang.
+                </p>
+              </div>
 
-              <p className="mt-6 max-w-xl text-sm leading-8 text-white/45 sm:text-base">
-                Produk digital yang baik harus nyaman digunakan, mudah dirawat,
-                dapat diintegrasikan, dan tetap relevan ketika kebutuhan bisnis
-                berkembang.
-              </p>
+              <div className="grid grid-cols-2 gap-2 sm:gap-px sm:overflow-hidden sm:rounded-[24px] sm:bg-white/[0.08]">
+                {[
+                  {
+                    icon: Layers3,
+                    title: "End-to-End",
+                    desc: "Dari perencanaan sampai production.",
+                  },
+                  {
+                    icon: Code2,
+                    title: "Custom Built",
+                    desc: "Mengikuti workflow bisnis.",
+                  },
+                  {
+                    icon: Network,
+                    title: "Integrated",
+                    desc: "Terhubung ke API dan sistem lain.",
+                  },
+                  {
+                    icon: ShieldCheck,
+                    title: "Maintainable",
+                    desc: "Mudah dirawat dan dikembangkan.",
+                  },
+                ].map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <div
+                      key={item.title}
+                      className="approach-card reveal rounded-[18px] bg-[#1d2024] p-4 sm:rounded-none sm:p-6"
+                    >
+                      <Icon className="h-[18px] w-[18px] text-[#ff8a34] sm:h-5 sm:w-5" />
+
+                      <h3 className="mt-4 text-sm font-black sm:mt-5 sm:text-lg">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-1.5 text-[11px] leading-5 text-white/40 sm:mt-2 sm:text-sm sm:leading-6">
+                        {item.desc}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-[24px] bg-white/[0.08] sm:grid-cols-2">
-              {[
-                {
-                  icon: Layers3,
-                  title: "End-to-End",
-                  desc: "Dari perencanaan sampai production.",
-                },
-                {
-                  icon: Code2,
-                  title: "Custom Built",
-                  desc: "Mengikuti kebutuhan dan workflow Anda.",
-                },
-                {
-                  icon: Network,
-                  title: "Integrated",
-                  desc: "Terhubung ke API dan sistem lain.",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Maintainable",
-                  desc: "Dibangun agar mudah dikembangkan.",
-                },
-              ].map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    className="approach-card home-reveal bg-[#1d2024] p-6"
-                  >
-                    <Icon className="h-5 w-5 text-[#ff8a34]" />
-
-                    <h3 className="mt-5 text-lg font-black">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-2 text-sm leading-6 text-white/40">
-                      {item.desc}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="md:col-span-2">
-              <div className="flex flex-wrap gap-3 border-t border-white/[0.08] pt-8">
+            <div className="mt-8 border-t border-white/[0.08] pt-6 sm:mt-10 sm:pt-8">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {CAPABILITIES.map((item) => (
                   <span
                     key={item}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] px-4 py-2 text-xs font-semibold text-white/45 transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:text-white/70"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] px-3 py-2 text-[10px] font-semibold text-white/45 sm:gap-2 sm:px-4 sm:text-xs"
                   >
-                    <Check className="h-3.5 w-3.5 text-[#ff8a34]" />
+                    <Check className="h-3 w-3 text-[#ff8a34] sm:h-3.5 sm:w-3.5" />
                     {item}
                   </span>
                 ))}
@@ -1052,49 +817,46 @@ export default function HomePage() {
         </section>
 
         {/* PROJECT NETWORK */}
-
         <section className="bg-[#f7f7f5]">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:px-8 md:py-28 lg:px-10">
-            <div className="home-reveal max-w-3xl">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+            <div className="reveal max-w-3xl">
               <Eyebrow>Project Network</Eyebrow>
 
-              <h2 className="mt-5 text-3xl font-black tracking-[-0.045em] sm:text-4xl md:text-5xl">
+              <h2 className="mt-4 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:mt-5 sm:text-4xl md:text-5xl">
                 Dari Jakarta, bekerja dengan bisnis di berbagai wilayah.
               </h2>
 
-              <p className="mt-5 max-w-2xl text-sm leading-8 text-slate-500 sm:text-base">
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-500 sm:mt-5 sm:text-base sm:leading-8">
                 Titik pada peta menunjukkan lokasi client atau kolaborasi
                 project RHG, bukan kantor cabang.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-6 xl:grid-cols-[1.25fr_.75fr]">
+            <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 xl:grid-cols-[1.25fr_0.75fr]">
               {/* MAP */}
-
-              <div className="home-reveal overflow-hidden rounded-[26px] border border-black/[0.07] bg-white shadow-[0_20px_65px_rgba(15,23,42,0.05)] transition duration-500 hover:shadow-[0_28px_80px_rgba(15,23,42,.08)]">
-                <div className="flex items-center justify-between border-b border-black/[0.06] px-5 py-4 sm:px-6">
+              <div className="reveal overflow-hidden rounded-[22px] border border-black/[0.07] bg-white shadow-[0_15px_45px_rgba(15,23,42,.04)] sm:rounded-[26px] sm:shadow-[0_20px_65px_rgba(15,23,42,.05)]">
+                <div className="flex items-center justify-between gap-4 border-b border-black/[0.06] px-4 py-3.5 sm:px-6 sm:py-4">
                   <div>
-                    <p className="text-sm font-black">
+                    <p className="text-xs font-black sm:text-sm">
                       Project Coverage
                     </p>
-
-                    <p className="mt-1 text-xs text-slate-400">
+                    <p className="mt-0.5 text-[10px] text-slate-400 sm:mt-1 sm:text-xs">
                       Indonesia & Australia
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                    <MapPin className="h-3.5 w-3.5 text-[#ff6f0f]" />
-                    Jakarta HQ
+                  <div className="flex shrink-0 items-center gap-1.5 text-[8px] font-bold uppercase tracking-[0.12em] text-slate-400 sm:gap-2 sm:text-[10px]">
+                    <MapPin className="h-3 w-3 text-[#ff6f0f] sm:h-3.5 sm:w-3.5" />
+                    Jakarta
                   </div>
                 </div>
 
-                <div className="home-dot-grid p-3 sm:p-6">
+                <div className="dot-grid overflow-hidden px-1 py-3 sm:p-6">
                   <svg
-                    viewBox="0 0 860 520"
+                    viewBox="100 70 700 430"
                     className="h-auto w-full"
                     role="img"
-                    aria-label="Peta jaringan project RHG dari Jakarta menuju Sumatera Barat, Pontianak, Sulawesi Utara, dan Australia"
+                    aria-label="Peta jaringan project RHG"
                   >
                     <defs>
                       <linearGradient
@@ -1104,21 +866,10 @@ export default function HomePage() {
                         x2="100%"
                         y2="100%"
                       >
-                        <stop
-                          offset="0%"
-                          stopColor="#ff6f0f"
-                          stopOpacity=".92"
-                        />
-
-                        <stop
-                          offset="100%"
-                          stopColor="#315efb"
-                          stopOpacity=".72"
-                        />
+                        <stop offset="0%" stopColor="#ff6f0f" stopOpacity=".9" />
+                        <stop offset="100%" stopColor="#315efb" stopOpacity=".7" />
                       </linearGradient>
                     </defs>
-
-                    {/* SUMATRA */}
 
                     <path
                       d="M149 102 C172 97 194 115 208 142 C224 172 239 204 245 230 C249 248 237 263 218 257 C198 251 181 230 168 208 C153 181 140 156 137 132 C135 116 141 105 149 102 Z"
@@ -1126,15 +877,11 @@ export default function HomePage() {
                       stroke="#deded8"
                     />
 
-                    {/* JAVA */}
-
                     <path
                       d="M234 276 C270 271 307 272 345 279 L391 285 C401 287 401 294 390 298 L334 299 C300 298 267 294 237 289 C228 287 226 280 234 276 Z"
                       fill="#eeeee9"
                       stroke="#deded8"
                     />
-
-                    {/* KALIMANTAN */}
 
                     <path
                       d="M325 120 C348 106 383 109 402 125 C419 141 424 166 416 192 C409 216 390 236 367 243 C346 249 327 239 317 221 C306 199 308 177 313 153 C316 138 318 127 325 120 Z"
@@ -1142,15 +889,11 @@ export default function HomePage() {
                       stroke="#deded8"
                     />
 
-                    {/* SULAWESI */}
-
                     <path
                       d="M466 145 C479 136 492 143 492 157 C491 171 484 181 493 189 C501 197 514 196 519 205 C524 215 515 224 505 230 C493 237 490 246 493 256 C495 266 485 272 476 265 C466 258 467 244 469 231 C471 220 464 215 455 221 C444 228 435 221 440 210 C445 198 458 195 460 184 C462 172 458 152 466 145 Z"
                       fill="#eeeee9"
                       stroke="#deded8"
                     />
-
-                    {/* PAPUA */}
 
                     <path
                       d="M558 179 C589 164 635 165 668 178 C691 187 704 204 700 218 C696 232 678 239 659 234 C638 229 618 236 597 242 C578 247 558 238 551 222 C545 207 546 187 558 179 Z"
@@ -1158,15 +901,11 @@ export default function HomePage() {
                       stroke="#deded8"
                     />
 
-                    {/* AUSTRALIA */}
-
                     <path
                       d="M578 334 C610 311 660 305 705 319 C741 330 765 356 762 385 C760 414 735 438 701 450 C667 462 626 455 598 437 C572 420 551 399 548 378 C545 357 556 342 578 334 Z"
                       fill="#eeeee9"
                       stroke="#deded8"
                     />
-
-                    {/* ROUTES */}
 
                     {PARTNERS.map((partner, index) => (
                       <path
@@ -1174,16 +913,12 @@ export default function HomePage() {
                         d={routeTo(partner.x, partner.y)}
                         fill="none"
                         stroke="url(#routeOrange)"
-                        strokeWidth="1.7"
+                        strokeWidth="1.8"
                         strokeLinecap="round"
-                        className="home-route"
-                        style={{
-                          animationDelay: `${index * 0.45}s`,
-                        }}
+                        className="map-route"
+                        style={{ animationDelay: `${index * 0.4}s` }}
                       />
                     ))}
-
-                    {/* HQ */}
 
                     <g>
                       <circle
@@ -1193,22 +928,11 @@ export default function HomePage() {
                         fill="none"
                         stroke="#ff7a1a"
                         strokeOpacity=".25"
-                        className="home-pulse"
+                        className="map-pulse"
                       />
 
-                      <circle
-                        cx={HQ.x}
-                        cy={HQ.y}
-                        r="8"
-                        fill="#ff6f0f"
-                      />
-
-                      <circle
-                        cx={HQ.x}
-                        cy={HQ.y}
-                        r="2.5"
-                        fill="white"
-                      />
+                      <circle cx={HQ.x} cy={HQ.y} r="8" fill="#ff6f0f" />
+                      <circle cx={HQ.x} cy={HQ.y} r="2.5" fill="white" />
 
                       <text
                         x={HQ.x}
@@ -1220,19 +944,7 @@ export default function HomePage() {
                       >
                         Jakarta
                       </text>
-
-                      <text
-                        x={HQ.x}
-                        y={HQ.y + 26}
-                        textAnchor="middle"
-                        fill="#8a8f96"
-                        fontSize="8"
-                      >
-                        Kantor Pusat
-                      </text>
                     </g>
-
-                    {/* CLIENTS */}
 
                     {PARTNERS.map((partner, index) => (
                       <g key={partner.name}>
@@ -1243,9 +955,9 @@ export default function HomePage() {
                           fill="none"
                           stroke="#315efb"
                           strokeOpacity=".18"
-                          className="home-pulse"
+                          className="map-pulse"
                           style={{
-                            animationDelay: `${0.5 + index * 0.5}s`,
+                            animationDelay: `${0.5 + index * 0.45}s`,
                           }}
                         />
 
@@ -1257,6 +969,7 @@ export default function HomePage() {
                         />
 
                         <text
+                          className="hidden sm:block"
                           x={partner.x}
                           y={partner.y - 16}
                           textAnchor="middle"
@@ -1266,53 +979,42 @@ export default function HomePage() {
                         >
                           {partner.location}
                         </text>
-
-                        <text
-                          x={partner.x}
-                          y={partner.y + 23}
-                          textAnchor="middle"
-                          fill="#8a8f96"
-                          fontSize="7.5"
-                        >
-                          {partner.name}
-                        </text>
                       </g>
                     ))}
                   </svg>
                 </div>
 
-                <div className="flex flex-wrap gap-5 border-t border-black/[0.06] px-5 py-4 text-[10px] font-medium text-slate-400 sm:px-6">
-                  <div className="flex items-center gap-2">
+                <div className="flex gap-4 border-t border-black/[0.06] px-4 py-3 text-[9px] text-slate-400 sm:px-6 sm:py-4 sm:text-[10px]">
+                  <div className="flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-[#ff6f0f]" />
                     Kantor Pusat
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-[#315efb]" />
                     Client / Project
                   </div>
                 </div>
               </div>
 
-              {/* PARTNER CARDS */}
-
-              <div className="grid gap-3">
+              {/* PARTNERS */}
+              <div className="grid gap-2.5 sm:gap-3">
                 {PARTNERS.map((partner) => (
                   <div
                     key={partner.name}
-                    className="partner-card home-reveal group rounded-[22px] border border-black/[0.07] bg-white p-5"
+                    className="partner-card reveal rounded-[18px] border border-black/[0.07] bg-white p-4 sm:rounded-[22px] sm:p-5"
                   >
-                    <div className="flex items-start justify-between gap-5">
-                      <div>
-                        <p className="text-[9px] font-black uppercase tracking-[0.16em] text-[#ff6f0f]">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-[8px] font-black uppercase tracking-[0.14em] text-[#ff6f0f] sm:text-[9px] sm:tracking-[0.16em]">
                           {partner.location}
                         </p>
 
-                        <h3 className="mt-2 text-lg font-black tracking-[-0.025em]">
+                        <h3 className="mt-1.5 text-[16px] font-black tracking-[-0.025em] sm:mt-2 sm:text-lg">
                           {partner.name}
                         </h3>
 
-                        <p className="mt-1 text-xs font-semibold text-slate-400">
+                        <p className="mt-1 text-[10px] font-semibold text-slate-400 sm:text-xs">
                           {partner.category}
                         </p>
                       </div>
@@ -1322,13 +1024,13 @@ export default function HomePage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Kunjungi website ${partner.name}`}
-                        className="partner-arrow flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/[0.08] text-slate-500"
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/[0.08] text-slate-500 transition hover:bg-[#17191c] hover:text-white"
                       >
                         <ExternalLink className="h-3.5 w-3.5" />
                       </a>
                     </div>
 
-                    <p className="mt-4 text-sm leading-6 text-slate-500">
+                    <p className="mt-3 text-[12px] leading-5.5 text-slate-500 sm:mt-4 sm:text-sm sm:leading-6">
                       {partner.description}
                     </p>
                   </div>
@@ -1339,39 +1041,37 @@ export default function HomePage() {
         </section>
 
         {/* PROCESS */}
-
         <section className="border-t border-black/[0.06] bg-white">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:px-8 md:py-28 lg:px-10">
-            <div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
-              <div className="home-reveal">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
+            <div className="grid gap-9 lg:grid-cols-[0.7fr_1.3fr] lg:gap-12">
+              <div className="reveal">
                 <Eyebrow>How We Work</Eyebrow>
 
-                <h2 className="mt-5 text-3xl font-black tracking-[-0.045em] sm:text-4xl md:text-5xl">
+                <h2 className="mt-4 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:mt-5 sm:text-4xl md:text-5xl">
                   Proses yang jelas dari awal sampai launch.
                 </h2>
 
-                <p className="mt-5 max-w-md text-sm leading-8 text-slate-500">
-                  Tidak perlu proses yang dibuat rumit. Yang penting kebutuhan,
-                  scope, progress, dan hasil akhir dapat dipahami oleh semua
-                  pihak.
+                <p className="mt-4 max-w-md text-sm leading-7 text-slate-500 sm:mt-5 sm:leading-8">
+                  Kebutuhan, scope, progress, dan hasil akhir dibuat jelas agar
+                  semua pihak memahami arah project.
                 </p>
               </div>
 
-              <div className="border-t border-black/[0.08]">
+              <div className="grid gap-3 sm:border-t sm:border-black/[0.08]">
                 {PROCESS.map((item) => (
                   <div
                     key={item.number}
-                    className="process-row home-reveal grid gap-4 border-b border-black/[0.08] py-6 sm:grid-cols-[70px_190px_1fr] sm:items-start"
+                    className="process-card reveal rounded-[18px] border border-black/[0.07] bg-[#fafafa] p-4 sm:grid sm:grid-cols-[70px_170px_1fr] sm:items-start sm:gap-4 sm:rounded-none sm:border-x-0 sm:border-t-0 sm:bg-white sm:px-0 sm:py-6"
                   >
-                    <span className="process-number font-mono text-xs font-bold text-slate-300">
+                    <span className="font-mono text-[10px] font-bold text-[#ff6f0f] sm:text-xs">
                       {item.number}
                     </span>
 
-                    <h3 className="text-lg font-black tracking-[-0.02em]">
+                    <h3 className="mt-2 text-[17px] font-black tracking-[-0.02em] sm:mt-0 sm:text-lg">
                       {item.title}
                     </h3>
 
-                    <p className="text-sm leading-7 text-slate-500">
+                    <p className="mt-2 text-[12px] leading-5.5 text-slate-500 sm:mt-0 sm:text-sm sm:leading-7">
                       {item.description}
                     </p>
                   </div>
@@ -1382,32 +1082,32 @@ export default function HomePage() {
         </section>
 
         {/* CTA */}
+        <section className="cta-section bg-[#ff6f0f]">
+          <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20 lg:px-10">
+            <div className="grid items-center gap-7 md:grid-cols-[1fr_auto] md:gap-8">
+              <div className="reveal">
+                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-black/45 sm:text-[10px] sm:tracking-[0.2em]">
+                  Start a Project
+                </p>
 
-        <section className="orange-cta bg-[#ff6f0f]">
-          <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-16 sm:px-6 md:grid-cols-[1fr_auto] md:px-8 md:py-20 lg:px-10">
-            <div className="home-reveal">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/45">
-                Start a Project
-              </p>
+                <h2 className="mt-3 max-w-3xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] text-[#17191c] sm:mt-4 sm:text-4xl md:text-5xl">
+                  Punya sistem yang ingin dibangun atau diperbaiki?
+                </h2>
 
-              <h2 className="mt-4 max-w-3xl text-3xl font-black leading-tight tracking-[-0.045em] text-[#17191c] sm:text-4xl md:text-5xl">
-                Punya sistem yang ingin dibangun atau diperbaiki?
-              </h2>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-black/55 sm:text-base">
+                  Ceritakan kebutuhan bisnis Anda. Kami bantu menyusun
+                  pendekatan teknis dan implementasi yang sesuai.
+                </p>
+              </div>
 
-              <p className="mt-4 max-w-xl text-sm leading-7 text-black/55 sm:text-base">
-                Ceritakan kebutuhan bisnis Anda. Kami bantu menyusun pendekatan
-                teknis dan implementasi yang sesuai.
-              </p>
+              <Link
+                href="/kontak"
+                className="group inline-flex min-h-[52px] w-full items-center justify-center gap-3 rounded-full bg-[#17191c] px-6 text-sm font-black text-white transition hover:bg-black md:w-auto"
+              >
+                Konsultasi Project
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
-
-            <Link
-              href="/kontak"
-              className="cta-button group inline-flex w-fit items-center gap-3 rounded-full bg-[#17191c] px-6 py-4 text-sm font-black text-white transition duration-300 hover:-translate-y-1 hover:bg-black"
-            >
-              Konsultasi Project
-
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
           </div>
         </section>
       </main>
