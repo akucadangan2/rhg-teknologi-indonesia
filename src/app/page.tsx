@@ -1,11 +1,9 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
-  Activity,
   ArrowRight,
   ArrowUpRight,
-  Blocks,
-  Bot,
   BrainCircuit,
   Check,
   Code2,
@@ -17,33 +15,40 @@ import {
   MapPin,
   MapPinned,
   Network,
-  Satellite,
   ShieldCheck,
   Smartphone,
-  Sprout,
   Workflow,
 } from "lucide-react";
-
+import ClientsMap, { type MapPoint, type HqPoint } from "./clients-map";
 export const metadata = {
   title: "RHG Teknologi Indonesia",
   description:
-    "Pengembangan software, aplikasi, AI Agent, automasi AI, backend, payment gateway, GIS, GeoAI, IoT, dan integrasi sistem untuk bisnis dan industri.",
+    "Pengembangan website, aplikasi mobile, backend, integrasi pembayaran, GIS, otomasi, dan integrasi sistem untuk bisnis dan industri.",
+};
+
+/* =========================================================
+   GAMBAR (semua di folder /public)
+========================================================= */
+const IMG = {
+  hero: "/hero.jpg",
+  ai: "/ai-vision.jpg",
+  approach: "/approach.jpg",
 };
 
 const SERVICES = [
   {
     number: "01",
-    title: "Web & Digital Platform",
+    title: "Website & Platform Digital",
     description:
-      "Website perusahaan, portal, dashboard, marketplace, dan sistem berbasis web yang dibangun mengikuti proses bisnis.",
+      "Website perusahaan, portal, dashboard, dan marketplace yang disusun sesuai proses bisnis.",
     icon: Globe2,
     href: "/layanan/website",
   },
   {
     number: "02",
-    title: "Mobile Application",
+    title: "Aplikasi Mobile",
     description:
-      "Aplikasi Android dan iOS untuk pelanggan, operasional internal, retail, layanan, marketplace, dan produk digital.",
+      "Aplikasi Android dan iOS untuk pelanggan, operasional internal, retail, dan layanan.",
     icon: Smartphone,
     href: "/layanan/aplikasi-mobile",
   },
@@ -51,40 +56,39 @@ const SERVICES = [
     number: "03",
     title: "Backend & Data",
     description:
-      "API, database, authentication, migrasi, sinkronisasi data, automasi, dan backend untuk sistem yang terus berkembang.",
+      "API, database, autentikasi, migrasi, dan sinkronisasi data untuk sistem yang terus berkembang.",
     icon: Database,
     href: "/layanan/jasa-it-backend",
   },
   {
     number: "04",
-    title: "AI Agent & AI Development",
+    title: "Otomasi & AI",
     description:
-      "AI Agent, RAG, knowledge system, computer vision, document AI, workflow automation, dan integrasi AI custom.",
+      "Otomasi proses, pengolahan dokumen, dan integrasi layanan AI ke sistem yang sudah berjalan.",
     icon: BrainCircuit,
     href: "/layanan/ai-agent-development",
-    featured: true,
   },
   {
     number: "05",
-    title: "Payment Integration",
+    title: "Integrasi Pembayaran",
     description:
-      "QRIS, virtual account, e-wallet, kartu, webhook, billing, rekonsiliasi, dan payment gateway.",
+      "QRIS, virtual account, e-wallet, kartu, webhook, billing, dan rekonsiliasi pembayaran.",
     icon: CreditCard,
     href: "/layanan/payment-gateway",
   },
   {
     number: "06",
-    title: "GIS & GeoAI",
+    title: "GIS & Pemetaan",
     description:
-      "WebGIS, tracking, analisis spasial, pemetaan, remote sensing, drone analytics, dan sistem berbasis lokasi.",
+      "WebGIS, pelacakan, analisis spasial, pemetaan, dan sistem berbasis lokasi.",
     icon: MapPinned,
     href: "/layanan/maps-gis",
   },
   {
     number: "07",
-    title: "System & IoT Integration",
+    title: "Integrasi Sistem & IoT",
     description:
-      "Integrasi API, database, jaringan, hardware, IoT, sensor, perangkat lapangan, dan sistem operasional.",
+      "Integrasi API, database, jaringan, perangkat keras, sensor, dan perangkat lapangan.",
     icon: Workflow,
     href: "/layanan/integrasi-sistem",
   },
@@ -92,66 +96,17 @@ const SERVICES = [
     number: "08",
     title: "Maintenance & Support",
     description:
-      "Monitoring, bug fixing, security update, backup, review arsitektur, dan pengembangan sistem lanjutan.",
+      "Monitoring, perbaikan bug, pembaruan keamanan, backup, dan pengembangan lanjutan.",
     icon: ShieldCheck,
     href: "/layanan/maintenance-support",
   },
 ];
 
-const AI_SOLUTIONS = [
-  {
-    number: "AI / 01",
-    title: "AI Agent",
-    description:
-      "Agent yang memahami konteks, menggunakan knowledge perusahaan, mengakses API, dan membantu menjalankan workflow.",
-    icon: Bot,
-  },
-  {
-    number: "AI / 02",
-    title: "Knowledge & RAG",
-    description:
-      "AI yang menggunakan dokumen, database, knowledge base, dan informasi internal sebagai sumber jawaban.",
-    icon: Database,
-  },
-  {
-    number: "AI / 03",
-    title: "Workflow Automation",
-    description:
-      "Automasi classification, extraction, summarization, routing, approval, dan pekerjaan berulang.",
-    icon: Workflow,
-  },
-  {
-    number: "AI / 04",
-    title: "Vision & Document AI",
-    description:
-      "Pemrosesan gambar dan dokumen untuk deteksi, klasifikasi, extraction, inspection, dan analisis visual.",
-    icon: Activity,
-  },
-  {
-    number: "AI / 05",
-    title: "Agriculture & Field AI",
-    description:
-      "Eksperimen AI untuk tanaman, perkebunan, monitoring lapangan, sensor, drone, dan data lingkungan.",
-    icon: Sprout,
-  },
-  {
-    number: "AI / 06",
-    title: "Custom AI Integration",
-    description:
-      "Menghubungkan AI dengan website, mobile app, backend, database, dashboard, ERP, maupun sistem existing.",
-    icon: Blocks,
-  },
-];
-
-const AI_SECTORS = [
-  "Business Operations",
-  "Customer Service",
-  "Retail & Commerce",
-  "Agriculture & Plantation",
-  "Warehouse & Logistics",
-  "GIS & Field Operations",
-  "Network & Infrastructure",
-  "Document Processing",
+const AUTOMATION_POINTS = [
+  "Chatbot dan asisten layanan pelanggan",
+  "Pengolahan dan ekstraksi data dari dokumen",
+  "Otomasi alur kerja dan persetujuan",
+  "Analisis gambar untuk inspeksi dan klasifikasi",
 ];
 
 const CLIENTS = [
@@ -160,77 +115,149 @@ const CLIENTS = [
     category: "Retail, Equipment & Service",
     location: "Australia",
     link: "https://www.buana.com.au/",
+    image: "/klien-buana.jpg",
     description:
-      "Platform digital untuk retail supply, commercial equipment, pemesanan, tracking, dan service operation.",
-    map: { x: 78, y: 76 },
+      "Platform digital untuk retail supply, commercial equipment, pemesanan, pelacakan, dan layanan servis.",
   },
   {
-    name: "KADAI ZIO / Fast & Go",
-    category: "Retail & Delivery Platform",
-    location: "Padang, Sumatera Barat",
-    link: "https://www.kadaizio.com/",
+    name: "KitasHub",
+    category: "Layanan KITAS & Visa",
+    location: "DKI Jakarta",
+    link: "https://halokitas.co.id",
+    image: "/klien-kitashub.jpg",
     description:
-      "Ekosistem retail digital untuk katalog produk, pemesanan, pickup, delivery, dan pengalaman pelanggan.",
-    map: { x: 23, y: 35 },
+      "Website company profile untuk layanan pengurusan KITAS dan visa di Indonesia.",
   },
   {
     name: "Profita Agro Sarana",
-    category: "Warehouse & Distribution",
+    category: "Gudang & Distribusi",
     location: "Pontianak, Kalimantan Barat",
     link: "https://profitaagrosarana.my.id/",
+    image: "/klien-profita-agro.jpg",
     description:
-      "Sistem operasional gudang dan distribusi untuk stok, picking, permintaan barang, serta koordinasi cabang.",
-    map: { x: 48, y: 34 },
+      "Sistem operasional gudang dan distribusi untuk stok, picking, permintaan barang, dan koordinasi cabang.",
   },
   {
     name: "IONET+",
-    category: "ISP & Network Operations",
+    category: "ISP & Operasional Jaringan",
     location: "Sulawesi Utara",
     link: "https://www.ionet.my.id/",
+    image: "/klien-ionet.jpg",
     description:
-      "Platform untuk billing, monitoring pelanggan, pembayaran, jaringan, dan aktivitas operasional ISP.",
-    map: { x: 68, y: 30 },
+      "Platform billing, monitoring pelanggan, pembayaran, dan operasional jaringan ISP.",
+  },
+  {
+    name: "Kelapa Tangguh Jaya",
+    category: "Kopra & Arang Tempurung",
+    location: "Minahasa, Sulawesi Utara",
+    link: "https://www.kelapatangguhjaya.com",
+    image: "/klien-kelapa-tangguh-jaya.jpg",
+    description:
+      "Website dan aplikasi untuk pembelian kopra, tempurung, dan arang tempurung langsung dari petani.",
+  },
+  {
+    name: "Madani Berdaya",
+    category: "Marketplace Kecamatan",
+    location: "Palembang, Sumatera Selatan",
+    link: "https://www.madaniberdaya.com",
+    image: "/klien-madani-berdaya.jpg",
+    description:
+      "Aplikasi untuk warga satu kecamatan: mencari kerja, memasang lowongan, membuka toko, dan berbelanja dari tetangga.",
+  },
+  {
+    name: "KADAI ZIO / Fast & Go",
+    category: "Retail & Delivery",
+    location: "Padang, Sumatera Barat",
+    link: "https://www.kadaizio.com/",
+    image: "/klien-kadai-zio.jpg",
+    description:
+      "Sistem retail digital untuk katalog produk, pemesanan, pickup, dan pengantaran.",
   },
 ];
 
+/* Titik klien. Koordinat Buana adalah perkiraan (Sydney), ganti dengan kota yang sebenarnya. */
+const MAP_POINTS: MapPoint[] = [
+  {
+    id: "padang",
+    label: "Padang, Sumatera Barat",
+    lat: -0.9471,
+    lng: 100.4172,
+    region: "indonesia",
+    clients: ["KADAI ZIO / Fast & Go"],
+  },
+  {
+    id: "palembang",
+    label: "Palembang, Sumatera Selatan",
+    lat: -2.9761,
+    lng: 104.7754,
+    region: "indonesia",
+    clients: ["Madani Berdaya"],
+  },
+  {
+    id: "jakarta",
+    label: "DKI Jakarta",
+    lat: -6.2088,
+    lng: 106.8456,
+    region: "indonesia",
+    clients: ["KitasHub"],
+  },
+  {
+    id: "pontianak",
+    label: "Pontianak, Kalimantan Barat",
+    lat: -0.0263,
+    lng: 109.3425,
+    region: "indonesia",
+    clients: ["Profita Agro Sarana"],
+  },
+  {
+    id: "sulut",
+    label: "Sulawesi Utara",
+    lat: 1.4748,
+    lng: 124.8421,
+    region: "indonesia",
+    clients: ["IONET+", "Kelapa Tangguh Jaya"],
+  },
+  {
+    id: "australia",
+    label: "Australia",
+    lat: -33.8688,
+    lng: 151.2093,
+    region: "australia",
+    clients: ["Buana"],
+  },
+];
+
+/* Kantor pusat RHG (Menara The Plaza, Jl. M.H. Thamrin). Koordinat adalah perkiraan. */
+const HQ: HqPoint = {
+  label: "Kantor pusat RHG · Jakarta Pusat",
+  lat: -6.1936,
+  lng: 106.8226,
+};
 const PROCESS = [
   {
     number: "01",
-    title: "Understand",
+    title: "Memahami Kebutuhan",
     description:
-      "Memahami bisnis, pengguna, data, workflow, masalah, dan hasil akhir yang ingin dicapai.",
+      "Mempelajari bisnis, pengguna, data, alur kerja, dan hasil akhir yang diharapkan.",
   },
   {
     number: "02",
-    title: "Design",
+    title: "Perancangan",
     description:
-      "Menyusun arsitektur, user flow, database, model AI, integrasi, keamanan, dan pendekatan teknis.",
+      "Menyusun arsitektur, alur pengguna, database, integrasi, dan pendekatan teknis.",
   },
   {
     number: "03",
-    title: "Build",
+    title: "Pengembangan",
     description:
-      "Development dan integrasi dengan fokus pada fungsi, reliability, maintainability, dan pengalaman pengguna.",
+      "Membangun dan mengintegrasikan sistem dengan fokus pada fungsi, keandalan, dan kemudahan perawatan.",
   },
   {
     number: "04",
-    title: "Launch & Improve",
+    title: "Peluncuran & Dukungan",
     description:
-      "Testing, production deployment, monitoring, evaluasi, support, dan pengembangan lanjutan.",
+      "Pengujian, deployment, monitoring, evaluasi, dan pengembangan lanjutan.",
   },
-];
-
-const CAPABILITIES = [
-  "Custom software development",
-  "AI Agent & automation",
-  "Applied AI",
-  "Computer vision",
-  "GIS & GeoAI",
-  "Agriculture technology",
-  "IoT & field integration",
-  "API & system integration",
-  "Production deployment",
-  "Maintenance & support",
 ];
 
 const TECHNOLOGIES = [
@@ -241,13 +268,8 @@ const TECHNOLOGIES = [
   "Supabase",
   "PostgreSQL",
   "Python",
-  "LLM APIs",
-  "RAG",
-  "Vector Search",
-  "Computer Vision",
   "Mapbox",
   "PostGIS",
-  "Remote Sensing",
   "REST API",
   "Cloud",
   "IoT",
@@ -264,6 +286,9 @@ const LAB_LOCATION = {
 const LAB_MAP_EMBED = `https://www.google.com/maps?q=${LAB_LOCATION.latitude},${LAB_LOCATION.longitude}&z=17&t=k&output=embed`;
 const LAB_MAP_LINK = `https://www.google.com/maps?q=${LAB_LOCATION.latitude},${LAB_LOCATION.longitude}`;
 
+/* =========================================================
+   KOMPONEN KECIL
+========================================================= */
 function Eyebrow({
   children,
   dark = false,
@@ -274,15 +299,41 @@ function Eyebrow({
   return (
     <div
       className={`inline-flex items-center gap-2.5 text-[9px] font-bold uppercase tracking-[0.2em] sm:text-[10px] ${
-        dark ? "text-white/45" : "text-slate-400"
+        dark ? "text-white/50" : "text-slate-400"
       }`}
     >
       <span
-        className={`h-px w-7 ${
-          dark ? "bg-[#ff8a34]" : "bg-[#ff6f0f]"
-        }`}
+        className={`h-px w-6 sm:w-7 ${dark ? "bg-[#ff8a34]" : "bg-[#ff6f0f]"}`}
       />
       {children}
+    </div>
+  );
+}
+
+/* Wrapper gambar: parent wajib punya ukuran lewat aspect ratio / tinggi */
+function Photo({
+  src,
+  alt,
+  sizes,
+  priority = false,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  sizes: string;
+  priority?: boolean;
+  className?: string;
+}) {
+  return (
+    <div className={`relative overflow-hidden bg-[#22252a] ${className}`}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className="object-cover"
+      />
     </div>
   );
 }
@@ -292,151 +343,61 @@ export default function HomePage() {
     <>
       <style>{`
         @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeSide {
-          from {
-            opacity: 0;
-            transform: translateX(28px) scale(.985);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0) scale(1);
-          }
+          from { opacity: 0; transform: translateX(28px) scale(.985); }
+          to { opacity: 1; transform: translateX(0) scale(1); }
         }
-
         @keyframes softFloat {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-6px);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
         }
-
         @keyframes gridMove {
-          from {
-            background-position: 0 0;
-          }
-          to {
-            background-position: 40px 40px;
-          }
+          from { background-position: 0 0; }
+          to { background-position: 40px 40px; }
         }
-
         @keyframes marquee {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
         }
-
         @keyframes darkLight {
-          0%,
-          100% {
-            transform: translate3d(-7%,0,0);
-            opacity: .28;
-          }
-          50% {
-            transform: translate3d(12%,-5%,0);
-            opacity: .48;
-          }
+          0%, 100% { transform: translate3d(-7%,0,0); opacity: .28; }
+          50% { transform: translate3d(12%,-5%,0); opacity: .48; }
         }
-
         @keyframes ctaSweep {
-          0% {
-            transform: translateX(-180%) skewX(-20deg);
-          }
-          50%,
-          100% {
-            transform: translateX(320%) skewX(-20deg);
-          }
+          0% { transform: translateX(-180%) skewX(-20deg); }
+          50%, 100% { transform: translateX(320%) skewX(-20deg); }
         }
 
-        .hero-a,
-        .hero-b,
-        .hero-c,
-        .hero-d,
-        .hero-e {
+        .hero-a, .hero-b, .hero-c, .hero-d, .hero-e {
           opacity: 0;
-          animation:
-            fadeUp
-            .65s
-            cubic-bezier(.22,1,.36,1)
-            forwards;
+          animation: fadeUp .65s cubic-bezier(.22,1,.36,1) forwards;
         }
-
-        .hero-a {
-          animation-delay: .04s;
-        }
-
-        .hero-b {
-          animation-delay: .12s;
-        }
-
-        .hero-c {
-          animation-delay: .20s;
-        }
-
-        .hero-d {
-          animation-delay: .28s;
-        }
-
-        .hero-e {
-          animation-delay: .36s;
-        }
+        .hero-a { animation-delay: .04s; }
+        .hero-b { animation-delay: .12s; }
+        .hero-c { animation-delay: .20s; }
+        .hero-d { animation-delay: .28s; }
+        .hero-e { animation-delay: .36s; }
 
         .hero-visual {
           opacity: 0;
           animation:
-            fadeSide
-            .8s
-            cubic-bezier(.22,1,.36,1)
-            .2s
-            forwards,
-            softFloat
-            7s
-            ease-in-out
-            1.2s
-            infinite;
+            fadeSide .8s cubic-bezier(.22,1,.36,1) .2s forwards,
+            softFloat 7s ease-in-out 1.2s infinite;
         }
 
         .moving-grid {
           background-image:
-            linear-gradient(
-              rgba(15,23,42,.038) 1px,
-              transparent 1px
-            ),
-            linear-gradient(
-              90deg,
-              rgba(15,23,42,.038) 1px,
-              transparent 1px
-            );
+            linear-gradient(rgba(15,23,42,.038) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(15,23,42,.038) 1px, transparent 1px);
           background-size: 40px 40px;
-          animation:
-            gridMove
-            18s
-            linear
-            infinite;
+          animation: gridMove 18s linear infinite;
         }
 
         .dot-grid {
-          background-image:
-            radial-gradient(
-              circle,
-              rgba(255,111,15,.17) 1px,
-              transparent 1px
-            );
+          background-image: radial-gradient(circle, rgba(255,111,15,.17) 1px, transparent 1px);
           background-size: 18px 18px;
         }
 
@@ -444,70 +405,33 @@ export default function HomePage() {
           display: flex;
           width: max-content;
           min-width: 200%;
-          animation:
-            marquee
-            34s
-            linear
-            infinite;
+          animation: marquee 34s linear infinite;
         }
+        .tech-track:hover { animation-play-state: paused; }
 
-        .tech-track:hover {
-          animation-play-state: paused;
-        }
-
-        .service-card,
-        .ai-card,
-        .partner-card {
+        .service-card, .partner-card {
           transition:
             transform .35s cubic-bezier(.22,1,.36,1),
             border-color .35s ease,
-            background-color .35s ease,
             box-shadow .35s ease;
         }
-
-        .service-card:hover,
-        .partner-card:hover {
+        .service-card:hover, .partner-card:hover {
           transform: translateY(-3px);
-          border-color: rgba(255,111,15,.17);
+          border-color: rgba(255,111,15,.2);
         }
-
-        .service-card:hover {
-          box-shadow:
-            0 18px 45px
-            rgba(15,23,42,.05);
-        }
-
-        .ai-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(255,138,52,.2);
-          background: #23262b;
-        }
+        .service-card:hover { box-shadow: 0 18px 45px rgba(15,23,42,.05); }
 
         .service-icon {
-          transition:
-            transform .35s cubic-bezier(.22,1,.36,1),
-            background-color .3s ease;
+          transition: transform .35s cubic-bezier(.22,1,.36,1), background-color .3s ease;
         }
+        .service-card:hover .service-icon { transform: translateY(-3px) rotate(-3deg); }
 
-        .service-card:hover .service-icon {
-          transform:
-            translateY(-3px)
-            rotate(-3deg);
-        }
+        .photo-zoom img { transition: transform .8s cubic-bezier(.22,1,.36,1); }
+        .photo-zoom:hover img { transform: scale(1.04); }
 
-        .dark-light {
-          animation:
-            darkLight
-            11s
-            ease-in-out
-            infinite;
-        }
+        .dark-light { animation: darkLight 11s ease-in-out infinite; }
 
-        .process-card {
-          position: relative;
-          overflow: hidden;
-        }
-
+        .process-card { position: relative; overflow: hidden; }
         .process-card::after {
           content: "";
           position: absolute;
@@ -515,26 +439,12 @@ export default function HomePage() {
           bottom: 0;
           width: 0;
           height: 2px;
-          background:
-            linear-gradient(
-              90deg,
-              #ff6f0f,
-              transparent
-            );
-          transition:
-            width .45s
-            ease;
+          background: linear-gradient(90deg, #ff6f0f, transparent);
+          transition: width .45s ease;
         }
+        .process-card:hover::after { width: 100%; }
 
-        .process-card:hover::after {
-          width: 100%;
-        }
-
-        .cta-section {
-          position: relative;
-          overflow: hidden;
-        }
-
+        .cta-section { position: relative; overflow: hidden; }
         .cta-section::after {
           content: "";
           position: absolute;
@@ -542,85 +452,38 @@ export default function HomePage() {
           bottom: -50%;
           left: 0;
           width: 100px;
-          background:
-            linear-gradient(
-              90deg,
-              transparent,
-              rgba(255,255,255,.18),
-              transparent
-            );
-          animation:
-            ctaSweep
-            6s
-            ease-in-out
-            infinite;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+          animation: ctaSweep 6s ease-in-out infinite;
           pointer-events: none;
         }
 
         @supports (animation-timeline: view()) {
           .reveal {
-            animation:
-              fadeUp
-              linear
-              both;
+            animation: fadeUp linear both;
             animation-timeline: view();
-            animation-range:
-              entry 0%
-              cover 24%;
+            animation-range: entry 0% cover 24%;
           }
         }
 
         @media (max-width: 767px) {
-          .moving-grid {
-            animation: none;
-            background-size: 28px 28px;
-          }
-
+          .moving-grid { animation: none; background-size: 28px 28px; }
           .hero-visual {
-            animation:
-              fadeUp
-              .65s
-              cubic-bezier(.22,1,.36,1)
-              .28s
-              forwards;
+            animation: fadeUp .65s cubic-bezier(.22,1,.36,1) .28s forwards;
           }
-
-          .tech-track {
-            animation-duration: 25s;
-          }
-
+          .tech-track { animation-duration: 25s; }
           .service-card:hover,
-          .ai-card:hover,
-          .partner-card:hover {
-            transform: none;
-          }
-
-          .service-card:hover .service-icon {
-            transform: none;
-          }
+          .partner-card:hover { transform: none; }
+          .service-card:hover .service-icon { transform: none; }
+          .photo-zoom:hover img { transform: none; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .hero-a,
-          .hero-b,
-          .hero-c,
-          .hero-d,
-          .hero-e,
-          .hero-visual,
-          .moving-grid,
-          .tech-track,
-          .dark-light,
-          .cta-section::after,
-          .reveal {
+          .hero-a, .hero-b, .hero-c, .hero-d, .hero-e,
+          .hero-visual, .moving-grid, .tech-track, .dark-light,
+          .cta-section::after, .reveal {
             animation: none !important;
           }
-
-          .hero-a,
-          .hero-b,
-          .hero-c,
-          .hero-d,
-          .hero-e,
-          .hero-visual {
+          .hero-a, .hero-b, .hero-c, .hero-d, .hero-e, .hero-visual {
             opacity: 1 !important;
           }
         }
@@ -628,64 +491,60 @@ export default function HomePage() {
 
       <main className="overflow-x-hidden bg-[#f7f7f5] text-[#151719]">
         {/* =====================================================
-            HERO
+            1. HERO
         ====================================================== */}
         <section className="relative overflow-hidden border-b border-black/[0.06]">
           <div className="moving-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_95%)]" />
-          <div className="pointer-events-none absolute -left-32 -top-24 h-[420px] w-[420px] rounded-full bg-[#ff6f0f]/[0.07] blur-[100px]" />
-          <div className="pointer-events-none absolute -right-40 top-16 h-[420px] w-[420px] rounded-full bg-blue-500/[0.05] blur-[110px]" />
+          <div className="pointer-events-none absolute -left-32 -top-24 h-[360px] w-[360px] rounded-full bg-[#ff6f0f]/[0.07] blur-[100px]" />
+          <div className="pointer-events-none absolute -right-40 top-16 h-[360px] w-[360px] rounded-full bg-blue-500/[0.05] blur-[110px]" />
 
-          <div className="relative mx-auto grid max-w-7xl gap-11 px-4 pb-14 pt-12 sm:px-6 sm:py-16 md:min-h-[calc(100vh-70px)] md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-14 md:px-8 md:py-20 lg:px-10">
+          <div className="relative mx-auto grid max-w-6xl gap-7 px-4 pb-10 pt-8 sm:gap-10 sm:px-6 sm:py-14 md:grid-cols-[1.1fr_.9fr] md:items-center md:gap-12 md:py-16 lg:px-8">
             <div>
               <div className="hero-a">
                 <Eyebrow>PT RHG Teknologi Indonesia</Eyebrow>
               </div>
 
-              <h1 className="hero-b mt-5 max-w-3xl text-[38px] font-black leading-[1.02] tracking-[-0.05em] text-[#111315] min-[390px]:text-[41px] sm:text-5xl md:text-[60px] lg:text-[68px]">
-                Engineering teknologi dan AI untuk
-                <span className="text-[#ff6f0f]">
-                  {" "}
-                  kebutuhan dunia nyata.
-                </span>
+              <h1 className="hero-b mt-4 max-w-2xl text-[28px] font-black leading-[1.1] tracking-[-0.035em] text-[#111315] sm:mt-5 sm:text-[36px] md:text-[40px] lg:text-[46px]">
+                Software dan sistem digital untuk
+                <span className="text-[#ff6f0f]"> kebutuhan bisnis Anda.</span>
               </h1>
 
-              <p className="hero-c mt-5 max-w-2xl text-[14px] leading-7 text-slate-600 sm:text-base sm:leading-8 md:text-lg">
-                RHG mengembangkan software, mobile application,
-                backend, AI Agent, computer vision, automation,
-                payment, GIS, GeoAI, IoT, dan sistem terintegrasi
-                untuk bisnis maupun kebutuhan lapangan.
+              <p className="hero-c mt-3.5 max-w-xl text-[13px] leading-6 text-slate-600 sm:mt-4 sm:text-[15px] sm:leading-7">
+                RHG mengembangkan website, aplikasi mobile, backend, integrasi
+                pembayaran, sistem berbasis peta, dan otomasi proses untuk
+                perusahaan di berbagai sektor.
               </p>
 
-              <div className="hero-d mt-7 grid gap-2.5 sm:flex sm:flex-wrap">
+              <div className="hero-d mt-5 grid grid-cols-2 gap-2 sm:mt-6 sm:flex sm:flex-wrap sm:gap-2.5">
                 <Link
                   href="/kontak"
-                  className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-6 text-sm font-black text-white transition hover:bg-black"
+                  className="group inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-[#17191c] px-4 text-[13px] font-black text-white transition hover:bg-black sm:min-h-[44px] sm:gap-2 sm:px-5"
                 >
                   Diskusikan Project
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
 
                 <Link
-                  href="#ai"
-                  className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-6 text-sm font-bold transition hover:border-black/20"
+                  href="#layanan"
+                  className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full border border-black/10 bg-white px-4 text-[13px] font-bold transition hover:border-black/20 sm:min-h-[44px] sm:gap-2 sm:px-5"
                 >
-                  Explore AI
-                  <ArrowUpRight className="h-4 w-4" />
+                  Lihat Layanan
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
 
-              <div className="hero-e mt-8 grid grid-cols-4 gap-2 border-t border-black/[0.07] pt-5 sm:mt-10 sm:gap-6 sm:pt-6">
+              <div className="hero-e mt-6 grid grid-cols-4 gap-2 border-t border-black/[0.07] pt-4 sm:mt-8 sm:gap-5 sm:pt-5">
                 {[
-                  ["Software", "Web & Mobile"],
-                  ["AI", "Applied AI"],
-                  ["Data", "Backend & Automation"],
-                  ["Field", "Geo · IoT · Agriculture"],
+                  ["Web", "Platform & portal"],
+                  ["Mobile", "Android & iOS"],
+                  ["Backend", "API & integrasi"],
+                  ["GIS", "Peta & lokasi"],
                 ].map(([title, subtitle]) => (
                   <div key={title}>
-                    <p className="text-base font-black tracking-[-0.04em] sm:text-xl">
+                    <p className="text-[15px] font-black tracking-[-0.03em] sm:text-base">
                       {title}
                     </p>
-                    <p className="mt-1 text-[8px] leading-4 text-slate-400 sm:text-[10px]">
+                    <p className="mt-0.5 text-[8px] leading-3 text-slate-400 sm:text-[10px] sm:leading-4">
                       {subtitle}
                     </p>
                   </div>
@@ -693,102 +552,26 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="hero-visual relative mx-auto w-full max-w-[570px]">
-              <div className="absolute -right-4 top-4 hidden h-[88%] w-[90%] rounded-[30px] border border-[#ff6f0f]/15 bg-[#ff6f0f]/[0.04] sm:block" />
+            <div className="hero-visual relative mx-auto w-full max-w-[460px]">
+              <div className="absolute -right-3 top-3 hidden h-[88%] w-[90%] rounded-[24px] border border-[#ff6f0f]/15 bg-[#ff6f0f]/[0.04] sm:block" />
 
-              <div className="relative overflow-hidden rounded-[26px] border border-black/[0.07] bg-[#17191c] p-4 text-white shadow-[0_25px_75px_rgba(15,23,42,.15)] sm:p-6">
-                <div className="flex items-start justify-between border-b border-white/[0.08] pb-5">
-                  <div>
-                    <p className="text-sm font-black">
-                      RHG Technology Engineering
-                    </p>
-                    <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-white/30">
-                      Software · AI · Data · Field Technology
-                    </p>
-                  </div>
+              <div className="relative overflow-hidden rounded-[18px] border border-black/[0.07] bg-[#17191c] text-white shadow-[0_20px_60px_rgba(15,23,42,.13)] sm:rounded-[22px]">
+                <Photo
+                  src={IMG.hero}
+                  alt="Tim RHG Teknologi Indonesia mengerjakan sistem software"
+                  sizes="(min-width: 768px) 460px, 100vw"
+                  priority
+                  className="aspect-[16/10] w-full sm:aspect-[4/3]"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#17191c]/85 via-transparent to-transparent" />
 
-                  <span className="rounded-full bg-white/[0.06] px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.12em] text-white/40">
-                    Indonesia
-                  </span>
-                </div>
-
-                <div className="mt-5 grid grid-cols-2 gap-2.5">
-                  {[
-                    {
-                      icon: Code2,
-                      title: "Product",
-                      text: "Web & Mobile",
-                    },
-                    {
-                      icon: BrainCircuit,
-                      title: "Applied AI",
-                      text: "Agent · Vision · RAG",
-                    },
-                    {
-                      icon: Database,
-                      title: "Data",
-                      text: "Backend · Automation",
-                    },
-                    {
-                      icon: Satellite,
-                      title: "Field Tech",
-                      text: "Geo · IoT · Agriculture",
-                    },
-                  ].map((item) => {
-                    const Icon = item.icon;
-
-                    return (
-                      <div
-                        key={item.title}
-                        className="rounded-[18px] border border-white/[0.07] bg-white/[0.035] p-4"
-                      >
-                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff6f0f]">
-                          <Icon className="h-[18px] w-[18px]" />
-                        </span>
-
-                        <p className="mt-4 text-sm font-black">
-                          {item.title}
-                        </p>
-
-                        <p className="mt-1 text-[10px] text-white/35">
-                          {item.text}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-3 rounded-[18px] bg-[#22252a] p-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[8px] font-black uppercase tracking-[0.14em] text-[#ff9852]">
-                        Applied Technology R&D
-                      </p>
-
-                      <p className="mt-1 text-sm font-black">
-                        Real-world field experimentation
-                      </p>
-                    </div>
-
-                    <Sprout className="h-5 w-5 text-[#ff9852]" />
-                  </div>
-
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {[
-                      "AI",
-                      "Agriculture",
-                      "Drone",
-                      "IoT",
-                      "GeoAI",
-                    ].map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-white/[0.07] px-2.5 py-1 text-[8px] font-semibold text-white/40"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+                <div className="absolute inset-x-4 bottom-3.5 sm:inset-x-5 sm:bottom-4">
+                  <p className="text-[13px] font-black sm:text-sm">
+                    PT RHG Teknologi Indonesia
+                  </p>
+                  <p className="mt-0.5 text-[9px] uppercase tracking-[0.14em] text-white/55">
+                    Software · Data · Integrasi
+                  </p>
                 </div>
               </div>
             </div>
@@ -796,20 +579,17 @@ export default function HomePage() {
         </section>
 
         {/* =====================================================
-            TECHNOLOGY
+            2. TICKER TEKNOLOGI
         ====================================================== */}
         <section className="overflow-hidden border-b border-black/[0.06] bg-white">
-          <div className="relative flex h-14 items-center sm:h-16">
-            <div className="pointer-events-none absolute left-0 z-10 h-full w-16 bg-gradient-to-r from-white to-transparent" />
-            <div className="pointer-events-none absolute right-0 z-10 h-full w-16 bg-gradient-to-l from-white to-transparent" />
+          <div className="relative flex h-11 items-center sm:h-12">
+            <div className="pointer-events-none absolute left-0 z-10 h-full w-12 bg-gradient-to-r from-white to-transparent sm:w-16" />
+            <div className="pointer-events-none absolute right-0 z-10 h-full w-12 bg-gradient-to-l from-white to-transparent sm:w-16" />
 
             <div className="tech-track">
               {TECH_LOOP.map((item, index) => (
-                <div
-                  key={`${item}-${index}`}
-                  className="flex shrink-0 items-center"
-                >
-                  <span className="px-5 text-[11px] font-bold text-slate-400 sm:px-8 sm:text-xs">
+                <div key={`${item}-${index}`} className="flex shrink-0 items-center">
+                  <span className="px-5 text-[11px] font-bold text-slate-400 sm:px-7 sm:text-xs">
                     {item}
                   </span>
                   <span className="h-1 w-1 rounded-full bg-[#ff6f0f]/40" />
@@ -820,34 +600,33 @@ export default function HomePage() {
         </section>
 
         {/* =====================================================
-            SERVICES
+            3. LAYANAN
         ====================================================== */}
-        <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
-            <div className="grid gap-10 lg:grid-cols-[.68fr_1.32fr]">
+        <section id="layanan" className="bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:px-8">
+            <div className="grid gap-6 sm:gap-8 lg:grid-cols-[.6fr_1.4fr]">
               <div className="reveal">
-                <Eyebrow>Capabilities</Eyebrow>
+                <Eyebrow>Layanan</Eyebrow>
 
-                <h2 className="mt-4 max-w-lg text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
-                  Lebih dari sekadar software development.
+                <h2 className="mt-3 max-w-md text-[24px] font-black leading-[1.15] tracking-[-0.03em] sm:text-[28px] md:text-[32px]">
+                  Layanan pengembangan software dan integrasi sistem.
                 </h2>
 
-                <p className="mt-4 max-w-md text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
-                  RHG menggabungkan software engineering, AI, data,
-                  geospatial, IoT, dan integrasi untuk membangun
-                  solusi yang benar-benar terhubung.
+                <p className="mt-3 max-w-sm text-[13px] leading-6 text-slate-500 sm:text-sm sm:leading-7">
+                  Dari website dan aplikasi hingga backend, pembayaran, peta,
+                  dan perangkat lapangan.
                 </p>
 
                 <Link
                   href="/layanan"
-                  className="group mt-7 inline-flex items-center gap-2 text-sm font-black"
+                  className="group mt-4 inline-flex items-center gap-2 text-[13px] font-black"
                 >
                   Semua layanan
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2 sm:gap-0 sm:border-l sm:border-t sm:border-black/[0.07]">
+              <div className="grid gap-2 sm:grid-cols-2 sm:gap-0 sm:border-l sm:border-t sm:border-black/[0.07]">
                 {SERVICES.map((service) => {
                   const Icon = service.icon;
 
@@ -855,45 +634,27 @@ export default function HomePage() {
                     <Link
                       key={service.number}
                       href={service.href}
-                      className={`service-card reveal group rounded-[20px] border p-5 sm:rounded-none sm:border-b sm:border-r sm:border-l-0 sm:border-t-0 sm:p-7 ${
-                        service.featured
-                          ? "border-[#ff6f0f]/20 bg-[#fff8f2]"
-                          : "border-black/[0.07] bg-[#fafafa] sm:bg-white"
-                      }`}
+                      className="service-card reveal group rounded-[14px] border border-black/[0.07] bg-[#fafafa] p-4 sm:rounded-none sm:border-b sm:border-l-0 sm:border-r sm:border-t-0 sm:bg-white sm:p-5"
                     >
-                      <div className="flex items-start justify-between">
-                        <span
-                          className={`service-icon flex h-11 w-11 items-center justify-center rounded-xl ${
-                            service.featured
-                              ? "bg-[#ff6f0f] text-white"
-                              : "bg-[#f0f0ed] text-[#25282b] group-hover:bg-[#fff0e5] group-hover:text-[#ff6f0f]"
-                          }`}
-                        >
-                          <Icon className="h-5 w-5" />
+                      <div className="flex items-center justify-between sm:items-start">
+                        <span className="service-icon flex h-9 w-9 items-center justify-center rounded-lg bg-[#f0f0ed] text-[#25282b] group-hover:bg-[#fff0e5] group-hover:text-[#ff6f0f]">
+                          <Icon className="h-[18px] w-[18px]" />
                         </span>
 
-                        <div className="flex items-center gap-2">
-                          {service.featured && (
-                            <span className="rounded-full bg-[#ff6f0f]/10 px-2 py-1 text-[8px] font-black uppercase tracking-[0.12em] text-[#ff6f0f]">
-                              AI
-                            </span>
-                          )}
-
-                          <span className="font-mono text-[9px] font-bold text-slate-300">
-                            {service.number}
-                          </span>
-                        </div>
+                        <span className="font-mono text-[9px] font-bold text-slate-300">
+                          {service.number}
+                        </span>
                       </div>
 
-                      <h3 className="mt-5 text-[17px] font-black tracking-[-0.025em] sm:text-lg">
+                      <h3 className="mt-3 text-[15px] font-black tracking-[-0.02em] sm:mt-4">
                         {service.title}
                       </h3>
 
-                      <p className="mt-2.5 text-[13px] leading-6 text-slate-500 sm:text-sm sm:leading-7">
+                      <p className="mt-1.5 text-[12px] leading-5 text-slate-500 sm:text-[13px] sm:leading-6">
                         {service.description}
                       </p>
 
-                      <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-black opacity-50 transition group-hover:opacity-100">
+                      <span className="mt-3 hidden items-center gap-1.5 text-[11px] font-black opacity-50 transition group-hover:opacity-100 sm:inline-flex">
                         Detail layanan
                         <ArrowUpRight className="h-3.5 w-3.5" />
                       </span>
@@ -906,160 +667,131 @@ export default function HomePage() {
         </section>
 
         {/* =====================================================
-            RHG COFFEE AI LIVING LAB
+            4. RHG COFFEE LAB
         ====================================================== */}
         <section className="relative overflow-hidden bg-[#f7f7f5]">
           <div className="dot-grid pointer-events-none absolute inset-0 opacity-25" />
 
-          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-[.86fr_1.14fr] lg:gap-16">
+          <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:px-8">
+            <div className="grid items-center gap-7 sm:gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-12">
               <div className="reveal">
                 <div className="inline-flex items-center gap-2 rounded-full border border-[#ff6f0f]/15 bg-[#fff0e5] px-3 py-1.5">
                   <span className="h-2 w-2 rounded-full bg-[#ff6f0f]" />
-
-                  <span className="text-[9px] font-black uppercase tracking-[0.16em] text-[#ff6f0f]">
-                    RHG Applied Technology Field Lab
+                  <span className="text-[8px] font-black uppercase tracking-[0.14em] text-[#ff6f0f] sm:text-[9px]">
+                    Lokasi Uji Teknologi
                   </span>
                 </div>
 
-                <h2 className="mt-5 max-w-2xl text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
-                  RHG Coffee
-                  <span className="text-[#ff6f0f]">
-                    {" "}
-                    AI Living Lab.
-                  </span>
+                <h2 className="mt-4 text-[26px] font-black leading-[1.12] tracking-[-0.03em] sm:text-[30px] md:text-[34px]">
+                  RHG Coffee Lab
                 </h2>
 
-                <div className="mt-4 flex items-center gap-2 text-[12px] font-bold text-slate-500">
-                  <MapPin className="h-4 w-4 text-[#ff6f0f]" />
+                <div className="mt-2.5 flex items-center gap-2 text-[11px] font-bold text-slate-500 sm:text-[12px]">
+                  <MapPin className="h-3.5 w-3.5 text-[#ff6f0f]" />
                   Kabupaten Rejang Lebong, Provinsi Bengkulu
                 </div>
 
-                <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
-                  RHG Teknologi Indonesia memiliki area perkebunan
-                  kopi nyata yang dikembangkan sebagai lingkungan
-                  eksperimen dan pilot project untuk agriculture
-                  technology, artificial intelligence, computer
-                  vision, drone, IoT, environmental monitoring,
-                  GeoAI, dan sistem berbasis data lapangan.
+                <p className="mt-3.5 max-w-lg text-[13px] leading-6 text-slate-600 sm:text-sm sm:leading-7">
+                  RHG memiliki area kebun kopi di Rejang Lebong yang digunakan
+                  sebagai lokasi uji coba teknologi pertanian, meliputi
+                  pemantauan lahan, pemetaan dengan drone, sensor IoT, dan
+                  analisis data lapangan.
                 </p>
 
-                <p className="mt-4 max-w-xl text-sm leading-7 text-slate-500">
-                  Medan lereng, variasi elevasi, vegetasi, serta
-                  kondisi lingkungan alami memberi ruang untuk
-                  menguji teknologi langsung di lapangan sebelum
-                  diterapkan pada skala yang lebih besar.
-                </p>
-
-                <div className="mt-7 grid grid-cols-2 gap-2.5">
-                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
-                    <p className="text-2xl font-black tracking-[-0.04em]">
+                <div className="mt-5 grid grid-cols-2 gap-2">
+                  <div className="rounded-[14px] border border-black/[0.07] bg-white p-3">
+                    <p className="text-xl font-black tracking-[-0.03em]">
                       2.02
-                      <span className="ml-1 text-sm text-[#ff6f0f]">
-                        ha
-                      </span>
+                      <span className="ml-1 text-xs text-[#ff6f0f]">ha</span>
                     </p>
-
-                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
-                      Approx. mapped area
+                    <p className="mt-0.5 text-[9px] font-semibold text-slate-400 sm:text-[10px]">
+                      Luas area (perkiraan)
                     </p>
                   </div>
 
-                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
-                    <p className="text-2xl font-black tracking-[-0.04em]">
+                  <div className="rounded-[14px] border border-black/[0.07] bg-white p-3">
+                    <p className="text-xl font-black tracking-[-0.03em]">
                       843–910
-                      <span className="ml-1 text-sm text-[#ff6f0f]">
-                        m
-                      </span>
+                      <span className="ml-1 text-xs text-[#ff6f0f]">m</span>
                     </p>
-
-                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
-                      Elevation range
+                    <p className="mt-0.5 text-[9px] font-semibold text-slate-400 sm:text-[10px]">
+                      Rentang elevasi
                     </p>
                   </div>
 
-                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
-                    <p className="text-lg font-black tracking-[-0.03em]">
-                      Coffee Plantation
+                  <div className="rounded-[14px] border border-black/[0.07] bg-white p-3">
+                    <p className="text-[14px] font-black tracking-[-0.02em] sm:text-[15px]">
+                      Kebun kopi
                     </p>
-
-                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
-                      Real agricultural environment
+                    <p className="mt-0.5 text-[9px] font-semibold text-slate-400 sm:text-[10px]">
+                      Lingkungan pertanian
                     </p>
                   </div>
 
-                  <div className="rounded-[18px] border border-black/[0.07] bg-white p-4">
-                    <p className="text-lg font-black tracking-[-0.03em]">
-                      Field R&D
+                  <div className="rounded-[14px] border border-black/[0.07] bg-white p-3">
+                    <p className="text-[14px] font-black tracking-[-0.02em] sm:text-[15px]">
+                      Uji lapangan
                     </p>
-
-                    <p className="mt-1 text-[10px] font-semibold text-slate-400">
-                      AI · Drone · IoT · GeoAI
+                    <p className="mt-0.5 text-[9px] font-semibold text-slate-400 sm:text-[10px]">
+                      Drone · IoT · Pemetaan
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
+                <div className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:gap-2.5">
                   <Link
                     href="/lab"
-                    className="group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-[#17191c] px-5 text-sm font-black text-white transition hover:bg-black"
+                    className="group inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-[#17191c] px-3 text-[13px] font-black text-white transition hover:bg-black sm:min-h-[44px] sm:gap-2 sm:px-5"
                   >
                     Lihat RHG Lab
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </Link>
 
                   <a
                     href={LAB_MAP_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full border border-black/[0.09] bg-white px-5 text-sm font-bold transition hover:border-black/20"
+                    className="inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full border border-black/[0.09] bg-white px-3 text-[13px] font-bold transition hover:border-black/20 sm:min-h-[44px] sm:gap-2 sm:px-5"
                   >
-                    Buka Satellite Map
-                    <ExternalLink className="h-4 w-4" />
+                    Buka Peta
+                    <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 </div>
               </div>
 
               <div className="reveal relative">
-                <div className="absolute -right-5 top-5 hidden h-[92%] w-[92%] rounded-[30px] border border-[#ff6f0f]/15 bg-[#ff6f0f]/[0.035] sm:block" />
+                <div className="absolute -right-4 top-4 hidden h-[92%] w-[92%] rounded-[24px] border border-[#ff6f0f]/15 bg-[#ff6f0f]/[0.035] sm:block" />
 
-                <div className="relative overflow-hidden rounded-[26px] border border-black/[0.08] bg-[#17191c] shadow-[0_28px_85px_rgba(15,23,42,.17)]">
-                  <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-4 text-white sm:px-6">
+                <div className="relative overflow-hidden rounded-[18px] border border-black/[0.08] bg-[#17191c] shadow-[0_20px_60px_rgba(15,23,42,.15)] sm:rounded-[22px]">
+                  <div className="flex items-center justify-between border-b border-white/[0.08] px-3.5 py-3 text-white sm:px-5">
                     <div>
-                      <p className="text-sm font-black">
-                        RHG Coffee AI Living Lab
-                      </p>
-
-                      <p className="mt-1 text-[9px] uppercase tracking-[0.13em] text-white/30">
-                        Satellite Field View
+                      <p className="text-[13px] font-black">RHG Coffee Lab</p>
+                      <p className="mt-0.5 text-[8px] uppercase tracking-[0.13em] text-white/35 sm:text-[9px]">
+                        Citra satelit
                       </p>
                     </div>
 
-                    <span className="rounded-full bg-[#ff6f0f]/15 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.12em] text-[#ff9852]">
+                    <span className="rounded-full bg-[#ff6f0f]/15 px-2.5 py-1 text-[8px] font-black uppercase tracking-[0.12em] text-[#ff9852]">
                       Rejang Lebong
                     </span>
                   </div>
 
-                  <div className="relative h-[360px] w-full sm:h-[430px]">
+                  <div className="relative h-[230px] w-full sm:h-[340px]">
                     <iframe
                       src={LAB_MAP_EMBED}
-                      title="Lokasi RHG Coffee AI Living Lab di Rejang Lebong, Bengkulu"
+                      title="Lokasi RHG Coffee Lab di Rejang Lebong, Bengkulu"
                       loading="lazy"
                       allowFullScreen
                       referrerPolicy="no-referrer-when-downgrade"
                       className="absolute inset-0 h-full w-full border-0"
                     />
 
-                    <div className="pointer-events-none absolute left-4 top-4 rounded-[16px] border border-white/15 bg-black/65 px-4 py-3 text-white shadow-lg backdrop-blur-md">
+                    <div className="pointer-events-none absolute left-3 top-3 rounded-[12px] border border-white/15 bg-black/65 px-3 py-2 text-white shadow-lg backdrop-blur-md">
                       <p className="text-[8px] font-black uppercase tracking-[0.16em] text-[#ff9852]">
-                        Field Test Site
+                        Lokasi uji
                       </p>
-
-                      <p className="mt-1 text-xs font-black">
-                        Coffee Plantation
-                      </p>
-
-                      <p className="mt-1 text-[9px] text-white/55">
+                      <p className="mt-0.5 text-[11px] font-black">Kebun kopi</p>
+                      <p className="mt-0.5 text-[8px] text-white/60">
                         Rejang Lebong · Bengkulu
                       </p>
                     </div>
@@ -1067,19 +799,18 @@ export default function HomePage() {
 
                   <div className="grid grid-cols-3 border-t border-white/[0.08] text-white">
                     {[
-                      ["Environment", "Agriculture"],
-                      ["Terrain", "Slope"],
-                      ["Purpose", "AI / R&D"],
+                      ["Lingkungan", "Pertanian"],
+                      ["Medan", "Lereng"],
+                      ["Fungsi", "Uji lapangan"],
                     ].map(([label, value]) => (
                       <div
                         key={label}
-                        className="border-r border-white/[0.07] px-3 py-4 last:border-r-0 sm:px-5"
+                        className="border-r border-white/[0.07] px-3 py-2.5 last:border-r-0 sm:px-4 sm:py-3"
                       >
-                        <p className="text-[8px] uppercase tracking-[0.13em] text-white/25">
+                        <p className="text-[8px] uppercase tracking-[0.13em] text-white/30">
                           {label}
                         </p>
-
-                        <p className="mt-1 text-[10px] font-black text-white/70 sm:text-xs">
+                        <p className="mt-0.5 text-[10px] font-black text-white/75 sm:text-[11px]">
                           {value}
                         </p>
                       </div>
@@ -1088,430 +819,231 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="reveal mt-5 overflow-hidden rounded-[22px] bg-[#17191c] p-5 text-white sm:p-6">
-              <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#ff8a34]">
-                    Applied Technology & Field Research
-                  </p>
+        {/* =====================================================
+            5. OTOMASI & AI (ringkas)
+        ====================================================== */}
+        <section className="relative overflow-hidden bg-[#17191c] text-white">
+          <div className="dark-light pointer-events-none absolute -left-40 -top-44 h-[420px] w-[420px] rounded-full bg-[#ff6f0f]/[0.09] blur-[130px]" />
 
-                  <h3 className="mt-2 text-lg font-black tracking-[-0.025em] sm:text-xl">
-                    Lihat environment, research area, dan konsep
-                    eksperimen RHG.
-                  </h3>
+          <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:px-8">
+            <div className="grid items-center gap-6 sm:gap-10 lg:grid-cols-[1.1fr_.9fr] lg:gap-12">
+              <div className="reveal">
+                <Eyebrow dark>Otomasi</Eyebrow>
 
-                  <p className="mt-2 max-w-2xl text-[12px] leading-6 text-white/40 sm:text-sm">
-                    Detail pengujian AI, agriculture technology,
-                    computer vision, drone, IoT, environmental
-                    monitoring, GIS, dan GeoAI tersedia di halaman
-                    khusus RHG Lab.
-                  </p>
-                </div>
+                <h2 className="mt-4 max-w-xl text-[24px] font-black leading-[1.15] tracking-[-0.03em] sm:text-[28px] md:text-[32px]">
+                  Otomasi proses dan integrasi AI untuk pekerjaan berulang.
+                </h2>
+
+                <p className="mt-3 max-w-lg text-[13px] leading-6 text-white/55 sm:text-sm sm:leading-7">
+                  Untuk perusahaan yang ingin mengurangi pekerjaan manual, RHG
+                  membangun otomasi dan menghubungkan layanan AI ke sistem yang
+                  sudah digunakan.
+                </p>
+
+                <ul className="mt-5 grid gap-2">
+                  {AUTOMATION_POINTS.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-[13px] text-white/75"
+                    >
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#ff8a34]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
 
                 <Link
-                  href="/lab"
-                  className="group inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c] transition hover:bg-[#ff8a34] md:w-auto"
+                  href="/kontak"
+                  className="group mt-6 inline-flex min-h-[42px] items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-[13px] font-black text-[#17191c] transition hover:bg-[#ff8a34] sm:min-h-[44px]"
                 >
-                  Informasi Lengkap RHG Lab
+                  Diskusikan Kebutuhan
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
+
+              <div className="reveal relative">
+                <div className="absolute -left-3 top-3 hidden h-[90%] w-[90%] rounded-[22px] border border-[#ff6f0f]/15 sm:block" />
+
+                <div className="relative overflow-hidden rounded-[18px] border border-white/[0.09] bg-[#1d2024] sm:rounded-[22px]">
+                  <Photo
+                    src={IMG.ai}
+                    alt="Contoh dashboard dan analisis gambar"
+                    sizes="(min-width: 1024px) 440px, 100vw"
+                    className="aspect-[16/10] w-full sm:aspect-[4/3]"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* =====================================================
-            APPLIED AI
+            6. PENDEKATAN
         ====================================================== */}
-        <section
-          id="ai"
-          className="relative overflow-hidden bg-[#17191c] text-white"
-        >
-          <div className="dark-light pointer-events-none absolute -left-40 -top-44 h-[520px] w-[520px] rounded-full bg-[#ff6f0f]/[0.09] blur-[130px]" />
+        <section className="bg-[#f7f7f5]">
+          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:px-8">
+            <div className="grid items-center gap-6 sm:gap-10 md:grid-cols-2 md:gap-12">
+              <div className="reveal relative order-2 md:order-1">
+                <div className="absolute -left-3 top-3 hidden h-[92%] w-[92%] rounded-[22px] border border-[#ff6f0f]/15 bg-[#ff6f0f]/[0.04] sm:block" />
 
-          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
-            <div className="reveal max-w-4xl">
-              <Eyebrow dark>Applied AI</Eyebrow>
-
-              <h2 className="mt-5 text-[32px] font-black leading-[1.05] tracking-[-0.045em] sm:text-4xl md:text-5xl">
-                AI untuk berbagai bisnis,
-                <span className="text-[#ff8a34]">
-                  {" "}
-                  industri, dan kondisi dunia nyata.
-                </span>
-              </h2>
-
-              <p className="mt-5 max-w-3xl text-sm leading-7 text-white/45 sm:text-base sm:leading-8">
-                Fokus kami bukan hanya AI untuk geospatial. RHG
-                mengembangkan AI untuk operasional bisnis, customer
-                service, dokumen, retail, logistics, perkebunan,
-                infrastruktur, computer vision, dan kebutuhan khusus
-                lainnya.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-2">
-              {AI_SECTORS.map((sector) => (
-                <span
-                  key={sector}
-                  className="rounded-full border border-white/[0.09] bg-white/[0.025] px-3.5 py-2 text-[10px] font-semibold text-white/45"
-                >
-                  {sector}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {AI_SOLUTIONS.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.number}
-                    className="ai-card reveal rounded-[20px] border border-white/[0.08] bg-[#1d2024] p-5 sm:p-6"
-                  >
-                    <div className="flex items-start justify-between">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#ff6f0f]">
-                        <Icon className="h-5 w-5" />
-                      </span>
-
-                      <span className="font-mono text-[9px] font-bold text-white/20">
-                        {item.number}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-6 text-lg font-black tracking-[-0.025em]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-[13px] leading-6 text-white/42 sm:text-sm">
-                      {item.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="reveal mt-10 flex flex-col gap-5 rounded-[22px] border border-white/[0.08] bg-white/[0.03] p-5 sm:p-6 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-sm font-black">
-                  Punya use case AI yang belum ada di daftar?
-                </p>
-
-                <p className="mt-1.5 max-w-2xl text-xs leading-6 text-white/40">
-                  Kami dapat mengevaluasi workflow, data, API,
-                  kebutuhan model, serta feasibility sebelum
-                  implementasi.
-                </p>
+                <Photo
+                  src={IMG.approach}
+                  alt="Proses kerja tim RHG dari diskusi kebutuhan hingga implementasi"
+                  sizes="(min-width: 768px) 480px, 100vw"
+                  className="relative aspect-[16/10] w-full rounded-[18px] border border-black/[0.07] shadow-[0_20px_60px_rgba(15,23,42,.1)] sm:aspect-[4/3] sm:rounded-[22px]"
+                />
               </div>
 
-              <Link
-                href="/kontak"
-                className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#ff6f0f] px-5 text-sm font-black text-[#17191c]"
-              >
-                Bahas AI Project
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </div>
-        </section>
+              <div className="reveal order-1 md:order-2">
+                <Eyebrow>Pendekatan Kerja</Eyebrow>
 
-        {/* =====================================================
-            APPROACH
-        ====================================================== */}
-        <section className="relative overflow-hidden bg-[#17191c] text-white">
-          <div className="dark-light pointer-events-none absolute -left-32 -top-24 h-[500px] w-[500px] rounded-full bg-[#ff6f0f]/[0.08] blur-[120px]" />
-
-          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
-            <div className="grid gap-10 md:grid-cols-2 md:gap-14">
-              <div className="reveal">
-                <Eyebrow dark>Our Approach</Eyebrow>
-
-                <h2 className="mt-5 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
-                  Teknologi mengikuti masalah.
-                  <span className="text-[#ff8a34]">
-                    {" "}
-                    Bukan sebaliknya.
-                  </span>
+                <h2 className="mt-4 max-w-lg text-[24px] font-black leading-[1.15] tracking-[-0.03em] sm:text-[28px] md:text-[32px]">
+                  Teknologi dipilih setelah kebutuhan dipahami.
                 </h2>
 
-                <p className="mt-5 max-w-xl text-sm leading-7 text-white/45 sm:text-base sm:leading-8">
-                  Kami memilih software, model AI, infrastruktur,
-                  sensor, maupun metode analisis setelah memahami
-                  kebutuhan dan kondisi pengguna.
+                <p className="mt-3 max-w-lg text-[13px] leading-6 text-slate-500 sm:text-sm sm:leading-7">
+                  RHG menentukan software, infrastruktur, dan metode kerja
+                  berdasarkan kebutuhan serta kondisi pengguna.
                 </p>
-              </div>
 
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  {
-                    icon: Layers3,
-                    title: "End-to-End",
-                    text: "Dari discovery hingga production.",
-                  },
-                  {
-                    icon: Code2,
-                    title: "Custom Built",
-                    text: "Mengikuti workflow dan kebutuhan.",
-                  },
-                  {
-                    icon: Network,
-                    title: "Integrated",
-                    text: "Software, AI, API, data dan hardware.",
-                  },
-                  {
-                    icon: ShieldCheck,
-                    title: "Maintainable",
-                    text: "Siap dirawat dan dikembangkan.",
-                  },
-                ].map((item) => {
-                  const Icon = item.icon;
+                <div className="mt-5 grid grid-cols-2 gap-2">
+                  {[
+                    { icon: Layers3, title: "Menyeluruh", text: "Dari analisis kebutuhan hingga produksi." },
+                    { icon: Code2, title: "Sesuai kebutuhan", text: "Mengikuti alur kerja yang ada." },
+                    { icon: Network, title: "Terintegrasi", text: "Software, API, data, dan perangkat keras." },
+                    { icon: ShieldCheck, title: "Mudah dirawat", text: "Dapat dipelihara dan dikembangkan." },
+                  ].map((item) => {
+                    const Icon = item.icon;
 
-                  return (
-                    <div
-                      key={item.title}
-                      className="rounded-[18px] bg-[#1d2024] p-4 sm:p-6"
-                    >
-                      <Icon className="h-5 w-5 text-[#ff8a34]" />
-
-                      <h3 className="mt-4 text-sm font-black sm:text-lg">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-2 text-[11px] leading-5 text-white/40 sm:text-sm sm:leading-6">
-                        {item.text}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="mt-8 border-t border-white/[0.08] pt-7">
-              <div className="flex flex-wrap gap-2">
-                {CAPABILITIES.map((item) => (
-                  <span
-                    key={item}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] px-3 py-2 text-[10px] font-semibold text-white/45 sm:px-4 sm:text-xs"
-                  >
-                    <Check className="h-3 w-3 text-[#ff8a34]" />
-                    {item}
-                  </span>
-                ))}
+                    return (
+                      <div
+                        key={item.title}
+                        className="rounded-[14px] border border-black/[0.07] bg-white p-3 sm:p-4"
+                      >
+                        <Icon className="h-4 w-4 text-[#ff6f0f]" />
+                        <h3 className="mt-2 text-[13px] font-black sm:text-sm">
+                          {item.title}
+                        </h3>
+                        <p className="mt-1 text-[10px] leading-4 text-slate-500 sm:text-[12px] sm:leading-5">
+                          {item.text}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* =====================================================
-            CLIENTS & COLLABORATIONS
+            7. KLIEN
         ====================================================== */}
         <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:px-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div className="reveal">
-                <Eyebrow>Clients & Collaborations</Eyebrow>
+                <Eyebrow>Klien & Kolaborasi</Eyebrow>
 
-                <h2 className="mt-4 max-w-3xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
-                  Kolaborasi teknologi dari Indonesia
-                  <span className="text-[#ff6f0f]">
-                    {" "}
-                    hingga Australia.
-                  </span>
+                <h2 className="mt-3 max-w-2xl text-[24px] font-black leading-[1.15] tracking-[-0.03em] sm:text-[28px] md:text-[32px]">
+                  Klien RHG di Indonesia dan Australia.
                 </h2>
 
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
-                  RHG bekerja bersama bisnis dari berbagai wilayah
-                  untuk membangun software, aplikasi, backend,
-                  sistem operasional, payment, dan integrasi
-                  teknologi yang digunakan dalam aktivitas nyata.
+                <p className="mt-3 max-w-xl text-[13px] leading-6 text-slate-500 sm:text-sm sm:leading-7">
+                  Sistem yang dibangun RHG digunakan oleh bisnis di bidang
+                  retail, distribusi, jaringan internet, perdagangan hasil
+                  bumi, layanan perizinan, dan marketplace lokal.
                 </p>
               </div>
 
               <Link
                 href="/portofolio"
-                className="group inline-flex shrink-0 items-center gap-2 text-sm font-black"
+                className="group inline-flex shrink-0 items-center gap-2 text-[13px] font-black"
               >
-                Semua Clients & Collaborations
+                Semua klien
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <div className="reveal mt-10 overflow-hidden rounded-[26px] border border-black/[0.06] bg-[#17191c] text-white shadow-[0_24px_70px_rgba(15,23,42,.12)]">
-              <div className="flex flex-col gap-3 border-b border-white/[0.08] px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            {/* Peta sebaran klien */}
+            <div className="mt-6 overflow-hidden rounded-[18px] border border-black/[0.08] bg-white shadow-[0_16px_50px_rgba(15,23,42,.07)] sm:mt-8 sm:rounded-[22px]">
+              <div className="flex items-center justify-between border-b border-black/[0.07] px-4 py-3 sm:px-5">
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#ff8a34]">
-                    Client Reach
+                  <p className="text-[8px] font-black uppercase tracking-[0.18em] text-[#ff6f0f] sm:text-[9px]">
+                    Sebaran klien
                   </p>
-
-                  <h3 className="mt-1 text-lg font-black tracking-[-0.03em]">
-                    Collaboration Network
+                  <h3 className="mt-0.5 text-[14px] font-black tracking-[-0.02em] sm:text-base">
+                    {CLIENTS.length} klien di {MAP_POINTS.length} lokasi
                   </h3>
                 </div>
 
-                <div className="flex flex-wrap gap-2 text-[9px] font-bold text-white/40">
-                  <span className="rounded-full border border-white/[0.08] px-3 py-1.5">
-                    Padang
-                  </span>
-                  <span className="rounded-full border border-white/[0.08] px-3 py-1.5">
-                    Pontianak
-                  </span>
-                  <span className="rounded-full border border-white/[0.08] px-3 py-1.5">
-                    Sulawesi Utara
-                  </span>
-                  <span className="rounded-full border border-white/[0.08] px-3 py-1.5">
-                    Australia
-                  </span>
-                </div>
+                <p className="hidden text-[11px] text-slate-400 sm:block">
+                  Klik pin untuk melihat nama klien
+                </p>
               </div>
 
-              <div className="relative h-[340px] overflow-hidden sm:h-[430px]">
-                <div
-                  className="absolute inset-0 opacity-25"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px)",
-                    backgroundSize: "36px 36px",
-                  }}
-                />
-
-                <div className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-[#ff6f0f]/10 blur-[80px]" />
-
-                <svg
-                  viewBox="0 0 100 56"
-                  className="absolute inset-0 h-full w-full"
-                  aria-hidden="true"
-                >
-                  <g
-                    fill="rgba(255,255,255,.035)"
-                    stroke="rgba(255,255,255,.10)"
-                    strokeWidth=".35"
-                  >
-                    <path d="M17 24 L20 19 L23 18 L27 22 L29 28 L27 35 L24 40 L21 37 L19 31 Z" />
-                    <path d="M29 38 L35 37 L42 38 L49 39 L53 41 L47 42 L39 41 L32 40 Z" />
-                    <path d="M39 22 L45 18 L52 19 L57 24 L55 31 L50 35 L43 33 L39 28 Z" />
-                    <path d="M58 22 L61 19 L64 22 L63 26 L67 24 L70 27 L67 31 L65 36 L62 33 L60 29 Z" />
-                    <path d="M73 27 L80 25 L87 28 L91 34 L87 38 L79 37 L74 33 Z" />
-                    <path d="M65 40 L75 38 L85 41 L91 47 L87 53 L77 54 L69 50 L63 45 Z" />
-                  </g>
-
-                  <g
-                    stroke="#ff7a1a"
-                    strokeWidth=".55"
-                    fill="none"
-                    strokeLinecap="round"
-                  >
-                    <path d="M42 42 Q33 33 23 35" />
-                    <path d="M42 42 Q45 36 48 34" />
-                    <path d="M42 42 Q56 28 68 30" />
-                    <path d="M42 42 Q58 48 78 46" />
-                  </g>
-
-                  <g fill="#ff7a1a">
-                    <circle cx="42" cy="42" r="1.15" />
-                    <circle cx="23" cy="35" r=".9" />
-                    <circle cx="48" cy="34" r=".9" />
-                    <circle cx="68" cy="30" r=".9" />
-                    <circle cx="78" cy="46" r=".9" />
-                  </g>
-
-                  <g fill="rgba(255,122,26,.18)">
-                    <circle cx="42" cy="42" r="2.3" />
-                    <circle cx="23" cy="35" r="1.8" />
-                    <circle cx="48" cy="34" r="1.8" />
-                    <circle cx="68" cy="30" r="1.8" />
-                    <circle cx="78" cy="46" r="1.8" />
-                  </g>
-                </svg>
-
-                <div className="absolute left-[42%] top-[75%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff6f0f] px-3 py-1.5 text-[9px] font-black text-[#17191c] shadow-lg">
-                  RHG
-                </div>
-
-                {CLIENTS.map((client) => (
-                  <div
-                    key={client.name}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
-                    style={{
-                      left: `${client.map.x}%`,
-                      top: `${client.map.y}%`,
-                    }}
-                  >
-                    <div className="group relative">
-                      <span className="block h-3 w-3 rounded-full border-2 border-[#17191c] bg-[#ff6f0f] shadow-[0_0_0_5px_rgba(255,111,15,.14)]" />
-
-                      <div className="absolute left-1/2 top-5 z-10 w-max max-w-[150px] -translate-x-1/2 rounded-[12px] border border-white/[0.09] bg-[#202328]/95 px-3 py-2 shadow-xl backdrop-blur">
-                        <p className="text-[9px] font-black text-white">
-                          {client.location}
-                        </p>
-
-                        <p className="mt-0.5 text-[8px] text-white/35">
-                          {client.name}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-2 border-t border-white/[0.08] sm:grid-cols-4">
-                {CLIENTS.map((client) => (
-                  <div
-                    key={client.location}
-                    className="border-b border-r border-white/[0.07] px-4 py-4 last:border-r-0 sm:border-b-0"
-                  >
-                    <p className="text-[8px] font-black uppercase tracking-[0.12em] text-[#ff8a34]">
-                      {client.location}
-                    </p>
-
-                    <p className="mt-1 text-[10px] font-semibold text-white/45">
-                      {client.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <ClientsMap points={MAP_POINTS} hq={HQ} />
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {/* Kartu klien */}
+            <div className="mt-3 grid gap-2.5 sm:mt-4 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
               {CLIENTS.map((client) => (
                 <div
                   key={client.name}
-                  className="partner-card reveal rounded-[22px] border border-black/[0.07] bg-[#fafaf8] p-5 sm:p-6"
+                  className="partner-card reveal overflow-hidden rounded-[16px] border border-black/[0.07] bg-[#fafaf8]"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-3.5 w-3.5 text-[#ff6f0f]" />
+                  <a
+                    href={client.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Kunjungi website ${client.name}`}
+                    className="photo-zoom block"
+                  >
+                    <Photo
+                      src={client.image}
+                      alt={`Tampilan website ${client.name}`}
+                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+                      className="aspect-[16/8] w-full border-b border-black/[0.06] sm:aspect-[16/9]"
+                    />
+                  </a>
 
-                        <p className="text-[9px] font-black uppercase tracking-[0.16em] text-[#ff6f0f]">
-                          {client.location}
+                  <div className="p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <MapPin className="h-3 w-3 shrink-0 text-[#ff6f0f]" />
+                          <p className="text-[8px] font-black uppercase tracking-[0.12em] text-[#ff6f0f] sm:text-[9px]">
+                            {client.location}
+                          </p>
+                        </div>
+
+                        <h3 className="mt-2 text-[16px] font-black tracking-[-0.02em]">
+                          {client.name}
+                        </h3>
+
+                        <p className="mt-0.5 text-[11px] font-semibold text-slate-400">
+                          {client.category}
                         </p>
                       </div>
 
-                      <h3 className="mt-3 text-xl font-black tracking-[-0.03em]">
-                        {client.name}
-                      </h3>
-
-                      <p className="mt-1 text-xs font-semibold text-slate-400">
-                        {client.category}
-                      </p>
+                      <a
+                        href={client.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Kunjungi website ${client.name}`}
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.08] bg-white text-slate-500 transition hover:bg-[#17191c] hover:text-white"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
                     </div>
 
-                    <a
-                      href={client.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Kunjungi website ${client.name}`}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] bg-white text-slate-500 transition hover:bg-[#17191c] hover:text-white"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
+                    <p className="mt-2.5 text-[12px] leading-5 text-slate-500 sm:text-[13px] sm:leading-6">
+                      {client.description}
+                    </p>
                   </div>
-
-                  <p className="mt-5 text-[13px] leading-6 text-slate-500 sm:text-sm sm:leading-7">
-                    {client.description}
-                  </p>
                 </div>
               ))}
             </div>
@@ -1519,34 +1051,34 @@ export default function HomePage() {
         </section>
 
         {/* =====================================================
-            PROCESS
+            8. TAHAPAN KERJA
         ====================================================== */}
         <section className="border-t border-black/[0.06] bg-[#f7f7f5]">
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-28 lg:px-10">
-            <div className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:px-8">
+            <div className="grid gap-5 sm:gap-8 lg:grid-cols-[.65fr_1.35fr]">
               <div className="reveal">
-                <Eyebrow>How We Work</Eyebrow>
+                <Eyebrow>Tahapan Kerja</Eyebrow>
 
-                <h2 className="mt-4 text-[30px] font-black leading-[1.08] tracking-[-0.04em] sm:text-4xl md:text-5xl">
-                  Dari masalah hingga sistem yang siap digunakan.
+                <h2 className="mt-3 max-w-sm text-[24px] font-black leading-[1.15] tracking-[-0.03em] sm:text-[28px] md:text-[32px]">
+                  Dari analisis kebutuhan hingga sistem berjalan.
                 </h2>
               </div>
 
-              <div className="grid gap-3">
+              <div className="grid gap-2 sm:gap-0">
                 {PROCESS.map((item) => (
                   <div
                     key={item.number}
-                    className="process-card reveal rounded-[18px] border border-black/[0.07] bg-white p-4 sm:grid sm:grid-cols-[70px_180px_1fr] sm:gap-4 sm:border-x-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:py-6"
+                    className="process-card reveal rounded-[14px] border border-black/[0.07] bg-white px-4 py-3 sm:grid sm:grid-cols-[56px_190px_1fr] sm:gap-4 sm:rounded-none sm:border-x-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:py-4"
                   >
-                    <span className="font-mono text-[10px] font-bold text-[#ff6f0f]">
-                      {item.number}
-                    </span>
+                    <div className="flex items-center gap-2.5 sm:contents">
+                      <span className="font-mono text-[10px] font-bold text-[#ff6f0f]">
+                        {item.number}
+                      </span>
 
-                    <h3 className="mt-2 text-[17px] font-black sm:mt-0">
-                      {item.title}
-                    </h3>
+                      <h3 className="text-[15px] font-black">{item.title}</h3>
+                    </div>
 
-                    <p className="mt-2 text-[12px] leading-6 text-slate-500 sm:mt-0 sm:text-sm">
+                    <p className="mt-1.5 text-[12px] leading-5 text-slate-500 sm:mt-0 sm:text-[13px] sm:leading-6">
                       {item.description}
                     </p>
                   </div>
@@ -1557,31 +1089,29 @@ export default function HomePage() {
         </section>
 
         {/* =====================================================
-            CTA
+            9. CTA
         ====================================================== */}
         <section className="cta-section bg-[#ff6f0f]">
-          <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20 lg:px-10">
-            <div className="grid items-center gap-7 md:grid-cols-[1fr_auto]">
+          <div className="relative mx-auto max-w-6xl px-4 py-9 sm:px-6 sm:py-12 md:py-14 lg:px-8">
+            <div className="grid items-center gap-5 md:grid-cols-[1fr_auto]">
               <div className="reveal">
-                <p className="text-[9px] font-black uppercase tracking-[0.18em] text-black/45">
-                  Build · Integrate · Experiment
+                <p className="text-[8px] font-black uppercase tracking-[0.18em] text-black/50 sm:text-[9px]">
+                  Hubungi Kami
                 </p>
 
-                <h2 className="mt-3 max-w-4xl text-[30px] font-black leading-[1.08] tracking-[-0.04em] text-[#17191c] sm:text-4xl md:text-5xl">
-                  Punya ide software, AI, automation, atau teknologi
-                  yang ingin diwujudkan?
+                <h2 className="mt-2 max-w-3xl text-[22px] font-black leading-[1.18] tracking-[-0.03em] text-[#17191c] sm:text-[28px] md:text-[32px]">
+                  Punya kebutuhan software atau sistem digital?
                 </h2>
 
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-black/55 sm:text-base">
-                  Ceritakan kebutuhan Anda. RHG dapat membantu mulai
-                  dari perencanaan, development, integrasi, pilot
-                  project, hingga production.
+                <p className="mt-3 max-w-xl text-[13px] leading-6 text-black/60 sm:text-sm sm:leading-7">
+                  Ceritakan kebutuhan Anda. RHG dapat membantu dari
+                  perencanaan, pengembangan, dan integrasi hingga operasional.
                 </p>
               </div>
 
               <Link
                 href="/kontak"
-                className="group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#17191c] px-6 text-sm font-black text-white transition hover:bg-black"
+                className="group inline-flex min-h-[44px] items-center justify-center gap-3 rounded-full bg-[#17191c] px-6 text-[13px] font-black text-white transition hover:bg-black sm:min-h-[46px]"
               >
                 Mulai Diskusi
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

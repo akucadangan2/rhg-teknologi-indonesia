@@ -82,13 +82,13 @@ export function Navbar() {
             aria-label="RHG Teknologi Indonesia"
             className="group relative z-[70] flex shrink-0 items-center"
           >
-            <div className="relative h-[46px] w-[180px] sm:h-[50px] sm:w-[195px] lg:h-[54px] lg:w-[215px]">
+            <div className="relative h-[34px] w-[120px] sm:h-[38px] sm:w-[135px] lg:h-[42px] lg:w-[150px]">
               <Image
-                src="/logo-full.png"
+                src="/logo-trim.png"
                 alt="RHG Teknologi Indonesia"
                 fill
                 priority
-                sizes="(max-width: 640px) 180px, (max-width: 1024px) 195px, 215px"
+                sizes="(max-width: 640px) 120px, (max-width: 1024px) 135px, 150px"
                 className="object-contain object-left transition-transform duration-300 group-hover:scale-[1.025]"
               />
             </div>
